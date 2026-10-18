@@ -1,0 +1,27 @@
+# Dữ liệu lớn – không commit lên git
+data/raw/
+data/db/
+data/interim/
+*.db
+*.db.partial
+*.zip
+*.sql
+*.sql.gz
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Bí mật
+.env
+*.token
+
+# K?t qu? l?n (gi? l?i metrics/config nh?)
+results/**/predictions*.csv
+results/**/*.pkl
+.pytest_cache/
+
+data/logs/
+

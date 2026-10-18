@@ -1,0 +1,44 @@
+# Cấu hình chung – mọi script đọc từ đây, KHÔNG hard-code trong code
+project: DT073
+seeds: [42, 123, 2024]          # ≥ 3 lần chạy theo yêu cầu đề
+
+paths:
+  zip: data/raw/CVEfixes_v1.0.8.zip
+  db: data/db/CVEfixes.db
+  interim: data/interim
+  processed: data/processed
+  reports: data/reports
+  results: results
+
+dataset:
+  version: v1.0.8
+  # Ngôn ngữ giữ lại (tên theo cột file_change.programming_language) – chốt lại sau EDA (Bước 4)
+  languages: [C, C++, PHP, Python, Java, JavaScript, Go, Ruby]
+  # Nhãn không cụ thể của NVD – gắn cờ, không dùng làm lớp huấn luyện
+  nonspecific_cwe: [NVD-CWE-Other, NVD-CWE-noinfo]
+  top_k_cwe: 10                 # số lớp CWE giữ lại; còn lại -> loại hoặc gộp "Other"
+
+validate:
+  drop_merge_commits: true
+  max_files_per_commit: 10      # nghi "tangled commit" nếu vượt – chốt lại sau EDA
+  max_lines_changed_per_file: 500
+  require_before_and_after: true   # bỏ file ADD/DELETE (thiếu code_before/code_after)
+
+hunks:
+  min_changed_lines: 1
+  max_hunk_lines: 200
+  drop_whitespace_only: true
+
+dedup:
+  levels: [exact, normalized, near]
+  near_jaccard: 0.9
+  minhash_num_perm: 128
+  shingle_size: 3
+
+split:
+  strategies: [random, project, time]
+  main: project                 # split chính, chống rò rỉ theo repo
+  test_size: 0.2
+  val_size: 0.1
+  n_folds: 5
+  time_cutoff_year: 2022        # time split: train < cutoff <= test

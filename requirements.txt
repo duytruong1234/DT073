@@ -1,0 +1,35 @@
+# Thư viện trực tiếp của đề tài (phiên bản khóa đầy đủ nằm trong requirements-lock.txt)
+# Cài: .venv\Scripts\pip install -r requirements-lock.txt
+
+# Dữ liệu & cấu hình
+pandas
+pyarrow
+pyyaml
+tqdm
+psutil
+
+# Trích hunk / phân tích mã
+unidiff
+tree-sitter
+tree-sitter-language-pack
+
+# Khử trùng lặp near-duplicate
+datasketch
+
+# Mô hình baseline & biến thể cổ điển, thống kê
+scikit-learn
+lightgbm
+scipy
+statsmodels
+
+# Biểu đồ / EDA
+matplotlib
+seaborn
+
+# Kiểm thử
+pytest
+
+# (Tùy chọn – biến thể CodeBERT, cài sau khi có GPU/đủ băng thông)
+# torch
+# transformers
+# datasets
