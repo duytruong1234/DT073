@@ -35,16 +35,21 @@ def download():
         print("Đã tải đủ, bỏ qua bước tải.")
         return
     req = urllib.request.Request(URL, headers={"Range": f"bytes={have}-"} if have else {})
-    with urllib.request.urlopen(req, timeout=120) as r, open(OUT, "ab" if have else "wb") as f:
-        done = have
-        while True:
-            buf = r.read(CHUNK)
-            if not buf:
-                break
-            f.write(buf)
-            done += len(buf)
-            sys.stdout.write(f"\r{done / 1e9:6.2f} / {EXPECTED_SIZE / 1e9:.2f} GB")
-            sys.stdout.flush()
+    with urllib.request.urlopen(req, timeout=120) as r:
+        if have and r.status != 206:  # server bỏ qua Range -> tải lại từ đầu, không nối sai
+            print("Server không hỗ trợ tải tiếp, tải lại từ đầu.")
+            have = 0
+        print(f"Bắt đầu từ {have / 1e9:.2f} GB")
+        with open(OUT, "ab" if have else "wb") as f:
+            done = have
+            while True:
+                buf = r.read(CHUNK)
+                if not buf:
+                    break
+                f.write(buf)
+                done += len(buf)
+                sys.stdout.write(f"\r{done / 1e9:6.2f} / {EXPECTED_SIZE / 1e9:.2f} GB")
+                sys.stdout.flush()
     print()
 
 
