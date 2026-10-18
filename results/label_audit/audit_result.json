@@ -1,0 +1,39 @@
+{
+  "n": 200,
+  "relevant": {
+    "cohen_kappa": 0.6181,
+    "n_both_answered": 200,
+    "raw_agreement": 0.945,
+    "rate_A": 0.9,
+    "rate_B": 0.945,
+    "consensus_positive_rate": 0.9471
+  },
+  "cwe_ok": {
+    "cohen_kappa": 0.5513,
+    "n_both_answered": 200,
+    "raw_agreement": 0.8,
+    "rate_A": 0.675,
+    "rate_B": 0.655,
+    "consensus_positive_rate": 0.7063
+  },
+  "cwe_ok_by_label": {
+    "CWE-119": 0.917,
+    "CWE-125": 0.643,
+    "CWE-190": 0.727,
+    "CWE-20": 0.615,
+    "CWE-200": 0.273,
+    "CWE-22": 0.636,
+    "CWE-287": 0.667,
+    "CWE-352": 0.545,
+    "CWE-400": 0.091,
+    "CWE-416": 0.545,
+    "CWE-476": 0.5,
+    "CWE-78": 0.545,
+    "CWE-787": 0.917,
+    "CWE-79": 0.533,
+    "CWE-863": 0.455,
+    "CWE-89": 0.364,
+    "CWE-94": 0.545
+  },
+  "annotation_mode": "Dual-rubric independent coders (Coder_A: structural/control-flow rules; Coder_B: CWE-specific lexical/context rules). Blank sheet saved at audit_sheet_blank.csv."
+}

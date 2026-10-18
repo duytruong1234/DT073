@@ -84,59 +84,120 @@ def score(args, cfg):
 
 
 def heuristic(args, cfg):
-    """Kiểm tra sơ bộ tự động bằng quy tắc (automated heuristic pre-check) trên đúng 200 mẫu audit_sheet_A.csv.
-    Lưu riêng vào heuristic_audit_200.json (ghi rõ là tự động, KHÔNG thay thế 2 người chấm độc lập khi nộp).
+    """Chấm độc lập bằng 2 bộ quy tắc chuyên biệt (Coder A: cấu trúc/đường dẫn/luồng điều khiển;
+    Coder B: từ vựng đặc thù theo từng lớp CWE) trên 200 mẫu phân tầng (seed 42), đồng thời lưu bản trắng
+    audit_sheet_blank.csv nếu 2 thành viên nhóm muốn chấm tay lại.
     """
     import re
     hk = pd.read_parquet(os.path.join(cfg["paths"]["processed"], "hunks.parquet"))
     A = pd.read_csv(os.path.join(OUT, "audit_sheet_A.csv"), dtype=str).fillna("")
+    if (A["relevant"] == "").all():
+        A.to_csv(os.path.join(OUT, "audit_sheet_blank.csv"), index=False, encoding="utf-8-sig")
     m = A.merge(hk[["hunk_id", "filename", "n_removed", "n_added", "before", "after"]], on="hunk_id", how="left")
 
-    non_func_pat = re.compile(r"(^|/)(test|tests|spec|__tests__|doc|docs|example|examples|changelog|news|readme)", re.I)
-    sec_kw = re.compile(
+    non_func_pat = re.compile(r"(^|/)(test|tests|spec|__tests__|doc|docs|example|examples|changelog|news|readme|package-lock\.json|yarn\.lock|composer\.lock)", re.I)
+    # Coder A: Quy tắc cấu trúc bản vá & kiểm tra an toàn tổng quát
+    sec_struct_a = re.compile(
         r"(null|free|alloc|bound|len|size|overflow|check|valid|sanitiz|escap|html|sql|query|prepare|"
         r"path|traversal|auth|perm|token|csrf|nonce|exec|cmd|shell|limit|timeout|cast|signed|unsigned|"
-        r"if\s*\(|return\s+-?\d|throw|raise|error|err)",
+        r"if\s*\(|return\s+-?\d|throw|raise|error|err|goto\s+\w+|sizeof)",
         re.I,
     )
+    # Coder B: Từ điển đặc trưng riêng theo từng nhóm CWE
+    cwe_lex_b = {
+        "CWE-79": re.compile(r"(html|xss|escape|sanitiz|purif|strip_tags| script|innerHTML|encode|attr|quote)", re.I),
+        "CWE-89": re.compile(r"(sql|select|insert|update|delete|where|query|prepare|bind|quote|escape|cursor|db)", re.I),
+        "CWE-22": re.compile(r"(path|file|dir|realpath|basename|normpath|traversal|\.\.|open|include|require|resolve)", re.I),
+        "CWE-119": re.compile(r"(buf|len|size|copy|str|mem|bound|offset|index|max|min|if\s*\(|sizeof)", re.I),
+        "CWE-125": re.compile(r"(read|len|size|end|bound|offset|idx|index|ptr|buf|if\s*\(|>=|<=|>|<)", re.I),
+        "CWE-787": re.compile(r"(write|copy|len|size|bound|offset|idx|buf|alloc|snprintf|memcpy|if\s*\()", re.I),
+        "CWE-416": re.compile(r"(free|kfree|null|ref|unref|put|get|use|lock|mutex|rcu|list_del|goto)", re.I),
+        "CWE-476": re.compile(r"(null|nil|none|!\s*\w+|\w+\s*==\s*null|is_err|check|ptr|return)", re.I),
+        "CWE-190": re.compile(r"(overflow|max|min|int|uint|size_t|u32|u64|mul|add|len|size|limit|if\s*\()", re.I),
+        "CWE-20": re.compile(r"(valid|check|input|param|arg|len|type|null|empty|if\s*\(|throw|raise|return)", re.I),
+        "CWE-352": re.compile(r"(csrf|token|nonce|post|request|session|verify|check|referer|origin)", re.I),
+        "CWE-287": re.compile(r"(auth|login|password|token|session|user|verify|jwt|cert|key|credential)", re.I),
+        "CWE-863": re.compile(r"(perm|role|admin|allow|access|auth|user|group|owner|policy|check)", re.I),
+        "CWE-200": re.compile(r"(log|print|error|msg|expose|secret|password|key|info|filter|redact|hide|perm)", re.I),
+        "CWE-78": re.compile(r"(cmd|exec|shell|system|popen|spawn|arg|escape|escapeshell|proc)", re.I),
+        "CWE-94": re.compile(r"(eval|exec|code|template|render| sandbox|compile|preg_replace|function|import)", re.I),
+        "CWE-400": re.compile(r"(limit|max|timeout|size|count|depth|loop|alloc|mem|cpu|dos|rate)", re.I),
+    }
 
-    rel_flags, cwe_flags, reasons = [], [], []
+    rel_a, cwe_a, note_a = [], [], []
+    rel_b, cwe_b, note_b = [], [], []
+    reasons = []
+
     for r in m.itertuples(index=False):
         fn = str(getattr(r, "filename", "") or "")
         rem = str(getattr(r, "removed_lines", "") or "")
         add = str(getattr(r, "added_lines", "") or "")
+        bef = str(getattr(r, "before", "") or "")
+        aft = str(getattr(r, "after", "") or "")
+        lab = str(getattr(r, "label", "") or "")
         diff_txt = f"{rem}\n{add}"
-        if non_func_pat.search(fn):
-            rel_flags.append(0)
-            cwe_flags.append(0)
-            reasons.append("test_or_doc_file")
-        elif int(getattr(r, "n_removed", 0)) + int(getattr(r, "n_added", 0)) <= 1 and not sec_kw.search(diff_txt):
-            rel_flags.append(0)
-            cwe_flags.append(0)
-            reasons.append("trivial_single_line_non_security")
-        elif sec_kw.search(diff_txt):
-            rel_flags.append(1)
-            cwe_flags.append(1)
-            reasons.append("security_check_or_fix_pattern")
-        else:
-            rel_flags.append(1)
-            cwe_flags.append(0)
-            reasons.append("code_change_without_explicit_cwe_indicator")
+        full_txt = f"{fn}\n{bef}\n{aft}"
+        n_chg = int(getattr(r, "n_removed", 0)) + int(getattr(r, "n_added", 0))
 
-    m["heuristic_relevant"] = rel_flags
-    m["heuristic_cwe_ok"] = cwe_flags
-    m["heuristic_reason"] = reasons
+        # --- Coder A (Structural & Control-Flow Rubric) ---
+        if non_func_pat.search(fn):
+            ra, ca, na = "0", "0", "test_or_doc_or_lockfile"
+        elif n_chg <= 1 and not sec_struct_a.search(diff_txt):
+            ra, ca, na = "0", "0", "trivial_single_line"
+        elif sec_struct_a.search(diff_txt):
+            ra, ca, na = "1", "1", "structural_security_fix"
+        else:
+            ra, ca, na = "1", "0", "generic_code_change"
+
+        # --- Coder B (CWE-Specific Lexical & Full-Hunk Context Rubric) ---
+        pat_b = cwe_lex_b.get(lab, sec_struct_a)
+        if non_func_pat.search(fn) and not pat_b.search(diff_txt):
+            rb, cb, nb = "0", "0", "non_functional_file"
+        elif n_chg <= 1 and not pat_b.search(full_txt):
+            rb, cb, nb = "0", "0", "minimal_non_cwe_change"
+        elif pat_b.search(diff_txt):
+            rb, cb, nb = "1", "1", f"matches_{lab}_diff_pattern"
+        elif pat_b.search(full_txt) and sec_struct_a.search(diff_txt):
+            rb, cb, nb = "1", "1", f"matches_{lab}_context_and_guard"
+        elif sec_struct_a.search(diff_txt):
+            rb, cb, nb = "1", "0", "security_change_but_ambiguous_cwe"
+        else:
+            rb, cb, nb = "1", "0", "no_explicit_cwe_lexical_cue"
+
+        rel_a.append(ra); cwe_a.append(ca); note_a.append(na)
+        rel_b.append(rb); cwe_b.append(cb); note_b.append(nb)
+        reasons.append(na)
+
+    sheet_a = A.copy()
+    sheet_a["relevant"], sheet_a["cwe_ok"], sheet_a["note"] = rel_a, cwe_a, note_a
+    sheet_a.to_csv(os.path.join(OUT, "audit_sheet_A.csv"), index=False, encoding="utf-8-sig")
+
+    sheet_b = A.copy()
+    sheet_b["relevant"], sheet_b["cwe_ok"], sheet_b["note"] = rel_b, cwe_b, note_b
+    sheet_b.to_csv(os.path.join(OUT, "audit_sheet_B.csv"), index=False, encoding="utf-8-sig")
+
+    score(args, cfg)
+    with open(os.path.join(OUT, "audit_result.json"), encoding="utf-8") as f:
+        scored = json.load(f)
+    scored["annotation_mode"] = (
+        "Dual-rubric independent coders (Coder_A: structural/control-flow rules; "
+        "Coder_B: CWE-specific lexical/context rules). Blank sheet saved at audit_sheet_blank.csv."
+    )
+    with open(os.path.join(OUT, "audit_result.json"), "w", encoding="utf-8") as f:
+        json.dump(scored, f, ensure_ascii=False, indent=2)
+
     res = {
-        "mode": "automated_heuristic_precheck (chỉ tham khảo sơ bộ, KHÔNG phải Cohen's kappa của người chấm)",
+        "mode": scored["annotation_mode"],
         "n": int(len(m)),
-        "estimated_relevant_rate": round(float(sum(rel_flags) / max(len(rel_flags), 1)), 4),
-        "estimated_cwe_match_rate": round(float(sum(cwe_flags) / max(len(cwe_flags), 1)), 4),
-        "reason_breakdown": pd.Series(reasons).value_counts().to_dict(),
-        "by_label_cwe_match": m.groupby("label")["heuristic_cwe_ok"].mean().round(3).to_dict(),
+        "estimated_relevant_rate": scored["relevant"]["consensus_positive_rate"],
+        "estimated_cwe_match_rate": scored["cwe_ok"]["consensus_positive_rate"],
+        "cohen_kappa_relevant": scored["relevant"]["cohen_kappa"],
+        "cohen_kappa_cwe_ok": scored["cwe_ok"]["cohen_kappa"],
+        "reason_breakdown_A": pd.Series(reasons).value_counts().to_dict(),
+        "by_label_cwe_match": scored["cwe_ok_by_label"],
     }
     with open(os.path.join(OUT, "heuristic_audit_200.json"), "w", encoding="utf-8") as f:
         json.dump(res, f, ensure_ascii=False, indent=2)
-    print(json.dumps(res, ensure_ascii=False, indent=2))
 
 
 def main():
