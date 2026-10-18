@@ -85,24 +85,74 @@ def funnel(df: pd.DataFrame) -> list[dict]:
 SAFE_URL = re.compile(r"^https://(github\.com|gitlab\.com|bitbucket\.org)/[\w.\-]+/[\w.\-]+/?$")
 
 
-def verify_commit_online(repo_url: str, sha: str, timeout: int = 120) -> dict:
-    """Fetch commit (depth=2, không tải blob) và lấy danh sách file thay đổi.
+def _rm_readonly(func, path, _exc):
+    """Windows: file pack của git là read-only -> bỏ cờ rồi xóa lại."""
+    try:
+        os.chmod(path, 0o700)
+        func(path)
+    except OSError:
+        pass
 
-    Trả về {"exists": bool, "files": [...], "error": str|None}. Không bao giờ ném ngoại lệ.
+
+def _kill_tree(proc: subprocess.Popen) -> None:
+    """Diệt cả cây tiến trình con (git-remote-https, git-index-pack) trên Windows để không kẹt pipe/file."""
+    try:
+        if os.name == "nt":
+            subprocess.run(["taskkill", "/F", "/T", "/PID", str(proc.pid)],
+                           stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=5)
+        else:
+            proc.kill()
+    except Exception:
+        try:
+            proc.kill()
+        except Exception:
+            pass
+    try:
+        proc.wait(timeout=3)
+    except Exception:
+        pass
+
+
+def verify_commit_online(repo_url: str, sha: str, timeout: int = 30, tree_timeout: int = 20) -> dict:
+    """Kiểm tra 2 tầng, KHÔNG checkout/chạy mã:
+      (1) commit tồn tại: fetch chỉ đối tượng commit (--filter=tree:0) – nhanh kể cả repo rất lớn;
+      (2) danh sách file thay đổi: fetch cây thư mục (--filter=blob:none, depth=2), timeout riêng;
+          quá thời gian -> files=None, error="tree_timeout" (vẫn tính là tồn tại).
+
+    Trả về {"exists": bool, "files": list|None, "error": str|None}. Không bao giờ ném ngoại lệ.
     Chỉ chấp nhận URL https của GitHub/GitLab/Bitbucket (chống đầu vào lạ trong dữ liệu).
     """
     if not SAFE_URL.match(repo_url or "") or not HEX40.match(sha or ""):
         return {"exists": False, "files": [], "error": "unsafe_or_invalid_input"}
     tmp = tempfile.mkdtemp(prefix="dt073_git_")
     env = dict(os.environ, GIT_TERMINAL_PROMPT="0")  # không bao giờ hỏi mật khẩu
+    out_f = os.path.join(tmp, "_out.txt")
+    err_f = os.path.join(tmp, "_err.txt")
     try:
-        def git(*args):
-            return subprocess.run(["git", "-C", tmp, *args], capture_output=True, text=True,
-                                  timeout=timeout, env=env)
+        def git(*args, t=timeout):
+            with open(out_f, "w+", encoding="utf-8", errors="replace") as fo, \
+                 open(err_f, "w+", encoding="utf-8", errors="replace") as fe:
+                p = subprocess.Popen(["git", "-C", tmp, *args], stdin=subprocess.DEVNULL,
+                                     stdout=fo, stderr=fe, env=env)
+                try:
+                    rc = p.wait(timeout=t)
+                except subprocess.TimeoutExpired:
+                    _kill_tree(p)
+                    raise
+                fo.seek(0)
+                fe.seek(0)
+                return subprocess.CompletedProcess(p.args, rc, fo.read(), fe.read())
+
         git("init", "-q", "--bare")
-        r = git("fetch", "-q", "--depth=2", "--filter=blob:none", repo_url, sha)
+        r = git("fetch", "-q", "--depth=1", "--filter=tree:0", repo_url, sha)
         if r.returncode != 0:
             return {"exists": False, "files": [], "error": (r.stderr.strip().splitlines() or ["fetch_failed"])[-1]}
+        try:
+            r = git("fetch", "-q", "--depth=2", "--filter=blob:none", repo_url, sha, t=tree_timeout)
+        except subprocess.TimeoutExpired:
+            return {"exists": True, "files": None, "error": "tree_timeout"}
+        if r.returncode != 0:
+            return {"exists": True, "files": None, "error": "tree_fetch_failed"}
         r = git("diff-tree", "--no-commit-id", "--name-only", "-r", "-m", "--root", sha)
         files = sorted(set(r.stdout.split()))
         return {"exists": True, "files": files, "error": None}
@@ -111,4 +161,5 @@ def verify_commit_online(repo_url: str, sha: str, timeout: int = 120) -> dict:
     except OSError as e:
         return {"exists": False, "files": [], "error": f"oserror:{e}"}
     finally:
-        shutil.rmtree(tmp, ignore_errors=True)
+        shutil.rmtree(tmp, onexc=_rm_readonly)
+

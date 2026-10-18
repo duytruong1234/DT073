@@ -96,6 +96,9 @@ def test_funnel_and_labels(outputs):
 def test_project_split_no_leak(outputs):
     d, _, _ = outputs
     s = json.load(open(d / "o1" / "summary.json", encoding="utf-8"))
-    rep = s["leakage"]["split_project"]
-    assert rep["shared_repo"] == 0 and rep["shared_cve"] == 0 and rep["n_test"] > 0
-    assert s["leakage"]["split_random"]["shared_repo"] > 0
+    for seed, lk in s["leakage"].items():          # mọi seed
+        rep = lk["split_project"]
+        assert rep["shared_repo"] == 0 and rep["shared_cve"] == 0 and rep["n_test"] > 0
+        assert lk["split_random"]["shared_repo"] > 0
+    sp = pd.read_parquet(d / "o1" / "splits.parquet")
+    assert sorted(sp["seed"].unique()) == [42, 123, 2024]

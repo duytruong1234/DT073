@@ -1,0 +1,323 @@
+{
+  "db": "data/db/CVEfixes.db",
+  "seed": 42,
+  "file_funnel": [
+    {
+      "stage": "candidates",
+      "removed": 0,
+      "remaining": 51342,
+      "remaining_pct": 1.0
+    },
+    {
+      "stage": "invalid_hash",
+      "removed": 0,
+      "remaining": 51342,
+      "remaining_pct": 1.0
+    },
+    {
+      "stage": "merge_commit",
+      "removed": 0,
+      "remaining": 51342,
+      "remaining_pct": 1.0
+    },
+    {
+      "stage": "no_cve",
+      "removed": 0,
+      "remaining": 51342,
+      "remaining_pct": 1.0
+    },
+    {
+      "stage": "language_excluded",
+      "removed": 15027,
+      "remaining": 36315,
+      "remaining_pct": 0.7073
+    },
+    {
+      "stage": "empty_diff",
+      "removed": 0,
+      "remaining": 36315,
+      "remaining_pct": 0.7073
+    },
+    {
+      "stage": "binary_diff",
+      "removed": 0,
+      "remaining": 36315,
+      "remaining_pct": 0.7073
+    },
+    {
+      "stage": "added_or_deleted_file",
+      "removed": 6310,
+      "remaining": 30005,
+      "remaining_pct": 0.5844
+    },
+    {
+      "stage": "tangled_commit",
+      "removed": 11360,
+      "remaining": 18645,
+      "remaining_pct": 0.3632
+    },
+    {
+      "stage": "too_many_lines",
+      "removed": 65,
+      "remaining": 18580,
+      "remaining_pct": 0.3619
+    }
+  ],
+  "hunk_status": {
+    "ok": 40254,
+    "whitespace_only": 1899,
+    "hunk_too_long": 50
+  },
+  "hunk_warnings": {
+    "unexpected_line": 6,
+    "unexpected_line;unexpected_line": 3,
+    "unexpected_line;unexpected_line;unexpected_line": 1,
+    "unexpected_line;unexpected_line;count_mismatch": 1,
+    "unexpected_line;unexpected_line;unexpected_line;unexpected_line": 1
+  },
+  "privacy": {
+    "hunks_with_masked_email": 400,
+    "emails_masked": 1858
+  },
+  "label_kind": {
+    "single": 33054,
+    "nonspecific": 5209,
+    "multi": 1991
+  },
+  "duplicates": {
+    "n_hunks": 40254,
+    "exact": {
+      "n_clusters": 39280,
+      "duplicate_rate": 0.0242,
+      "max_cluster_size": 16,
+      "rows_in_dup_clusters": 1670,
+      "label_conflict_clusters": 5,
+      "label_conflict_rows": 10
+    },
+    "normalized": {
+      "n_clusters": 37103,
+      "duplicate_rate": 0.0783,
+      "max_cluster_size": 98,
+      "rows_in_dup_clusters": 4746,
+      "label_conflict_clusters": 141,
+      "label_conflict_rows": 752
+    },
+    "near": {
+      "n_clusters": 36595,
+      "duplicate_rate": 0.0909,
+      "max_cluster_size": 140,
+      "rows_in_dup_clusters": 5397,
+      "label_conflict_clusters": 168,
+      "label_conflict_rows": 1037
+    }
+  },
+  "modeling_set": {
+    "n": 17642,
+    "n_without_dedup": 19553,
+    "classes": {
+      "CWE-79": 4404,
+      "CWE-125": 1353,
+      "CWE-22": 1211,
+      "CWE-89": 1169,
+      "CWE-119": 1030,
+      "CWE-20": 1002,
+      "CWE-787": 992,
+      "CWE-476": 868,
+      "CWE-352": 853,
+      "CWE-200": 778,
+      "CWE-416": 749,
+      "CWE-190": 594,
+      "CWE-94": 558,
+      "CWE-863": 547,
+      "CWE-78": 517,
+      "CWE-400": 517,
+      "CWE-287": 500
+    }
+  },
+  "leakage": {
+    "42": {
+      "split_random": {
+        "n_train": 12348,
+        "n_test": 3529,
+        "shared_repo": 948,
+        "shared_cve": 1703,
+        "shared_dup_exact": 0,
+        "shared_dup_normalized": 0,
+        "shared_dup_near": 0,
+        "shared_leak_group": 941,
+        "shared_time_group": 1618
+      },
+      "split_project": {
+        "n_train": 12112,
+        "n_test": 3702,
+        "shared_repo": 0,
+        "shared_cve": 0,
+        "shared_dup_exact": 0,
+        "shared_dup_normalized": 0,
+        "shared_dup_near": 0,
+        "shared_leak_group": 0,
+        "shared_time_group": 0
+      },
+      "split_time": {
+        "n_train": 13333,
+        "n_test": 2836,
+        "shared_repo": 86,
+        "shared_cve": 0,
+        "shared_dup_exact": 0,
+        "shared_dup_normalized": 0,
+        "shared_dup_near": 0,
+        "shared_leak_group": 86,
+        "shared_time_group": 0
+      },
+      "split_random_nodedup": {
+        "n_train": 13686,
+        "n_test": 3911,
+        "shared_repo": 980,
+        "shared_cve": 1811,
+        "shared_dup_exact": 118,
+        "shared_dup_normalized": 284,
+        "shared_dup_near": 323
+      }
+    },
+    "123": {
+      "split_random": {
+        "n_train": 12348,
+        "n_test": 3529,
+        "shared_repo": 937,
+        "shared_cve": 1742,
+        "shared_dup_exact": 0,
+        "shared_dup_normalized": 0,
+        "shared_dup_near": 0,
+        "shared_leak_group": 926,
+        "shared_time_group": 1657
+      },
+      "split_project": {
+        "n_train": 12110,
+        "n_test": 3703,
+        "shared_repo": 0,
+        "shared_cve": 0,
+        "shared_dup_exact": 0,
+        "shared_dup_normalized": 0,
+        "shared_dup_near": 0,
+        "shared_leak_group": 0,
+        "shared_time_group": 0
+      },
+      "split_time": {
+        "n_train": 13294,
+        "n_test": 2836,
+        "shared_repo": 85,
+        "shared_cve": 0,
+        "shared_dup_exact": 0,
+        "shared_dup_normalized": 0,
+        "shared_dup_near": 0,
+        "shared_leak_group": 85,
+        "shared_time_group": 0
+      },
+      "split_random_nodedup": {
+        "n_train": 13686,
+        "n_test": 3911,
+        "shared_repo": 964,
+        "shared_cve": 1829,
+        "shared_dup_exact": 116,
+        "shared_dup_normalized": 288,
+        "shared_dup_near": 317
+      }
+    },
+    "2024": {
+      "split_random": {
+        "n_train": 12348,
+        "n_test": 3529,
+        "shared_repo": 918,
+        "shared_cve": 1709,
+        "shared_dup_exact": 0,
+        "shared_dup_normalized": 0,
+        "shared_dup_near": 0,
+        "shared_leak_group": 909,
+        "shared_time_group": 1618
+      },
+      "split_project": {
+        "n_train": 12104,
+        "n_test": 3703,
+        "shared_repo": 0,
+        "shared_cve": 0,
+        "shared_dup_exact": 0,
+        "shared_dup_normalized": 0,
+        "shared_dup_near": 0,
+        "shared_leak_group": 0,
+        "shared_time_group": 0
+      },
+      "split_time": {
+        "n_train": 13375,
+        "n_test": 2836,
+        "shared_repo": 83,
+        "shared_cve": 0,
+        "shared_dup_exact": 0,
+        "shared_dup_normalized": 0,
+        "shared_dup_near": 0,
+        "shared_leak_group": 83,
+        "shared_time_group": 0
+      },
+      "split_random_nodedup": {
+        "n_train": 13686,
+        "n_test": 3911,
+        "shared_repo": 966,
+        "shared_cve": 1842,
+        "shared_dup_exact": 135,
+        "shared_dup_normalized": 313,
+        "shared_dup_near": 360
+      }
+    }
+  },
+  "cross_split_duplicates_all_hunks": {
+    "42": {
+      "split_random_nodedup": {
+        "val": {
+          "n": 1956,
+          "dup_in_train": 194,
+          "rate": 0.0992
+        },
+        "test": {
+          "n": 3911,
+          "dup_in_train": 401,
+          "rate": 0.1025
+        }
+      }
+    },
+    "123": {
+      "split_random_nodedup": {
+        "val": {
+          "n": 1956,
+          "dup_in_train": 197,
+          "rate": 0.1007
+        },
+        "test": {
+          "n": 3911,
+          "dup_in_train": 407,
+          "rate": 0.1041
+        }
+      }
+    },
+    "2024": {
+      "split_random_nodedup": {
+        "val": {
+          "n": 1956,
+          "dup_in_train": 222,
+          "rate": 0.1135
+        },
+        "test": {
+          "n": 3911,
+          "dup_in_train": 401,
+          "rate": 0.1025
+        }
+      }
+    }
+  },
+  "timings": {
+    "metadata_s": 11.24,
+    "validate_s": 2.4,
+    "hunks_s": 8.2,
+    "normalize_s": 59.58,
+    "dedup_s": 28.51,
+    "split_s": 15.59
+  }
+}

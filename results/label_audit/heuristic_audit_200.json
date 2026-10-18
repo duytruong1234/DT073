@@ -1,0 +1,31 @@
+{
+  "mode": "automated_heuristic_precheck (chỉ tham khảo sơ bộ, KHÔNG phải Cohen's kappa của người chấm)",
+  "n": 200,
+  "estimated_relevant_rate": 0.905,
+  "estimated_cwe_match_rate": 0.67,
+  "reason_breakdown": {
+    "security_check_or_fix_pattern": 134,
+    "code_change_without_explicit_cwe_indicator": 47,
+    "trivial_single_line_non_security": 14,
+    "test_or_doc_file": 5
+  },
+  "by_label_cwe_match": {
+    "CWE-119": 1.0,
+    "CWE-125": 0.643,
+    "CWE-190": 0.727,
+    "CWE-20": 0.615,
+    "CWE-200": 0.455,
+    "CWE-22": 0.727,
+    "CWE-287": 0.667,
+    "CWE-352": 0.636,
+    "CWE-400": 0.727,
+    "CWE-416": 0.636,
+    "CWE-476": 0.667,
+    "CWE-78": 0.545,
+    "CWE-787": 0.917,
+    "CWE-79": 0.733,
+    "CWE-863": 0.545,
+    "CWE-89": 0.455,
+    "CWE-94": 0.636
+  }
+}

@@ -45,16 +45,20 @@ def main():
         db_files = sorted({(p or "").replace("\\", "/") for (p,) in con.execute(
             "SELECT COALESCE(NULLIF(new_path,'None'), old_path) FROM file_change WHERE hash=?", (sha,))})
         r = verify_commit_online(url, sha)
-        gh = set(r["files"])
-        match = r["exists"] and set(db_files) <= gh
+        gh = set(r["files"] or [])
+        checked = r["exists"] and r["files"] is not None
+        match = checked and set(db_files) <= gh
         results.append({"hash": sha, "repo_url": url, "exists": r["exists"], "error": r["error"],
-                        "db_files": len(db_files), "git_files": len(gh), "db_files_subset_of_git": match})
-        print(f"[{i}/{len(sample)}] {'OK ' if match else 'ERR' if not r['exists'] else 'DIF'} {url} {sha[:10]} {r['error'] or ''}")
+                        "db_files": len(db_files), "git_files": len(gh), "files_checked": checked,
+                        "db_files_subset_of_git": match})
+        print(f"[{i}/{len(sample)}] {'OK ' if match else 'ERR' if not r['exists'] else 'EX ' if not checked else 'DIF'} {url} {sha[:10]} {r['error'] or ''}", flush=True)
     n = len(results)
     summary = {
         "n": n, "seed": args.seed, "seconds": round(time.time() - t0, 1),
         "exists_rate": round(sum(r["exists"] for r in results) / n, 4) if n else None,
-        "file_match_rate": round(sum(r["db_files_subset_of_git"] for r in results) / n, 4) if n else None,
+        "files_checked": sum(r["files_checked"] for r in results),
+        "file_match_rate_among_checked": (round(sum(r["db_files_subset_of_git"] for r in results)
+                                          / max(sum(r["files_checked"] for r in results), 1), 4)),
         "errors": {e: sum(1 for r in results if r["error"] == e) for e in {r["error"] for r in results if r["error"]}},
     }
     os.makedirs(os.path.dirname(args.out), exist_ok=True)

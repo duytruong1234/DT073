@@ -1,0 +1,14 @@
+{
+  "hunks.parquet": {
+    "rows": 40254,
+    "sha256": "8db011193ba56076e6488003f1a84e43c2dfb4cbc3b171cadd177dad0e998e4a"
+  },
+  "file_status.parquet": {
+    "rows": 51342,
+    "sha256": "c97e2f08e7138b2d4c1b680469dba977f623927bbaae68ef48d51159743b4059"
+  },
+  "splits.parquet": {
+    "rows": 58659,
+    "sha256": "2204a85c00bad1dd65c9500d38b09df8817795ea4cd7259da19d32bba5c858f1"
+  }
+}

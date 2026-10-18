@@ -1,0 +1,25 @@
+exp,seed,role,split,feature,model,n_train,n_val,n_test,vocab_size,val_macro_f1,test_macro_f1,test_weighted_f1,test_mcc,test_accuracy,test_top3_accuracy,train_s,infer_s,peak_rss_mb
+E0,42,Mức sàn (Dummy majority & stratified),split_project,none,dummy,12112,1828,3702,0,0.0583,0.0597,0.0996,0.0022,0.101,0.191,0.022,0.0,1686.59
+E0,123,Mức sàn (Dummy majority & stratified),split_project,none,dummy,12110,1829,3703,0,0.0606,0.057,0.0965,-0.001,0.0983,0.1904,0.017,0.0,1696.65
+E0,2024,Mức sàn (Dummy majority & stratified),split_project,none,dummy,12104,1835,3703,0,0.061,0.055,0.0954,-0.0018,0.0972,0.188,0.019,0.0,1431.71
+E1,42,"Đo hiệu ứng trùng lặp + rò rỉ (không dedup, random split)",split_random_nodedup,before,logreg,13686,1956,3911,134489,0.6215,0.6207,0.6565,0.6195,0.6584,0.8325,39.709,2.777,1608.31
+E1,123,"Đo hiệu ứng trùng lặp + rò rỉ (không dedup, random split)",split_random_nodedup,before,logreg,13686,1956,3911,140154,0.6313,0.6055,0.6454,0.6055,0.6451,0.8379,44.908,1.763,1524.94
+E1,2024,"Đo hiệu ứng trùng lặp + rò rỉ (không dedup, random split)",split_random_nodedup,before,logreg,13686,1956,3911,141547,0.6234,0.6229,0.661,0.6229,0.6612,0.8387,44.81,0.94,1487.74
+E2,42,"Đo rò rỉ (dedup, random split) - RQ4",split_random,before,logreg,12348,1765,3529,151100,0.5941,0.5813,0.6172,0.5743,0.6177,0.8073,50.212,0.869,1663.91
+E2,123,"Đo rò rỉ (dedup, random split) - RQ4",split_random,before,logreg,12348,1765,3529,144596,0.5737,0.5782,0.6162,0.5755,0.62,0.8212,41.056,1.77,1636.0
+E2,2024,"Đo rò rỉ (dedup, random split) - RQ4",split_random,before,logreg,12348,1765,3529,149064,0.5857,0.5782,0.6126,0.5699,0.6132,0.8147,44.839,1.981,1640.68
+E3,42,"BASELINE chính (dedup, project split, before)",split_project,before,logreg,12112,1828,3702,128038,0.2453,0.2185,0.3138,0.2471,0.3112,0.59,36.442,1.49,1589.43
+E3,123,"BASELINE chính (dedup, project split, before)",split_project,before,logreg,12110,1829,3703,147326,0.2343,0.2099,0.3212,0.2581,0.3351,0.5895,47.034,1.431,1629.54
+E3,2024,"BASELINE chính (dedup, project split, before)",split_project,before,logreg,12104,1835,3703,135347,0.2287,0.2177,0.3247,0.2606,0.3378,0.5857,38.269,3.306,1615.84
+E4,42,Ablation: thông tin bản vá (before + after + DEL/ADD),split_project,patch,logreg,12112,1828,3702,200000,0.2677,0.2531,0.3617,0.2996,0.3717,0.6153,86.961,4.191,2191.03
+E4,123,Ablation: thông tin bản vá (before + after + DEL/ADD),split_project,patch,logreg,12110,1829,3703,200000,0.2798,0.2508,0.3607,0.2998,0.3719,0.6119,83.625,4.161,2381.89
+E4,2024,Ablation: thông tin bản vá (before + after + DEL/ADD),split_project,patch,logreg,12104,1835,3703,200000,0.2522,0.2571,0.3686,0.3091,0.3808,0.623,83.582,7.678,2360.55
+E5,42,BIẾN THỂ chính (E4 + chuẩn hóa tree-sitter),split_project,patch_norm,logreg,12112,1828,3702,200000,0.2756,0.2531,0.359,0.2939,0.3644,0.6191,145.313,8.688,2887.42
+E5,123,BIẾN THỂ chính (E4 + chuẩn hóa tree-sitter),split_project,patch_norm,logreg,12110,1829,3703,200000,0.27,0.2546,0.3609,0.2973,0.3659,0.6065,124.081,8.719,3235.07
+E5,2024,BIẾN THỂ chính (E4 + chuẩn hóa tree-sitter),split_project,patch_norm,logreg,12104,1835,3703,200000,0.2582,0.2558,0.3694,0.3093,0.3792,0.623,122.54,16.347,2956.89
+E6,42,Biến thể mô hình (LinearSVC / LightGBM trên E5),split_project,patch_norm,e6,12112,1828,3702,200000,0.2769,0.2578,0.3612,0.2978,0.3682,0.5956,212.923,9.1,2948.14
+E6,123,Biến thể mô hình (LinearSVC / LightGBM trên E5),split_project,patch_norm,e6,12110,1829,3703,200000,0.2689,0.2552,0.364,0.301,0.3713,0.5814,203.08,9.046,3311.85
+E6,2024,Biến thể mô hình (LinearSVC / LightGBM trên E5),split_project,patch_norm,e6,12104,1835,3703,200000,0.2634,0.2622,0.3766,0.3187,0.3886,0.6036,197.471,16.459,3053.56
+E7,42,Tổng quát hóa theo thời gian (cutoff 2023),split_time,patch_norm,logreg,13333,1465,2836,200000,0.351,0.2454,0.4003,0.3078,0.4023,0.6407,125.848,9.364,3354.36
+E7,123,Tổng quát hóa theo thời gian (cutoff 2023),split_time,patch_norm,logreg,13294,1504,2836,200000,0.33,0.2474,0.4007,0.3084,0.4041,0.653,137.479,9.5,3378.94
+E7,2024,Tổng quát hóa theo thời gian (cutoff 2023),split_time,patch_norm,logreg,13375,1423,2836,200000,0.3196,0.265,0.4246,0.3367,0.4312,0.6527,132.098,9.251,3326.14

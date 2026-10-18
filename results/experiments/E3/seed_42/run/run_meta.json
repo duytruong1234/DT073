@@ -1,0 +1,125 @@
+{
+  "timestamp": "2026-10-19T04:53:42",
+  "seed": 42,
+  "git_commit": "9cb86a624f1cc728905969d37fd27237e54c9768-dirty",
+  "environment": {
+    "python": "3.12.10",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "processor": "Intel64 Family 6 Model 141 Stepping 1, GenuineIntel",
+    "machine": "AMD64",
+    "cpu_count": 12,
+    "ram_gb": 16.9,
+    "git": "git version 2.53.0.windows.1",
+    "cuda": null
+  },
+  "config": {
+    "project": "DT073",
+    "seeds": [
+      42,
+      123,
+      2024
+    ],
+    "paths": {
+      "zip": "data/raw/CVEfixes_v1.0.8.zip",
+      "db": "data/db/CVEfixes.db",
+      "interim": "data/interim",
+      "processed": "data/processed",
+      "reports": "data/reports",
+      "results": "results"
+    },
+    "dataset": {
+      "version": "v1.0.8",
+      "languages": [
+        "PHP",
+        "C",
+        "JavaScript",
+        "Python",
+        "Java",
+        "TypeScript",
+        "C++",
+        "Go",
+        "Ruby"
+      ],
+      "nonspecific_cwe": [
+        "NVD-CWE-Other",
+        "NVD-CWE-noinfo"
+      ],
+      "top_k_cwe": [
+        "CWE-79",
+        "CWE-125",
+        "CWE-22",
+        "CWE-89",
+        "CWE-119",
+        "CWE-20",
+        "CWE-787",
+        "CWE-476",
+        "CWE-352",
+        "CWE-200",
+        "CWE-416",
+        "CWE-190",
+        "CWE-94",
+        "CWE-863",
+        "CWE-78",
+        "CWE-400",
+        "CWE-287"
+      ],
+      "min_hunks_per_class": 500,
+      "other_classes": "drop",
+      "multi_cwe_policy": "drop"
+    },
+    "validate": {
+      "drop_merge_commits": true,
+      "tangled_count": "code_files",
+      "max_files_per_commit": 9,
+      "max_lines_changed_per_file": 500,
+      "require_before_and_after": true
+    },
+    "hunks": {
+      "min_changed_lines": 1,
+      "max_hunk_lines": 200,
+      "drop_whitespace_only": true,
+      "drop_add_only": false
+    },
+    "privacy": {
+      "mask_emails": true
+    },
+    "dedup": {
+      "levels": [
+        "exact",
+        "normalized",
+        "near"
+      ],
+      "near_jaccard": 0.9,
+      "minhash_num_perm": 128,
+      "shingle_size": 3
+    },
+    "split": {
+      "strategies": [
+        "random",
+        "project",
+        "time"
+      ],
+      "main": "project",
+      "project_leak_keys": [
+        "repo",
+        "cve",
+        "dup"
+      ],
+      "time_leak_keys": [
+        "cve",
+        "dup"
+      ],
+      "test_size": 0.2,
+      "val_size": 0.1,
+      "time_cutoff_year": 2023
+    }
+  },
+  "exp": "E3",
+  "cost": {
+    "train_s": 36.442,
+    "infer_s": 1.49,
+    "total_s": 38.144,
+    "peak_rss_mb": 1589.43,
+    "rss_delta_mb": 216.75
+  }
+}

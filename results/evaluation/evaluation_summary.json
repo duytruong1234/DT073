@@ -1,0 +1,519 @@
+{
+  "aggregated_results": [
+    {
+      "exp": "E0",
+      "role": "Mức sàn (Dummy majority & stratified)",
+      "macro_f1_mean": 0.0572,
+      "macro_f1_std": 0.0024,
+      "macro_f1_str": "0.0572 ± 0.0024",
+      "weighted_f1_mean": 0.0972,
+      "weighted_f1_std": 0.0022,
+      "weighted_f1_str": "0.0972 ± 0.0022",
+      "mcc_mean": -0.0002,
+      "mcc_std": 0.0021,
+      "mcc_str": "-0.0002 ± 0.0021",
+      "top3_acc_mean": 0.1898,
+      "top3_acc_std": 0.0016,
+      "top3_acc_str": "0.1898 ± 0.0016",
+      "accuracy_mean": 0.0988,
+      "accuracy_std": 0.002,
+      "stable_m3": true,
+      "mean_train_s": 0.02,
+      "mean_infer_s": 0.0,
+      "max_rss_mb": 1696.7
+    },
+    {
+      "exp": "E1",
+      "role": "Đo hiệu ứng trùng lặp + rò rỉ (không dedup, random split)",
+      "macro_f1_mean": 0.6164,
+      "macro_f1_std": 0.0095,
+      "macro_f1_str": "0.6164 ± 0.0095",
+      "weighted_f1_mean": 0.6543,
+      "weighted_f1_std": 0.008,
+      "weighted_f1_str": "0.6543 ± 0.0080",
+      "mcc_mean": 0.616,
+      "mcc_std": 0.0092,
+      "mcc_str": "0.6160 ± 0.0092",
+      "top3_acc_mean": 0.8364,
+      "top3_acc_std": 0.0034,
+      "top3_acc_str": "0.8364 ± 0.0034",
+      "accuracy_mean": 0.6549,
+      "accuracy_std": 0.0086,
+      "stable_m3": true,
+      "mean_train_s": 43.14,
+      "mean_infer_s": 1.827,
+      "max_rss_mb": 1608.3
+    },
+    {
+      "exp": "E2",
+      "role": "Đo rò rỉ (dedup, random split) - RQ4",
+      "macro_f1_mean": 0.5792,
+      "macro_f1_std": 0.0018,
+      "macro_f1_str": "0.5792 ± 0.0018",
+      "weighted_f1_mean": 0.6153,
+      "weighted_f1_std": 0.0024,
+      "weighted_f1_str": "0.6153 ± 0.0024",
+      "mcc_mean": 0.5732,
+      "mcc_std": 0.0029,
+      "mcc_str": "0.5732 ± 0.0029",
+      "top3_acc_mean": 0.8144,
+      "top3_acc_std": 0.007,
+      "top3_acc_str": "0.8144 ± 0.0070",
+      "accuracy_mean": 0.617,
+      "accuracy_std": 0.0035,
+      "stable_m3": true,
+      "mean_train_s": 45.37,
+      "mean_infer_s": 1.54,
+      "max_rss_mb": 1663.9
+    },
+    {
+      "exp": "E3",
+      "role": "BASELINE chính (dedup, project split, before)",
+      "macro_f1_mean": 0.2154,
+      "macro_f1_std": 0.0048,
+      "macro_f1_str": "0.2154 ± 0.0048",
+      "weighted_f1_mean": 0.3199,
+      "weighted_f1_std": 0.0056,
+      "weighted_f1_str": "0.3199 ± 0.0056",
+      "mcc_mean": 0.2553,
+      "mcc_std": 0.0072,
+      "mcc_str": "0.2553 ± 0.0072",
+      "top3_acc_mean": 0.5884,
+      "top3_acc_std": 0.0024,
+      "top3_acc_str": "0.5884 ± 0.0024",
+      "accuracy_mean": 0.328,
+      "accuracy_std": 0.0146,
+      "stable_m3": true,
+      "mean_train_s": 40.58,
+      "mean_infer_s": 2.076,
+      "max_rss_mb": 1629.5
+    },
+    {
+      "exp": "E4",
+      "role": "Ablation: thông tin bản vá (before + after + DEL/ADD)",
+      "macro_f1_mean": 0.2537,
+      "macro_f1_std": 0.0032,
+      "macro_f1_str": "0.2537 ± 0.0032",
+      "weighted_f1_mean": 0.3637,
+      "weighted_f1_std": 0.0043,
+      "weighted_f1_str": "0.3637 ± 0.0043",
+      "mcc_mean": 0.3028,
+      "mcc_std": 0.0054,
+      "mcc_str": "0.3028 ± 0.0054",
+      "top3_acc_mean": 0.6167,
+      "top3_acc_std": 0.0057,
+      "top3_acc_str": "0.6167 ± 0.0057",
+      "accuracy_mean": 0.3748,
+      "accuracy_std": 0.0052,
+      "stable_m3": true,
+      "mean_train_s": 84.72,
+      "mean_infer_s": 5.343,
+      "max_rss_mb": 2381.9
+    },
+    {
+      "exp": "E5",
+      "role": "BIẾN THỂ chính (E4 + chuẩn hóa tree-sitter)",
+      "macro_f1_mean": 0.2545,
+      "macro_f1_std": 0.0014,
+      "macro_f1_str": "0.2545 ± 0.0014",
+      "weighted_f1_mean": 0.3631,
+      "weighted_f1_std": 0.0055,
+      "weighted_f1_str": "0.3631 ± 0.0055",
+      "mcc_mean": 0.3002,
+      "mcc_std": 0.0081,
+      "mcc_str": "0.3002 ± 0.0081",
+      "top3_acc_mean": 0.6162,
+      "top3_acc_std": 0.0086,
+      "top3_acc_str": "0.6162 ± 0.0086",
+      "accuracy_mean": 0.3698,
+      "accuracy_std": 0.0081,
+      "stable_m3": true,
+      "mean_train_s": 130.64,
+      "mean_infer_s": 11.251,
+      "max_rss_mb": 3235.1
+    },
+    {
+      "exp": "E6",
+      "role": "Biến thể mô hình (LinearSVC / LightGBM trên E5)",
+      "macro_f1_mean": 0.2584,
+      "macro_f1_std": 0.0035,
+      "macro_f1_str": "0.2584 ± 0.0035",
+      "weighted_f1_mean": 0.3673,
+      "weighted_f1_std": 0.0082,
+      "weighted_f1_str": "0.3673 ± 0.0082",
+      "mcc_mean": 0.3058,
+      "mcc_std": 0.0113,
+      "mcc_str": "0.3058 ± 0.0113",
+      "top3_acc_mean": 0.5935,
+      "top3_acc_std": 0.0112,
+      "top3_acc_str": "0.5935 ± 0.0112",
+      "accuracy_mean": 0.376,
+      "accuracy_std": 0.011,
+      "stable_m3": true,
+      "mean_train_s": 204.49,
+      "mean_infer_s": 11.535,
+      "max_rss_mb": 3311.8
+    },
+    {
+      "exp": "E7",
+      "role": "Tổng quát hóa theo thời gian (cutoff 2023)",
+      "macro_f1_mean": 0.2526,
+      "macro_f1_std": 0.0108,
+      "macro_f1_str": "0.2526 ± 0.0108",
+      "weighted_f1_mean": 0.4085,
+      "weighted_f1_std": 0.0139,
+      "weighted_f1_str": "0.4085 ± 0.0139",
+      "mcc_mean": 0.3176,
+      "mcc_std": 0.0165,
+      "mcc_str": "0.3176 ± 0.0165",
+      "top3_acc_mean": 0.6488,
+      "top3_acc_std": 0.007,
+      "top3_acc_str": "0.6488 ± 0.0070",
+      "accuracy_mean": 0.4125,
+      "accuracy_std": 0.0162,
+      "stable_m3": true,
+      "mean_train_s": 131.81,
+      "mean_infer_s": 9.372,
+      "max_rss_mb": 3378.9
+    }
+  ],
+  "preregistered_decisions": {
+    "M1_baseline_beats_dummy": {
+      "comparison": "E3 vs E0_stratified",
+      "passed_all_3_seeds": true,
+      "mean_delta": 0.1581,
+      "per_seed": [
+        {
+          "seed": 42,
+          "macro_f1_a": 0.0597,
+          "macro_f1_b": 0.2185,
+          "delta": 0.1588,
+          "ci95_low": 0.1435,
+          "ci95_high": 0.1736,
+          "p_value_exact": 0.0
+        },
+        {
+          "seed": 123,
+          "macro_f1_a": 0.057,
+          "macro_f1_b": 0.2099,
+          "delta": 0.1529,
+          "ci95_low": 0.138,
+          "ci95_high": 0.167,
+          "p_value_exact": 0.0
+        },
+        {
+          "seed": 2024,
+          "macro_f1_a": 0.055,
+          "macro_f1_b": 0.2177,
+          "delta": 0.1626,
+          "ci95_low": 0.1483,
+          "ci95_high": 0.1774,
+          "p_value_exact": 0.0
+        }
+      ],
+      "ci95_non_overlapping_all_3_seeds": true
+    },
+    "M2_variant_E5_beats_baseline_E3": {
+      "comparison": "E5 vs E3",
+      "passed_all_3_seeds": true,
+      "mean_delta": 0.0391,
+      "per_seed": [
+        {
+          "seed": 42,
+          "macro_f1_a": 0.2185,
+          "macro_f1_b": 0.2531,
+          "delta": 0.0345,
+          "ci95_low": 0.0202,
+          "ci95_high": 0.0484,
+          "p_value_exact": 0.0
+        },
+        {
+          "seed": 123,
+          "macro_f1_a": 0.2099,
+          "macro_f1_b": 0.2546,
+          "delta": 0.0448,
+          "ci95_low": 0.032,
+          "ci95_high": 0.0569,
+          "p_value_exact": 1e-05
+        },
+        {
+          "seed": 2024,
+          "macro_f1_a": 0.2177,
+          "macro_f1_b": 0.2558,
+          "delta": 0.0381,
+          "ci95_low": 0.0252,
+          "ci95_high": 0.0516,
+          "p_value_exact": 0.0
+        }
+      ]
+    },
+    "Ablation_patch_E4_beats_E3": {
+      "comparison": "E4 vs E3",
+      "passed_all_3_seeds": true,
+      "mean_delta": 0.0383,
+      "per_seed": [
+        {
+          "seed": 42,
+          "macro_f1_a": 0.2185,
+          "macro_f1_b": 0.2531,
+          "delta": 0.0346,
+          "ci95_low": 0.0215,
+          "ci95_high": 0.0466,
+          "p_value_exact": 0.0
+        },
+        {
+          "seed": 123,
+          "macro_f1_a": 0.2099,
+          "macro_f1_b": 0.2508,
+          "delta": 0.0409,
+          "ci95_low": 0.0294,
+          "ci95_high": 0.0529,
+          "p_value_exact": 0.0
+        },
+        {
+          "seed": 2024,
+          "macro_f1_a": 0.2177,
+          "macro_f1_b": 0.2571,
+          "delta": 0.0394,
+          "ci95_low": 0.0271,
+          "ci95_high": 0.0537,
+          "p_value_exact": 0.0
+        }
+      ]
+    },
+    "Ablation_norm_E5_beats_E4": {
+      "comparison": "E5 vs E4",
+      "passed_all_3_seeds": false,
+      "mean_delta": 0.0009,
+      "per_seed": [
+        {
+          "seed": 42,
+          "macro_f1_a": 0.2531,
+          "macro_f1_b": 0.2531,
+          "delta": -0.0,
+          "ci95_low": -0.0107,
+          "ci95_high": 0.011,
+          "p_value_exact": 0.174639
+        },
+        {
+          "seed": 123,
+          "macro_f1_a": 0.2508,
+          "macro_f1_b": 0.2546,
+          "delta": 0.0039,
+          "ci95_low": -0.0055,
+          "ci95_high": 0.0139,
+          "p_value_exact": 0.287598
+        },
+        {
+          "seed": 2024,
+          "macro_f1_a": 0.2571,
+          "macro_f1_b": 0.2558,
+          "delta": -0.0013,
+          "ci95_low": -0.0129,
+          "ci95_high": 0.0088,
+          "p_value_exact": 0.794954
+        }
+      ]
+    },
+    "Ablation_model_E6_vs_E5": {
+      "comparison": "E6 vs E5",
+      "passed_all_3_seeds": false,
+      "mean_delta": 0.0039,
+      "per_seed": [
+        {
+          "seed": 42,
+          "macro_f1_a": 0.2531,
+          "macro_f1_b": 0.2578,
+          "delta": 0.0048,
+          "ci95_low": -0.0042,
+          "ci95_high": 0.0132,
+          "p_value_exact": 0.399465
+        },
+        {
+          "seed": 123,
+          "macro_f1_a": 0.2546,
+          "macro_f1_b": 0.2552,
+          "delta": 0.0005,
+          "ci95_low": -0.0093,
+          "ci95_high": 0.0098,
+          "p_value_exact": 0.269411
+        },
+        {
+          "seed": 2024,
+          "macro_f1_a": 0.2558,
+          "macro_f1_b": 0.2622,
+          "delta": 0.0064,
+          "ci95_low": -0.0033,
+          "ci95_high": 0.0162,
+          "p_value_exact": 0.038693
+        }
+      ]
+    },
+    "M5_RQ4_leakage_E2_gt_E3": {
+      "comparison": "E2 vs E3",
+      "passed_all_3_seeds": true,
+      "mean_delta": 0.3639,
+      "per_seed": [
+        {
+          "seed": 42,
+          "macro_f1_a": 0.2185,
+          "macro_f1_b": 0.5813,
+          "delta": 0.3628,
+          "ci95_low": 0.3404,
+          "ci95_high": 0.385,
+          "p_value_exact": NaN
+        },
+        {
+          "seed": 123,
+          "macro_f1_a": 0.2099,
+          "macro_f1_b": 0.5782,
+          "delta": 0.3683,
+          "ci95_low": 0.3452,
+          "ci95_high": 0.3898,
+          "p_value_exact": NaN
+        },
+        {
+          "seed": 2024,
+          "macro_f1_a": 0.2177,
+          "macro_f1_b": 0.5782,
+          "delta": 0.3605,
+          "ci95_low": 0.3346,
+          "ci95_high": 0.383,
+          "p_value_exact": NaN
+        }
+      ]
+    },
+    "RQ2_dedup_E1_gt_E2": {
+      "comparison": "E1 vs E2",
+      "passed_all_3_seeds": true,
+      "mean_delta": 0.0371,
+      "per_seed": [
+        {
+          "seed": 42,
+          "macro_f1_a": 0.5813,
+          "macro_f1_b": 0.6207,
+          "delta": 0.0394,
+          "ci95_low": 0.0137,
+          "ci95_high": 0.0639,
+          "p_value_exact": NaN
+        },
+        {
+          "seed": 123,
+          "macro_f1_a": 0.5782,
+          "macro_f1_b": 0.6055,
+          "delta": 0.0273,
+          "ci95_low": 0.0036,
+          "ci95_high": 0.0517,
+          "p_value_exact": NaN
+        },
+        {
+          "seed": 2024,
+          "macro_f1_a": 0.5782,
+          "macro_f1_b": 0.6229,
+          "delta": 0.0447,
+          "ci95_low": 0.0206,
+          "ci95_high": 0.0693,
+          "p_value_exact": NaN
+        }
+      ]
+    }
+  },
+  "error_analysis_E5_seed42": {
+    "total_test_samples": 3702,
+    "total_misclassified": 2353,
+    "same_cwe_family_misclassified": 1260,
+    "same_cwe_family_share_of_errors": 0.5355,
+    "all_errors_by_category": {
+      "parent_child_or_sibling_cwe (memory_buffer_bounds)": 834,
+      "parent_child_or_sibling_cwe (injection_and_input)": 344,
+      "add_only_patch_without_deleted_lines": 317,
+      "cross_domain_or_project_specific_context": 284,
+      "ambiguous_rank2_or_3_in_top3": 280,
+      "very_short_hunk_1_2_changed_lines": 212,
+      "parent_child_or_sibling_cwe (auth_and_access)": 68,
+      "parent_child_or_sibling_cwe (path_and_resource)": 14
+    },
+    "sample_50_by_category": {
+      "parent_child_or_sibling_cwe (memory_buffer_bounds)": 17,
+      "parent_child_or_sibling_cwe (injection_and_input)": 9,
+      "ambiguous_rank2_or_3_in_top3": 9,
+      "very_short_hunk_1_2_changed_lines": 8,
+      "add_only_patch_without_deleted_lines": 3,
+      "parent_child_or_sibling_cwe (auth_and_access)": 2,
+      "parent_child_or_sibling_cwe (path_and_resource)": 1,
+      "cross_domain_or_project_specific_context": 1
+    },
+    "top_10_confused_pairs": [
+      {
+        "true_cwe": "CWE-79",
+        "pred_cwe": "CWE-89",
+        "count": 73,
+        "pct_of_true_class": 0.083,
+        "same_cwe_family": "injection_and_input"
+      },
+      {
+        "true_cwe": "CWE-89",
+        "pred_cwe": "CWE-79",
+        "count": 69,
+        "pct_of_true_class": 0.2961,
+        "same_cwe_family": "injection_and_input"
+      },
+      {
+        "true_cwe": "CWE-119",
+        "pred_cwe": "CWE-125",
+        "count": 63,
+        "pct_of_true_class": 0.2442,
+        "same_cwe_family": "memory_buffer_bounds"
+      },
+      {
+        "true_cwe": "CWE-125",
+        "pred_cwe": "CWE-119",
+        "count": 62,
+        "pct_of_true_class": 0.247,
+        "same_cwe_family": "memory_buffer_bounds"
+      },
+      {
+        "true_cwe": "CWE-476",
+        "pred_cwe": "CWE-416",
+        "count": 62,
+        "pct_of_true_class": 0.2731,
+        "same_cwe_family": "memory_buffer_bounds"
+      },
+      {
+        "true_cwe": "CWE-119",
+        "pred_cwe": "CWE-416",
+        "count": 61,
+        "pct_of_true_class": 0.2364,
+        "same_cwe_family": "memory_buffer_bounds"
+      },
+      {
+        "true_cwe": "CWE-200",
+        "pred_cwe": "CWE-119",
+        "count": 61,
+        "pct_of_true_class": 0.3789,
+        "same_cwe_family": "different_family"
+      },
+      {
+        "true_cwe": "CWE-476",
+        "pred_cwe": "CWE-119",
+        "count": 57,
+        "pct_of_true_class": 0.2511,
+        "same_cwe_family": "memory_buffer_bounds"
+      },
+      {
+        "true_cwe": "CWE-787",
+        "pred_cwe": "CWE-119",
+        "count": 48,
+        "pct_of_true_class": 0.2424,
+        "same_cwe_family": "memory_buffer_bounds"
+      },
+      {
+        "true_cwe": "CWE-416",
+        "pred_cwe": "CWE-119",
+        "count": 45,
+        "pct_of_true_class": 0.1891,
+        "same_cwe_family": "memory_buffer_bounds"
+      }
+    ]
+  }
+}

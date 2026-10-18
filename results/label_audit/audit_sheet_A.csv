@@ -1,0 +1,1806 @@
+﻿audit_id,hunk_id,lang,repo_url,cve_ids,label,cwe_name,section,removed_lines,added_lines,relevant,cwe_ok,note
+1,134219056381714#0000,C,https://github.com/torvalds/linux,CVE-2012-0879,CWE-400,Uncontrolled Resource Consumption,static void cfq_exit(struct io_context *ioc),"void exit_io_context(void)
+	task_lock(current);
+	ioc = current->io_context;
+	current->io_context = NULL;
+	task_unlock(current);
+","void exit_io_context(struct task_struct *task)
+	task_lock(task);
+	ioc = task->io_context;
+	task->io_context = NULL;
+	task_unlock(task);
+",,,
+2,106181524647635#0000,C,https://github.com/FFmpeg/FFmpeg,CVE-2018-13305,CWE-125,Out-of-bounds Read,"static void vc1_put_blocks_clamped(VC1Context *v, int put_signed)","        if (!mquant || mquant > 31) {                          \
+","        if (!mquant || mquant > 31 || mquant < -31) {                          \
+",,,
+3,270976899220828#0014,C,https://github.com/python/cpython,CVE-2018-20406,CWE-190,Integer Overflow or Wraparound,"Unpickler_set_memo(UnpicklerObject *self, PyObject *obj)","        i = new_memo_size;
+        while (--i >= 0) {
+","        for (size_t i = new_memo_size - 1; i != SIZE_MAX; i--) {
+",,,
+4,126191331228366#0107,TypeScript,https://github.com/parse-community/parse-server,CVE-2020-15126,CWE-863,Incorrect Authorization,"describe('ParseGraphQLServer', () => {","              result.companies.edges.some((o) => o.node.name === 'imACompany2')
+","              result.companies.edges.some(o => o.node.name === 'imACompany2')
+",,,
+5,114139688943919#0002,PHP,https://github.com/icewind1991/SMB,CVE-2015-7698,CWE-78,Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection'),class Server {,,"	/**
+	 * @return string
+	 */
+	public function getWorkgroup() {
+		return $this->workgroup;
+	}
+
+",,,
+6,196415751341310#0007,C,https://github.com/mdadams/jasper,CVE-2017-6850,CWE-476,NULL Pointer Dereference,"int jas_stream_copy(jas_stream_t *out, jas_stream_t *in, int n)",,"/* FIXME integral type */
+",,,
+7,209826841116299#0001,C,https://github.com/openbsd/src,CVE-2020-16088,CWE-287,Improper Authentication,"ca_validate_pubkey(struct iked *env, struct iked_static_id *id,","	if (peerkey && !EVP_PKEY_cmp(peerkey, localkey)) {
+","	if (peerkey && EVP_PKEY_cmp(peerkey, localkey) != 1) {
+",,,
+8,245563304400492#0000,Python,https://github.com/john5223/bottle-auth,CVE-2014-125065,CWE-89,Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'),"def delete_user(db, userid):","def create__update_user(db, userid):
+","def create_update_user(db, userid):
+",,,
+9,220539685834533#0002,PHP,https://github.com/ummmmm/nflpick-em.com,CVE-2022-4871,CWE-89,Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'),class JSON_LoadUsers extends JSONAdmin,"		return $this->_db->select( $sql, $users, $current );
+","
+		if ( !$this->_db->select( $sql, $users, $current ) )
+		{
+			return $this->setDBError();
+		}
+
+		return true;
+",,,
+10,216419605195165#0000,C,https://github.com/torvalds/linux,CVE-2016-9178,CWE-200,Exposure of Sensitive Information to an Unauthorized Actor,do {									\,"		     _ASM_EXTABLE_EX(1b, 2b)				\
+","		     "".section .fixup,\""ax\""\n""				\
+                     ""3:xor""itype"" %""rtype""0,%""rtype""0\n""		\
+		     ""  jmp 2b\n""					\
+		     "".previous\n""					\
+		     _ASM_EXTABLE_EX(1b, 3b)				\
+",,,
+11,236824952497634#0001,JavaScript,https://github.com/hawtio/hawtio,CVE-2014-0121,CWE-287,Improper Authentication,"gogo.Terminal_ctor = function(div, width, height) {",,"           r.setRequestHeader('Authorization', authHeader);
+",,,
+12,241355636532655#0001,JavaScript,https://github.com/thorsten/phpmyfaq,CVE-2023-0792,CWE-94,Improper Control of Generation of Code ('Code Injection'),"document.addEventListener('DOMContentLoaded', () => {","        input.replaceWith('<span data-tag-id=""' + id + '"">' + input.val().replace(/\//g, '&#x2F;') + '</span>');
+","        input.replaceWith('<span data-tag-id=""' + id + '"">' + escape(input.val().replace(/\//g, '&#x2F;')) + '</span>');
+",,,
+13,110562281349717#0000,Ruby,https://github.com/thoughtbot/administrate,CVE-2020-5257,CWE-89,Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'),module Administrate,"      @direction = direction || :asc
+","      @direction = sanitize_direction(direction)
+",,,
+14,67428438744352#0000,PHP,https://github.com/phpmyadmin/phpmyadmin,CVE-2015-3902,CWE-352,Cross-Site Request Forgery (CSRF),,"$page = filter_input(INPUT_GET, 'page');
+","$page = isset($_GET['page']) ? $_GET['page'] : null;
+",,,
+15,215932374912073#0002,TypeScript,https://github.com/neocotic/convert-svg,CVE-2022-24429,CWE-94,Improper Control of Generation of Code ('Code Injection'),class Converter {,"   * <code>input</code> can either be a SVG buffer or string.
+","    this[_allowedAttributeNames] = new Set([
+      // Core
+      'height',
+      'preserveAspectRatio',
+      'viewBox',
+      'width',
+      'x',
+      'xmlns',
+      'y',
+      // Conditional Processing
+      'requiredExtensions',
+      'systemLanguage',
+      // Presentation
+      'clip-path',
+      'clip-rule',
+      'color',
+      'color-interpolation',
+      'cursor',
+      'display',
+      'fill',
+      'fill-opacity',
+      'fill-rule',
+      'filter',
+      'mask',
+      'opacity',
+      'overflow',
+      'pointer-events',
+      'shape-rendering',
+      'stroke',
+      'stroke-dasharray',
+      'stroke-dashoffset',
+      'stroke-linecap',
+      'stroke-linejoin',
+      'stroke-miterlimit',
+      'stroke-opacity',
+      'stroke-width',
+      'style',
+      'transform',
+      'vector-effect',
+      'visibility',
+      // XML
+      'xml:lang',
+      'xmlns',
+      'xmlns:xlink'
+    ]);
+    this[_allowedDeprecatedAttributeNames] = new Set([
+      // Core
+      'baseProfile',
+      'version',
+      'zoomAndPan',
+      // Conditional Processing
+      'requiredFeatures',
+      // Presentation
+      'clip',
+      'color-rendering',
+      'enable-background',
+      // XML
+      'xml:base',
+      'xml:space'
+    ]);
+   * <code>input</code> can either be an SVG buffer or string.
+   * Only standard SVG element attributes (excl. event attributes) are allowed and others are stripped from the SVG
+   * before being converted. This includes deprecated attributes unless the <code>allowDeprecatedAttributes</code>
+   * option is disabled. This is primarily for security purposes to ensure that malicious code cannot be injected.
+   *
+",,,
+16,112863948026027#0002,PHP,https://github.com/microweber/microweber,CVE-2022-0896,CWE-94,Improper Control of Generation of Code ('Code Injection'),class AdminCommentController extends AdminController,"        // Claer HTML
+        $comment_body = $this->app->format->clean_html($comment_body);
+
+        // Clear XSS
+        $evil = ['(?<!\w)on\w*', 'xmlns', 'formaction', 'xlink:href', 'FSCommand', 'seekSegmentTime'];
+        $comment_body = $this->app->format->clean_xss($comment_body, true, $evil, 'removeEvilAttributes');
+","        $cleanHtml = new HTMLClean();
+        $comment_body = $cleanHtml->onlyTags($comment_body);
+",,,
+17,273266348870996#0000,PHP,https://github.com/bookstackapp/bookstack,CVE-2021-3916,CWE-22,Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal'),use Intervention\Image\Exception\NotSupportedException;,,"use Symfony\Component\HttpFoundation\StreamedResponse;
+",,,
+18,186739025169173#0000,PHP,https://github.com/microweber/microweber,CVE-2022-1504,CWE-79,Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting'),use MicroweberPackages\View\View;,"use voku\helper\AntiXSS;
+",,,,
+19,64229972092121#0000,PHP,https://github.com/wp-plugins/favicon-by-realfavicongenerator,CVE-2015-10116,CWE-352,Cross-Site Request Forgery (CSRF),," * Version:           1.2.12
+"," * Version:           1.2.13
+",,,
+20,12959487569101#0001,C,https://github.com/ARMmbed/mbedtls,CVE-2017-14032,CWE-287,Improper Authentication,"int mbedtls_x509_crt_verify_with_profile( mbedtls_x509_crt *crt,","            return( ret );
+","            goto exit;
+",,,
+21,104954540083307#0000,TypeScript,https://github.com/sebhildebrandt/systeminformation,CVE-2021-21315,CWE-78,Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection'),"function calcNetworkSpeed(iface, rx_bytes, tx_bytes, operstate, rx_dropped, rx_e","  // fallback - if only callback is given
+  if (util.isFunction(ifaces) && !callback) {
+    callback = ifaces;
+    ifacesArray = [getDefaultNetworkInterface()];
+  } else {
+    ifaces = ifaces || getDefaultNetworkInterface();
+    ifaces = ifaces.trim().toLowerCase().replace(/,+/g, '|');
+    ifacesArray = ifaces.split('|');
+  }
+","      // fallback - if only callback is given
+      if (util.isFunction(ifaces) && !callback) {
+        callback = ifaces;
+        ifacesArray = [getDefaultNetworkInterface()];
+      } else {
+        if (typeof ifaces !== 'string' && ifaces !== undefined) {
+          if (callback) { callback([]); }
+          return resolve([]);
+        }
+        ifaces = ifaces || getDefaultNetworkInterface();
+
+        ifaces.__proto__.toLowerCase = util.stringToLower;
+        ifaces.__proto__.replace = util.stringReplace;
+        ifaces.__proto__.trim = util.stringTrim;
+
+        ifaces = ifaces.trim().toLowerCase().replace(/,+/g, '|');
+        ifacesArray = ifaces.split('|');
+      }
+
+",,,
+22,124865549128428#0007,C,https://github.com/the-tcpdump-group/tcpdump,CVE-2017-12894,CWE-125,Out-of-bounds Read,"linkaddr_string(netdissect_options *ndo, const u_char *ep,","	return (tp->e_name);
+","	return (tp->bs_name);
+",,,
+23,41655373857364#0000,PHP,https://github.com/Mibew/mibew,CVE-2020-17476,CWE-79,Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting'),class RedirectController extends AbstractController,"                array(get_operator_name($this->getOperator())),
+","                array(safe_htmlspecialchars(get_operator_name($this->getOperator()))),
+",,,
+24,198469903455952#0013,Python,https://github.com/httplib2/httplib2,CVE-2021-21240,CWE-400,Uncontrolled Resource Consumption,def test_digest_object_auth_info():,"    response[""www-authenticate""] = (
+        'Digest realm=""myrealm"", nonce=""barney"", '
+        'algorithm=MD5, qop=""auth"", stale=true'
+    )
+    d = httplib2.DigestAuthentication(
+        credentials, host, request_uri, headers, response, content, None
+    )
+","    response[""www-authenticate""] = 'Digest realm=""myrealm"", nonce=""barney"", ' 'algorithm=MD5, qop=""auth"", stale=true'
+    d = httplib2.DigestAuthentication(credentials, host, request_uri, headers, response, content, None)
+",,,
+25,241510331326555#0001,C++,https://github.com/Stellarium/stellarium,CVE-2023-28371,CWE-22,Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal'),"bool StelScriptMgr::runScriptDirect(const QString& scriptCode, const QString &in","		absPath = fileName;
+","	const bool okToRunScriptFromAbsolutePath=StelApp::getInstance().getSettings()->value(""scripts/flag_script_allow_absolute_path"", false).toBool();
+	{
+		// Absolute paths may bear a security risk. We need a flag to allow them!
+		if (okToRunScriptFromAbsolutePath)
+			absPath = fileName;
+		else
+		{
+			qWarning() << ""SCRIPTING CONFIGURATION ISSUE: You are trying to run a script from absolute pathname."";
+			qWarning() << ""  To enable this, edit config.ini and set [scripts]/flag_script_allow_absolute_path=true"";
+			return false;
+		}
+	}
+",,,
+26,22722229374554#0000,Python,https://github.com/nvbn/thefuck,CVE-2021-34363,CWE-22,Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal'),def get_new_command(command):,,"            if not os.path.abspath(file).startswith(os.getcwd()):
+                # it's unsafe to overwrite files outside of the current directory
+                continue
+
+",,,
+27,193374663827426#0002,Java,https://github.com/xwiki/xwiki-platform,CVE-2023-40572,CWE-352,Cross-Site Request Forgery (CSRF),void newDocumentFromURL() throws Exception,"        String csrfTokenValue = ""token42"";
+        when(this.csrfToken.getToken()).thenReturn(csrfTokenValue);
+",,,,
+28,45219753688191#0003,Ruby,https://github.com/discourse/discourse,CVE-2019-1020017;CVE-2019-1020018,CWE-287,Improper Authentication,RSpec.describe SessionController do,"        get ""/session/email-login/#{email_token.token}""
+        expect(response).to redirect_to(""/"")
+        get ""/session/email-login/#{email_token.token}""
+        get ""/session/email-login/#{email_token.token}""
+        get ""/session/email-login/#{email_token.token}""
+        expect(CGI.unescapeHTML(response.body)).to include(
+          I18n.t(""login.not_approved"")
+        )
+","        post ""/session/email-login/#{email_token.token}.json""
+        expect(JSON.parse(response.body)[""success""]).to eq(""OK"")
+        expect(session[:current_user_id]).to eq(user.id)
+        post ""/session/email-login/#{email_token.token}.json""
+        expect(session[:current_user_id]).to eq(nil)
+        post ""/session/email-login/#{email_token.token}.json""
+        expect(session[:current_user_id]).to eq(nil)
+        post ""/session/email-login/#{email_token.token}.json""
+        expect(JSON.parse(response.body)[""error""]).to eq(I18n.t(""login.not_approved""))
+        expect(session[:current_user_id]).to eq(nil)
+",,,
+29,215138752856451#0000,C,https://github.com/vim/vim,CVE-2019-12735,CWE-78,Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection'),openscript(,,"
+    // Disallow sourcing a file in the sandbox, the commands would be executed
+    // later, possibly outside of the sandbox.
+    if (check_secure())
+	return;
+
+",,,
+30,257825106895534#0012,C,https://github.com/DanBloomberg/leptonica,CVE-2018-7186,CWE-787,Out-of-bounds Write,NUMA    *nay;,"char     buf[L_BUF_SIZE];
+","char     buf[L_BUFSIZE];
+",,,
+31,21043782249056#0007,C,https://github.com/ImageMagick/ImageMagick,CVE-2018-16644,CWE-119,Improper Restriction of Operations within the Bounds of a Memory Buffer,"static Image *ReadPICTImage(const ImageInfo *image_info,",,"        if (length > GetBlobSize(image))
+          ThrowPICTException(CorruptImageError,
+            ""InsufficientImageDataInFile"");
+",,,
+32,203252880817812#0001,C,https://github.com/torvalds/linux,CVE-2017-16643,CWE-125,Out-of-bounds Read,"static void parse_hid_report_descriptor(struct gtco *device, char * report,","		case 3:
+			size = 4;
+","		case 4:
+",,,
+33,183630982999250#0015,JavaScript,https://github.com/ioBroker/ioBroker.admin,CVE-2019-10765,CWE-22,Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal'),function Adapters(main) {,"        var adapters;
+            for (var a = 0; a < dependencies.length; a++) {
+                for (var b in dependencies[a]) {
+","        let adapters;
+            for (let a = 0; a < dependencies.length; a++) {
+                for (const b in dependencies[a]) {
+",,,
+34,87673755375080#0000,Java,https://github.com/AuthGuard/AuthGuard,CVE-2021-45890,CWE-287,Improper Authentication,import com.nexblocks.authguard.service.CredentialsService;,"import com.nexblocks.authguard.service.model.AccountBO;
+import com.nexblocks.authguard.service.model.AuthRequestBO;
+import com.nexblocks.authguard.service.model.CredentialsBO;
+import com.nexblocks.authguard.service.model.EntityType;
+","import com.nexblocks.authguard.service.model.*;
+",,,
+35,270722258214517#0000,TypeScript,https://github.com/Requarks/wiki,CVE-2021-25993;CVE-2021-43842,CWE-79,Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting'),module.exports = class Asset extends Model {,,"    // Sanitize SVG contents
+    if (WIKI.config.uploads.scanSVG && opts.mimetype === 'image/svg+xml') {
+      const svgSanitizeJob = await WIKI.scheduler.registerJob({
+        name: 'sanitize-svg',
+        immediate: true,
+        worker: true
+      }, opts.path)
+      await svgSanitizeJob.finished
+    }
+
+",,,
+36,257059266302054#0000,C,https://github.com/systemd/systemd,CVE-2020-1712,CWE-416,Use After Free,_public_ int sd_bus_get_close_on_exit(sd_bus *bus) {,,"
+_public_ int sd_bus_enqeue_for_read(sd_bus *bus, sd_bus_message *m) {
+        int r;
+
+        assert_return(bus, -EINVAL);
+        assert_return(bus = bus_resolve(bus), -ENOPKG);
+        assert_return(m, -EINVAL);
+        assert_return(m->sealed, -EINVAL);
+        assert_return(!bus_pid_changed(bus), -ECHILD);
+
+        if (!BUS_IS_OPEN(bus->state))
+                return -ENOTCONN;
+
+        /* Re-enqeue a message for reading. This is primarily useful for PolicyKit-style authentication,
+         * where we want accept a message, then determine we need to interactively authenticate the user, and
+         * when we have that process the message again. */
+
+        r = bus_rqueue_make_room(bus);
+        if (r < 0)
+                return r;
+
+        bus->rqueue[bus->rqueue_size++] = bus_message_ref_queued(m, bus);
+        return 0;
+}
+",,,
+37,245396440263668#0009,C,https://github.com/skalenetwork/sgxwallet,CVE-2021-36218,CWE-787,Out-of-bounds Write,"void trustedGetPublicEcdsaKeyAES(int *errStatus, char *errString,","    int status = AES_decrypt(encryptedPrivateKey, enc_len, skey, ECDSA_SKEY_LEN);
+","    int status = AES_decrypt(encryptedPrivateKey, enc_len, skey, BUF_LEN);
+",,,
+38,49883075656369#0004,C++,https://github.com/ucbrise/opaque,CVE-2018-20742,CWE-787,Out-of-bounds Write,"void ecall_filter(uint8_t *condition, size_t condition_length,",,"  // Guard against operating on arbitrary enclave memory
+  assert(sgx_is_outside_enclave(input_rows, input_rows_length) == 1);
+  sgx_lfence();
+
+",,,
+39,216357024758123#0006,Go,https://github.com/fluid-cloudnative/fluid,CVE-2023-30840,CWE-863,Incorrect Authorization,func (ns *nodeServer) prepareSessMgr(workDir string) error {,"	_, err = utils.ChangeNodeLabelWithPatchMode(ns.client, node, labelsToModify)
+","	// _, err = utils.ChangeNodeLabelWithPatchMode(ns.client, node, labelsToModify)
+	err = ns.patchNodeWithLabel(node, labelsToModify)
+",,,
+40,32778465778440#0000,C,https://github.com/atheme/atheme,CVE-2022-24976,CWE-287,Improper Authentication,"sasl_handle_login(struct sasl_session *const restrict p, struct user *const u, s","		if (! *p->authzeid)
+			(void) slog(LG_INFO, ""%s: session for '%s' without an authzeid (BUG)"",
+		if (! (mu = myuser_find_uid(p->authzeid)))
+","		if (! *p->pendingeid)
+			(void) slog(LG_INFO, ""%s: session for '%s' without an pendingeid (BUG)"",
+		if (! (mu = myuser_find_uid(p->pendingeid)))
+",,,
+41,107485445982821#0000,C,https://bitbucket.org/tildeslash/monit,CVE-2016-7067,CWE-352,Cross-Site Request Forgery (CSRF),void Util_printServiceList() {,"char *Util_monitId(char *idfile) {
+        FILE *file = NULL;
+        ASSERT(idfile);
+                md5_context_t ctx;
+                char buf[STRLEN];
+                MD_T digest;
+                /* Generate the unique id */
+                snprintf(buf, STRLEN, ""%lu%d%lu"", (unsigned long)Time_now(), getpid(), random());
+                md5_init(&ctx);
+                md5_append(&ctx, (const md5_byte_t *)buf, STRLEN - 1);
+                md5_finish(&ctx, (md5_byte_t *)digest);
+                Util_digest2Bytes((unsigned char *)digest, 16, Run.id);
+                fprintf(file, ""%s"", Run.id);
+","char *Util_getToken(MD_T token) {
+        md5_context_t ctx;
+        char buf[STRLEN];
+        MD_T digest;
+        snprintf(buf, STRLEN, ""%lu%d%lu"", (unsigned long)Time_now(), getpid(), random());
+        md5_init(&ctx);
+        md5_append(&ctx, (const md5_byte_t *)buf, STRLEN - 1);
+        md5_finish(&ctx, (md5_byte_t *)digest);
+        Util_digest2Bytes((unsigned char *)digest, 16, token);
+        return token;
+}
+char *Util_monitId(char *idfile) {
+        ASSERT(idfile);
+        FILE *file = NULL;
+                // Generate the unique id
+                fprintf(file, ""%s"", Util_getToken(Run.id));
+",,,
+42,114026096629443#0001,C,https://github.com/vadz/libtiff,CVE-2016-10269,CWE-125,Out-of-bounds Read,PixarLogClose(TIFF* tif),"	td->td_bitspersample = 8;
+	td->td_sampleformat = SAMPLEFORMAT_UINT;
+","
+        if (sp->state&PLSTATE_INIT) {
+            /* We test the state to avoid an issue such as in
+             * http://bugzilla.maptools.org/show_bug.cgi?id=2604
+             * What appends in that case is that the bitspersample is 1 and
+             * a TransferFunction is set. The size of the TransferFunction
+             * depends on 1<<bitspersample. So if we increase it, an access
+             * out of the buffer will happen at directory flushing.
+             * Another option would be to clear those targs. 
+             */
+            td->td_bitspersample = 8;
+            td->td_sampleformat = SAMPLEFORMAT_UINT;
+        }
+",,,
+43,163098504059779#0000,C,https://github.com/libarchive/libarchive,CVE-2016-1541,CWE-20,Improper Input Validation,"zip_read_mac_metadata(struct archive_read *a, struct archive_entry *entry,",,"		if (rsrc->uncompressed_size != rsrc->compressed_size) {
+			archive_set_error(&a->archive, ARCHIVE_ERRNO_FILE_FORMAT,
+			    ""Malformed OS X metadata entry: inconsistent size"");
+			return (ARCHIVE_FATAL);
+		}
+",,,
+44,162849358231333#0000,C++,https://github.com/tensorflow/tensorflow,CVE-2021-41203,CWE-190,Integer Overflow or Wraparound,void TensorSliceReader::LoadShard(int shard) const {,"    TensorShape ssm_shape(ssm.shape());
+","    TensorShape ssm_shape;
+    status_ = TensorShape::BuildTensorShapeBase(ssm.shape(), &ssm_shape);
+    if (!status_.ok()) return;
+",,,
+45,210357329900895#0000,TypeScript,https://github.com/lifion/lifion-verify-deps,CVE-2021-34078,CWE-78,Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection'),"describe('lib/index', () => {",,"
+  test('throw error when npm module name is invalid', async () => {
+    mockExports.dependencies = { 'bad name Dependency': '1.2.3' };
+    mockExecAsync.mockImplementationOnce(mock);
+    await expect(verifyDeps({ autoUpgrade: true, dir, logger })).rejects.toThrow(
+      'NPM package name: ""bad name Dependency"" is invalid. name can only contain URL-friendly characters'
+    );
+  });
+",,,
+46,212270917503213#0000,C,https://github.com/ImageMagick/ImageMagick6,CVE-2019-13307,CWE-787,Out-of-bounds Write,static MagickPixelPacket **AcquirePixelThreadSet(const Image *images),"    number_threads;
+  number_threads=(size_t) GetMagickResourceLimit(ThreadResource);
+  pixels=(MagickPixelPacket **) AcquireQuantumMemory(number_threads,
+    sizeof(*pixels));
+  (void) memset(pixels,0,number_threads*sizeof(*pixels));
+  for (i=0; i < (ssize_t) number_threads; i++)
+","    rows;
+  rows=MagickMax(GetImageListLength(images),
+    (size_t) GetMagickResourceLimit(ThreadResource));
+  pixels=(MagickPixelPacket **) AcquireQuantumMemory(rows,sizeof(*pixels));
+  for (i=0; i < (ssize_t) rows; i++)
+",,,
+47,277498342121019#0006,C,https://github.com/torvalds/linux,CVE-2018-12896,CWE-190,Integer Overflow or Wraparound,"SYSCALL_DEFINE1(timer_getoverrun, timer_t, timer_id)","	overrun = timr->it_overrun_last;
+","	overrun = timer_overrun_to_int(timr, 0);
+",,,
+48,23364250227309#0002,C,https://github.com/stoth68000/media-tree,CVE-2017-8831,CWE-125,Out-of-bounds Read,"int saa7164_bus_get(struct saa7164_dev *dev, struct tmComResInfo* msg,","		memcpy_fromio(msg, bus->m_pdwGetRing + curr_grp, sizeof(*msg));
+	/* Convert from little endian to CPU */
+	msg->size = le16_to_cpu((__force __le16)msg->size);
+	msg->command = le32_to_cpu((__force __le32)msg->command);
+	msg->controlselector = le16_to_cpu((__force __le16)msg->controlselector);
+",,,,
+49,137450124639832#0004,PHP,https://github.com/getgrav/grav-plugin-admin,CVE-2021-3920,CWE-79,Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting'),class AdminBaseController,"                    $errors[] = 'The File Extension for the file ""' . $filename . '"" is not an accepted.';
+","                    $errors[] = htmlspecialchars('The File Extension for the file ""' . $filename . '"" is not an accepted.', ENT_QUOTES | ENT_HTML5, 'UTF-8');
+",,,
+50,169662311531725#0003,Python,https://github.com/ikus060/rdiffweb,CVE-2022-3232,CWE-352,Cross-Site Request Forgery (CSRF),class DeleteRepoTest(rdiffweb.test.WebCase):,"        self._delete('anotheruser', 'testcases', 'testcases', redirect='/admin/repos/')
+        location = self.assertHeader('Location')
+        self.assertTrue(location.endswith('/admin/repos/'))
+","        self._delete('anotheruser', 'testcases', 'testcases')
+        self.assertHeaderItemValue('Location', self.baseurl + '/')
+",,,
+51,234201356646087#0000,C++,https://github.com/seleniumhq/selenium,CVE-2023-5590,CWE-476,NULL Pointer Dereference,"LRESULT CALLBACK CookieWndProc(int nCode, WPARAM wParam, LPARAM lParam) {","        std::wstring cookie_name = current_cookie->pwszName;
+","        std::wstring cookie_name = L"""";
+        if (current_cookie->pwszName) {
+          // Note that the spec appears to allow ""nameless"" cookies,
+          // which clients like Selenium may not support.
+          cookie_name = current_cookie->pwszName;
+        }
+
+        // TODO: The spec does not allow a cookie with an empty name
+        // and value. It's unclear what the driver could do in this
+        // case, but we should probably handle it somehow in the off
+        // chance it ever comes up.
+",,,
+52,154166707159318#0000,Java,https://github.com/JervenBolleman/sparql-identifiers,CVE-2014-125052,CWE-89,Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'),public class DbUtilities,"	public static void closeDbConnection(Connection connection, PreparedStatement stmt)
+            if (null !=  stmt)
+            {
+            	//System.out.println(""- Closes the prepared statement"");
+            	stmt.close();
+            }
+","	public static void closeDbConnection(Connection connection)
+",,,
+53,99015760841939#0009,C++,https://github.com/bittorrent/bootstrap-dht,CVE-2014-8509,CWE-119,Improper Restriction of Operations within the Bounds of a Memory Buffer,namespace libtorrent,,"			""integer overflow"",
+",,,
+54,155223702064130#0008,Python,https://github.com/hap-wi/roxy-wi,CVE-2022-31137,CWE-78,Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection'),if form.getvalue('list_select_id') is not None:,"    list_id = form.getvalue('list_select_id')
+    list_name = form.getvalue('list_select_name')
+
+    if funct.checkAjaxInput(list_id) or funct.checkAjaxInput(list_name):
+        print('error: Nice try')
+        sys.exit()
+","    list_id = funct.checkAjaxInput(form.getvalue('list_select_id'))
+    list_name = funct.checkAjaxInput(form.getvalue('list_select_name'))
+",,,
+55,98550354800703#0000,Python,https://github.com/tensorflow/tensorflow,CVE-2023-25676,CWE-476,NULL Pointer Dereference,class StackOpTest(test.TestCase):,"    with self.assertRaisesRegex(errors.InvalidArgumentError,
+                                r""0th dimension of value .* is less than""):
+","    with self.assertRaisesRegex(
+        errors.InvalidArgumentError, r""0th dimension .* must be greater than""
+    ):
+",,,
+56,91942884663667#0002,C,https://github.com/openrisc/or1200,CVE-2021-40506;CVE-2021-40507,CWE-287,Improper Authentication,module or1200_mult_mac(," `endif   
+
+"," `endif
+   wire 				div_by_zero;
+   reg 					ovforw, ov_we;
+   
+",,,
+57,75551115674411#0000,C,https://github.com/michaelrsweet/htmldoc,CVE-2022-34033;CVE-2022-34035,CWE-787,Out-of-bounds Write,"write_file(tree_t *t,		/* I - Tree entry */","	if (t->data[strlen((char *)t->data) - 1] == '\n')
+","	if (t->data[0] && t->data[strlen((char *)t->data) - 1] == '\n')
+",,,
+58,257080069475268#0004,JavaScript,https://github.com/mintplex-labs/anything-llm,CVE-2024-3569,CWE-400,Uncontrolled Resource Consumption,export function usePasswordModal() {,,"            window.localStorage.removeItem(AUTH_USER);
+            window.localStorage.removeItem(AUTH_TIMESTAMP);
+",,,
+59,242867678604291#0000,PHP,https://github.com/Dolibarr/dolibarr,CVE-2021-36625,CWE-89,Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'),class Societe extends CommonObject,"			$sql .= "", "".$this->status;
+","			$sql .= "", "".((int) $this->status);
+",,,
+60,45431949498140#0000,Go,https://github.com/tendermint/tendermint,CVE-2021-21271,CWE-400,Uncontrolled Resource Consumption,func TestByzantinePrevoteEquivocation(t *testing.T) {,,"	// introducing a lazy proposer means that the time of the block committed is different to the
+	// timestamp that the other nodes have. This tests to ensure that the evidence that finally gets
+	// proposed will have a valid timestamp
+	lazyProposer := css[1]
+
+	lazyProposer.decideProposal = func(height int64, round int32) {
+		lazyProposer.Logger.Info(""Lazy Proposer proposing condensed commit"")
+		if lazyProposer.privValidator == nil {
+			panic(""entered createProposalBlock with privValidator being nil"")
+		}
+
+		var commit *types.Commit
+		switch {
+		case lazyProposer.Height == lazyProposer.state.InitialHeight:
+			// We're creating a proposal for the first block.
+			// The commit is empty, but not nil.
+			commit = types.NewCommit(0, 0, types.BlockID{}, nil)
+		case lazyProposer.LastCommit.HasTwoThirdsMajority():
+			// Make the commit from LastCommit
+			commit = lazyProposer.LastCommit.MakeCommit()
+		default: // This shouldn't happen.
+			lazyProposer.Logger.Error(""enterPropose: Cannot propose anything: No commit for the previous block"")
+			return
+		}
+
+		// omit the last signature in the commit
+		commit.Signatures[len(commit.Signatures)-1] = types.NewCommitSigAbsent()
+
+		if lazyProposer.privValidatorPubKey == nil {
+			// If this node is a validator & proposer in the current round, it will
+			// miss the opportunity to create a block.
+			lazyProposer.Logger.Error(fmt.Sprintf(""enterPropose: %v"", errPubKeyIsNotSet))
+			return
+		}
+		proposerAddr := lazyProposer.privValidatorPubKey.Address()
+
+		block, blockParts := lazyProposer.blockExec.CreateProposalBlock(
+			lazyProposer.Height, lazyProposer.state, commit, proposerAddr,
+		)
+
+		// Flush the WAL. Otherwise, we may not recompute the same proposal to sign,
+		// and the privValidator will refuse to sign anything.
+		if err := lazyProposer.wal.FlushAndSync(); err != nil {
+			lazyProposer.Logger.Error(""Error flushing to disk"")
+		}
+
+		// Make proposal
+		propBlockID := types.BlockID{Hash: block.Hash(), PartSetHeader: blockParts.Header()}",,,
+61,244595422250539#0000,PHP,https://github.com/wbce/wbce_cms,CVE-2021-3817,CWE-89,Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'),,"$template_version = '2.1.3';
+$template_platform = '1.4.0';
+","$template_version = '2.1.4';
+$template_platform = '1.5.0';
+",,,
+62,121259459846852#0000,TypeScript,https://github.com/mintplex-labs/anything-llm,CVE-2024-3153,CWE-400,Uncontrolled Resource Consumption,,"const { setupMulter } = require(""../utils/files/multer"");
+","const path = require(""path"");
+const fs = require(""fs"");
+const { normalizePath } = require(""../utils/files"");
+const { handleFileUpload, handlePfpUpload } = require(""../utils/files/multer"");
+",,,
+63,132023646820694#0000,C,https://github.com/libssh2/libssh2,CVE-2019-17498,CWE-190,Integer Overflow or Wraparound,"_libssh2_packet_add(LIBSSH2_SESSION * session, unsigned char *data,","    char *message = NULL;
+    char *language = NULL;
+","    unsigned char *message = NULL;
+    unsigned char *language = NULL;
+",,,
+64,4537345809630#0000,C,https://github.com/gpac/gpac,CVE-2024-0322,CWE-125,Out-of-bounds Read,restart:,"		if (!ctx->in_seek && remain >= ctx->hdr.framesize) {
+
+","		if (!ctx->in_seek && remain >= sync_pos + ctx->hdr.framesize) {
+",,,
+65,242442328578410#0000,Python,https://github.com/fail2ban/fail2ban,CVE-2013-7177,CWE-20,Improper Input Validation,,,"[INCLUDES]
+
+# Read common prefixes. If any customizations available -- read them from
+# common.local
+before = common.conf
+
+
+_daemon = (?:cyrus/)?(?:imapd?|pop3d?)
+
+",,,
+66,242300740515780#0000,C,https://github.com/miniupnp/miniupnp,CVE-2019-12111,CWE-476,NULL Pointer Dereference,static const char * getPCPOpCodeStr(uint8_t opcode),"	if(dest != src) {
+","	if(dest != src && src != NULL) {
+",,,
+67,200644737810652#0000,Python,https://github.com/martinpitt/python-dbusmock,CVE-2015-1326,CWE-20,Improper Input Validation,"def load(mock, parameters):",,"            # ensure that we don't use/write any .pyc files, they are dangerous
+            # in a world-writable directory like /tmp
+            self.assertFalse(os.path.exists(my_template.name + 'c'))
+            try:
+                from importlib.util import cache_from_source
+                self.assertFalse(os.path.exists(cache_from_source(my_template.name)))
+            except ImportError:
+                # python < 3.4
+                pass
+
+",,,
+68,10640397770305#0000,JavaScript,https://github.com/fastify/fastify-reply-from,CVE-2021-21321,CWE-20,Improper Input Validation,"function buildURL (source, reqBase) {","  if (reqBase && !reqBase.startsWith(dest.origin)) {
+    throw new Error('source must be a relative path string')
+","  if (reqBase) {
+    if (!reqBase.endsWith('/') && dest.href.length > reqBase.length) {
+      reqBase = reqBase + '/'
+    }
+
+    if (!dest.href.startsWith(reqBase)) {
+      throw new Error('source must be a relative path string')
+    }
+",,,
+69,253555236653428#0000,Java,https://github.com/netty/netty,CVE-2023-44487,CWE-400,Uncontrolled Resource Consumption,,"import org.hamcrest.CoreMatchers;
+import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+public class Http2EmptyDataFrameConnectionDecoderTest {
+
+    @Test
+    public void testDecoration() {
+        Http2ConnectionDecoder delegate = mock(Http2ConnectionDecoder.class);
+        final ArgumentCaptor<Http2FrameListener> listenerArgumentCaptor =
+                ArgumentCaptor.forClass(Http2FrameListener.class);
+        when(delegate.frameListener()).then(new Answer<Http2FrameListener>() {
+            @Override
+            public Http2FrameListener answer(InvocationOnMock invocationOnMock) {
+                return listenerArgumentCaptor.getValue();
+            }
+        });
+        Http2FrameListener listener = mock(Http2FrameListener.class);
+        Http2EmptyDataFrameConnectionDecoder decoder = new Http2EmptyDataFrameConnectionDecoder(delegate, 2);
+        decoder.frameListener(listener);
+        verify(delegate).frameListener(listenerArgumentCaptor.capture());
+
+        assertThat(decoder.frameListener(),
+                CoreMatchers.not(CoreMatchers.instanceOf(Http2EmptyDataFrameListener.class)));
+        assertThat(decoder.frameListener0(), CoreMatchers.instanceOf(Http2EmptyDataFrameListener.class));
+    @Test
+    public void testDecorationWithNull() {
+        Http2ConnectionDecoder delegate = mock(Http2ConnectionDecoder.class);
+
+        Http2EmptyDataFrameConnectionDecoder decoder = new Http2EmptyDataFrameConnectionDecoder(delegate, 2);
+        decoder.frameListener(null);
+        assertNull(decoder.frameListener());
+","public class Http2EmptyDataFrameConnectionDecoderTest extends AbstractDecoratingHttp2ConnectionDecoderTest {
+    @Override
+    protected DecoratingHttp2ConnectionDecoder newDecoder(Http2ConnectionDecoder decoder) {
+        return new Http2EmptyDataFrameConnectionDecoder(decoder, 2);
+    @Override
+    protected Class<? extends Http2FrameListener> delegatingFrameListenerType() {
+        return Http2EmptyDataFrameListener.class;
+",,,
+70,269537695494408#0002,C,https://github.com/verdammelt/tnef,CVE-2017-6307,CWE-787,Out-of-bounds Write,"mapi_attr_read (size_t len, unsigned char *buf)",,"		assert(v->len + idx <= len);
+
+		    assert(v->len != 0);
+",,,
+71,123544677723087#0000,Python,https://github.com/openstack/glance,CVE-2013-0212,CWE-200,Exposure of Sensitive Information to an Unauthorized Actor,class StoreLocation(glance.store.location.StoreLocation):,"            LOG.debug(_(""Invalid store uri %(uri)s: %(reason)s"") % locals())
+","            LOG.debug(_(""Invalid store URI: %(reason)s"") % locals())
+",,,
+72,35173788383936#0005,TypeScript,https://github.com/snyk/snyk-gradle-plugin,CVE-2022-22984,CWE-78,Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection'),function buildArgs(,"      `-Pconfiguration=${quot}^$1$$${quot}`,
+      args[i] = `-Pconfiguration=${quot}^${args[i + 1]}$${quot}`;
+  return args;
+","      `-Pconfiguration=^$1$$`,
+      args[i] = `-Pconfiguration=^${args[i + 1]}$`;
+  return args.filter(Boolean);
+",,,
+73,194022726179970#0000,PHP,https://github.com/openemr/openemr,CVE-2022-1177,CWE-863,Incorrect Authorization,$v_database = 435;,"$v_acl = 11;
+","$v_acl = 12;
+",,,
+74,123700456740099#0000,C++,https://github.com/tensorflow/tensorflow,CVE-2022-29212,CWE-20,Improper Input Validation,"TEST(ComparisonsTest, QuantizedInt8GreaterWithBroadcast) {",,"TEST(ComparisonsTest,
+     QuantizedInt8GreaterWithBroadcastMultiplierGreaterThanOne) {
+  const float kMin = -127.f;
+  const float kMax = 127.f;
+  std::vector<std::vector<int>> test_shapes = {
+      {6}, {2, 3}, {2, 1, 3}, {1, 3, 1, 2}};
+  for (int i = 0; i < test_shapes.size(); ++i) {
+    ComparisonOpModel model({TensorType_INT8, test_shapes[i], kMin, kMax},
+                            {TensorType_INT8, {}, kMin, kMax}, TensorType_INT8,
+                            BuiltinOperator_GREATER);
+    model.QuantizeAndPopulate<int8_t>(model.input1(),
+                                      {572, -2, -71, 8, 11, 20});
+    model.QuantizeAndPopulate<int8_t>(model.input2(), {8});
+    model.Invoke();
+    EXPECT_THAT(model.GetOutput(),
+                ElementsAre(true, false, false, false, true, true))
+        << ""With shape number "" << i;
+  }
+}
+
+",,,
+75,55343597354295#0000,Python,https://github.com/tensorflow/tensorflow,CVE-2021-41215,CWE-476,NULL Pointer Dereference,,,"from tensorflow.python.eager import def_function
+from tensorflow.python.ops import gen_resource_variable_ops
+",,,
+76,256580991358984#0001,C,https://github.com/FFmpeg/FFmpeg,CVE-2022-3341,CWE-476,NULL Pointer Dereference,static int nut_read_header(AVFormatContext *s),"    int initialized_stream_count;
+    } while (decode_main_header(nut) < 0);
+","    int initialized_stream_count, ret;
+    ret = 0;
+        if (ret == AVERROR(ENOMEM))
+            return ret;
+
+    } while ((ret = decode_main_header(nut)) < 0);
+",,,
+77,151308164171764#0004,C,https://github.com/10gen-archive/mongo-c-driver-legacy,CVE-2020-12135,CWE-190,Integer Overflow or Wraparound,"MONGO_EXPORT gridfs_offset gridfile_read( gridfile *gfile, gridfs_offset size, c","    int first_chunk;
+    int last_chunk;
+    int total_chunks;
+","    size_t first_chunk;
+    size_t last_chunk;
+    size_t total_chunks;
+",,,
+78,134993858041199#0000,C,https://github.com/kkos/oniguruma,CVE-2017-9225,CWE-787,Out-of-bounds Write,unicode_unfold_key(OnigCodePoint code),"          if (code == gcode)
+","          if (code == gcode && wordlist[key].index >= 0)
+",,,
+79,207778847963961#0000,C++,https://github.com/envoyproxy/envoy,CVE-2021-43826,CWE-416,Use After Free,"TEST_P(TcpTunnelingIntegrationTest, ResetStreamTest) {",,"TEST_P(TcpTunnelingIntegrationTest, UpstreamConnectingDownstreamDisconnect) {
+  if (upstreamProtocol() == Http::CodecType::HTTP1) {
+    return;
+  }
+
+#if defined(WIN32)
+  // TODO(ggreenway): figure out why this test fails on Windows and remove this disable.
+  // Failing tests:
+  // IpAndHttpVersions/TcpTunnelingIntegrationTest.UpstreamConnectingDownstreamDisconnect/IPv4_HttpDownstream_Http3UpstreamBareHttp2,
+  // IpAndHttpVersions/TcpTunnelingIntegrationTest.UpstreamConnectingDownstreamDisconnect/IPv6_HttpDownstream_Http2UpstreamWrappedHttp2,
+  // Times out at the end of the test on `ASSERT_TRUE(upstream_request_->waitForReset());`.
+  return;
+#endif
+
+  config_helper_.addConfigModifier([&](envoy::config::bootstrap::v3::Bootstrap& bootstrap) -> void {
+    envoy::extensions::filters::network::tcp_proxy::v3::TcpProxy proxy_config;
+    proxy_config.set_stat_prefix(""tcp_stats"");
+    proxy_config.set_cluster(""cluster_0"");
+    proxy_config.mutable_tunneling_config()->set_hostname(""host.com:80"");
+
+    // Enable retries. The crash is due to retrying after the downstream connection is closed, which
+    // can't occur if retries are not enabled.
+    proxy_config.mutable_max_connect_attempts()->set_value(2);
+
+    auto* listeners = bootstrap.mutable_static_resources()->mutable_listeners();
+    for (auto& listener : *listeners) {
+      if (listener.name() != ""tcp_proxy"") {
+        continue;
+      }
+      auto* filter_chain = listener.mutable_filter_chains(0);
+      auto* filter = filter_chain->mutable_filters(0);
+      filter->mutable_typed_config()->PackFrom(proxy_config);
+
+      // Use TLS because it will respond to a TCP half-close during handshake by closing the
+      // connection.
+      envoy::extensions::transport_sockets::tls::v3::DownstreamTlsContext tls_context;
+      ConfigHelper::initializeTls({}, *tls_context.mutable_common_tls_context());
+      filter_chain->mutable_transport_socket()->set_name(""envoy.transport_sockets.tls"");
+      filter_chain->mutable_transport_sock",,,
+80,88375721552288#0002,C++,https://github.com/FreeRDP/FreeRDP,CVE-2013-4119,CWE-476,NULL Pointer Dereference,"SECURITY_STATUS SEC_ENTRY CompleteAuthToken(PCtxtHandle phContext, PSecBufferDes","	char* Name;
+","	char* Name = NULL;
+",,,
+81,128211992492332#0001,C,https://github.com/file/file,CVE-2014-0207,CWE-119,Improper Restriction of Operations within the Bounds of a Memory Buffer,"cdf_app_to_mime(const char *vbuf, const struct nv *nv)","    size_t count, const uint64_t clsid[2])
+","    size_t count, const cdf_directory_t *root_storage)
+",,,
+82,148991380647282#0000,PHP,https://github.com/thorsten/phpMyFAQ,CVE-2017-15733,CWE-352,Cross-Site Request Forgery (CSRF),$pagination = new PMF_Pagination(,"                                <a href=""javascript:deleteAttachment(<?php echo $item->id ?>); void(0);""
+","                                <a href=""javascript:deleteAttachment(<?php echo $item->id ?>, '<?php echo $user->getCsrfTokenFromSession() ?>'); void(0);""
+",,,
+83,212384770796498#0001,PHP,https://github.com/phpmyadmin/phpmyadmin,CVE-2016-2039,CWE-200,Exposure of Sensitive Information to an Unauthorized Actor,abstract class Base,"     * @see \phpseclib\Crypt\Base::__construct()
+     * @var Integer
+","     * @see self::__construct()
+     * @var int
+",,,
+84,88203329489273#0001,Python,https://github.com/openstack/swauth,CVE-2017-16613,CWE-287,Improper Authentication,from swift.common.middleware.acl import referrer_allowed,,"from swift.common.utils import HASH_PATH_PREFIX
+from swift.common.utils import HASH_PATH_SUFFIX
+",,,
+85,35474809093699#0000,Python,https://github.com/lxml/lxml,CVE-2022-2309,CWE-476,NULL Pointer Dereference,class ETreeOnlyTestCase(HelperTestCase):,,"    def test_walk_after_parse_failure(self):
+        # This used to be an issue because libxml2 can leak empty namespaces
+        # between failed parser runs.  iterwalk() failed to handle such a tree.
+        try:
+            etree.XML('''<anot xmlns=""1"">''')
+        except etree.XMLSyntaxError:
+            pass
+        else:
+            assert False, ""invalid input did not fail to parse""
+
+        et = etree.XML('''<root>  </root>''')
+        try:
+            ns = next(etree.iterwalk(et, events=('start-ns',)))
+        except StopIteration:
+            # This would be the expected result, because there was no namespace
+            pass
+        else:
+            # This is a bug in libxml2
+            assert not ns, repr(ns)
+
+",,,
+86,58102576835672#0001,PHP,https://github.com/Piwigo/Piwigo,CVE-2017-10678;CVE-2017-10680;CVE-2017-10681,CWE-352,Cross-Site Request Forgery (CSRF),"SELECT DISTINCT id,name,uppercats,global_rank",,"$template->assign('PWG_TOKEN',get_pwg_token());
+",,,
+87,69428933656870#0001,Python,https://github.com/labd/wagtail-2fa,CVE-2020-5240,CWE-863,Incorrect Authorization,"class DeviceListView(OtpRequiredMixin, ListView):",,"    def dispatch(self, request, *args, **kwargs):
+        if (int(self.kwargs[""user_id""]) == request.user.pk or
+                request.user.has_perm(""user.change_user"")):
+            if not self.user_allowed(request.user):
+                return self.handle_no_permission(request)
+
+            return super(OtpRequiredMixin, self).dispatch(request, *args, **kwargs)
+        raise PermissionDenied
+
+",,,
+88,33136995964019#0000,PHP,https://github.com/symfony/symfony,CVE-2018-14774,CWE-20,Improper Input Validation,class InlineFragmentRendererTest extends TestCase,"        $this->originalTrustedHeaderName = Request::getTrustedHeaderName(Request::HEADER_CLIENT_IP);
+        Request::setTrustedHeaderName(Request::HEADER_CLIENT_IP, $this->originalTrustedHeaderName);
+","        $this->originalTrustedHeaderNames = array(
+            Request::getTrustedHeaderName(Request::HEADER_CLIENT_IP),
+            Request::getTrustedHeaderName(Request::HEADER_FORWARDED),
+        );
+        Request::setTrustedHeaderName(Request::HEADER_CLIENT_IP, $this->originalTrustedHeaderNames[0]);
+        Request::setTrustedHeaderName(Request::HEADER_FORWARDED, $this->originalTrustedHeaderNames[1]);
+",,,
+89,100157586587266#0007,C,https://github.com/FFmpeg/FFmpeg,CVE-2016-10190,CWE-119,Improper Restriction of Operations within the Bounds of a Memory Buffer,"static int http_read_header(URLContext *h, int *new_location)","    s->chunksize = -1;
+","    s->chunksize = UINT64_MAX;
+",,,
+90,88611742582359#0003,Python,https://github.com/gaizhenbiao/chuanhuchatgpt,CVE-2024-3234,CWE-22,Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal'),with gr.Blocks(theme=small_and_beautiful_theme) as demo:,"
+","    logout_btn.click(
+            fn=None,
+            inputs=[],
+            outputs=[],
+            _js='self.location=""/logout""'
+        )
+",,,
+91,137314519499293#0001,C++,https://github.com/tensorflow/tensorflow,CVE-2022-21727,CWE-190,Integer Overflow or Wraparound,"REGISTER_OP(""Dequantize"")",,"      auto input_dims = c->Rank(c->input(0));
+      if (axis > input_dims) {
+        return errors::InvalidArgument(
+            ""Axis must be less than input dimension("", input_dims, ""), got "",
+            axis);
+      }
+",,,
+92,97122938505646#0001,C,https://github.com/bminor/binutils-gdb,CVE-2022-38533,CWE-787,Out-of-bounds Write,"rewrite_elf_program_header (bfd *ibfd, bfd *obfd, bfd_vma maxpagesize)","  /* Returns the end address of the segment + 1.  */
+#define SEGMENT_END(segment, start)					\
+  (start + (segment->p_memsz > segment->p_filesz			\
+	    ? segment->p_memsz : segment->p_filesz))
+
+#define SECTION_SIZE(section, segment)					\
+  (((section->flags & (SEC_HAS_CONTENTS | SEC_THREAD_LOCAL))		\
+    != SEC_THREAD_LOCAL || segment->p_type == PT_TLS)			\
+   ? section->size : 0)
+
+  /* Returns TRUE if the given section is contained within
+     the given segment.  VMA addresses are compared.  */
+#define IS_CONTAINED_BY_VMA(section, segment, opb)			\
+  (section->vma * (opb) >= segment->p_vaddr				\
+   && (section->vma * (opb) + SECTION_SIZE (section, segment)		\
+       <= (SEGMENT_END (segment, segment->p_vaddr))))
+
+  /* Returns TRUE if the given section is contained within
+     the given segment.  LMA addresses are compared.  */
+#define IS_CONTAINED_BY_LMA(section, segment, base, opb)		\
+  (section->lma * (opb) >= base						\
+   && (section->lma + SECTION_SIZE (section, segment) / (opb) >= section->lma) \
+   && (section->lma * (opb) + SECTION_SIZE (section, segment)		\
+       <= SEGMENT_END (segment, base)))
+
+  /* Handle PT_NOTE segment.  */
+#define IS_NOTE(p, s)							\
+  (p->p_type == PT_NOTE							\
+   && elf_section_type (s) == SHT_NOTE					\
+   && (bfd_vma) s->filepos >= p->p_offset				\
+   && ((bfd_vma) s->filepos + s->size					\
+       <= p->p_offset + p->p_filesz))
+
+  /* Special case: corefile ""NOTE"" section containing regs, prpsinfo
+     etc.  */
+#define IS_COREFILE_NOTE(p, s)						\
+  (IS_NOTE (p, s)							\
+   && bfd_get_format (ibfd) == bfd_core					\
+   && s->vma == 0							\
+   && s->lma == 0)
+
+",,,,
+93,237606227319567#0000,C,https://github.com/torvalds/linux,CVE-2016-10088,CWE-416,Use After Free,"sg_write(struct file *filp, const char __user *buf, size_t count, loff_t * ppos)",,"	if (unlikely(segment_eq(get_fs(), KERNEL_DS)))
+		return -EINVAL;
+
+",,,
+94,190734517264614#0001,Python,https://github.com/pandora-analysis/pandora,CVE-2023-22898,CWE-20,Improper Input Validation,class Extractor(BaseWorker):,"        # wait for all the tasks to finish
+        while not all(t.workers_done for t in tasks):
+            time.sleep(1)
+
+        if tasks:
+            report.status = max(t.status for t in tasks)
+            if report.status > Status.CLEAN:
+                report.add_details('Warning', 'There are suspicious files in this archive, click on the ""Extracted"" tab for more.')
+        elif not report.status == Status.NOTAPPLICABLE:
+","
+        if not tasks and not report.status == Status.NOTAPPLICABLE:
+        elif report.status not in [Status.ERROR, Status.WARN, Status.ALERT, Status.OVERWRITE]:
+            # wait for all the workers to finish, or have one of them raising an ALERT
+            while not all(t.workers_done for t in tasks):
+                for t in tasks:
+                    # If any of the task is marked as ALERT or OVERWRITE, we can quit.
+                    if t.workers_done and t.status >= Status.ALERT:
+                        report.add_details('Warning', 'There are suspicious files in this archive, click on the ""Extracted"" tab for more.')
+                        break
+                time.sleep(1)
+            report.status = max(t.status for t in tasks if t.workers_done)
+",,,
+95,252061417401159#0009,C,https://github.com/the-tcpdump-group/tcpdump,CVE-2017-13006,CWE-125,Out-of-bounds Read,"l2tp_avp_print(netdissect_options *ndo, const u_char *dat, int length)",,"				if (len-6 < 16) {
+					ND_PRINT((ndo, ""AVP too short""));
+					break;
+				}
+",,,
+96,19432511297131#0001,C,https://github.com/pjsip/pjproject,CVE-2022-21722,CWE-125,Out-of-bounds Read,PJ_DEF(pj_status_t) pjmedia_rtcp_fb_parse_pli(,"    PJ_ASSERT_RETURN(length >= 12, PJ_ETOOSMALL);
+","
+    if (length < 12)
+    	return PJ_ETOOSMALL;
+",,,
+97,81938090703147#0002,Go,https://github.com/argoproj/argo-cd,CVE-2023-23947,CWE-863,Incorrect Authorization,"func (s *Server) Get(ctx context.Context, q *cluster.ClusterQuery) (*appv1.Clust","		return nil, status.Error(codes.PermissionDenied, ""permission denied"")
+","		return nil, common.PermissionDeniedAPIError
+",,,
+98,57156975471453#0001,C,https://github.com/OpenSC/OpenSC,CVE-2019-19481,CWE-119,Improper Restriction of Operations within the Bounds of a Memory Buffer,"static int cac_cac1_get_certificate(sc_card_t *card, u8 **out_buf, size_t *out_l","	next_len = MIN(left, 100);
+	for (; left > 0; left -= len, out_ptr += len) {
+		len = next_len;
+","	len = MIN(left, 100);
+	for (; left > 0;) { /* Increments for readability in the end of the function */
+",,,
+99,95305556346873#0002,C++,https://github.com/upx/upx,CVE-2019-20805,CWE-190,Integer Overflow or Wraparound,PackLinuxElf32::invert_pt_dynamic(Elf32_Dyn const *dynp),,"        if (!gashtab) {
+            char msg[40]; snprintf(msg, sizeof(msg),
+               ""bad DT_GNU_HASH %#x"", v_gsh);
+            throwCantPack(msg);
+        }
+",,,
+100,190139846957229#0000,C,https://github.com/libvips/libvips,CVE-2023-40032,CWE-476,NULL Pointer Dereference,"vips_foreign_load_svg_zfree( void *opaque, void *ptr )"," *   - needle must be zero-terminated, but hackstack need not be
+"," *   - needle must be zero-terminated, but haystack need not be
+",,,
+101,71002886254542#0001,C,https://github.com/yoe/nbd,CVE-2011-0530,CWE-119,Improper Restriction of Operations within the Bounds of a Memory Buffer,int mainloop(CLIENT *client) {,"		if (len > BUFSIZE + sizeof(struct nbd_reply))
+","		if (len > BUFSIZE - sizeof(struct nbd_reply))
+",,,
+102,181038612048971#0001,C,https://github.com/pcmacdon/jsish,CVE-2020-22875,CWE-190,Integer Overflow or Wraparound,static Jsi_CmdSpec infoCmds[] = {,"    { ""locals"",     InfoLocalsCmd,      0,  1, ""varsOnly:boolean=void"", .help=""Return functions/vars inside local function"", .retType=(uint)JSI_TT_OBJECT },
+","    { ""locals"",     InfoLocalsCmd,      0,  1, ""filter:boolean=void"", .help=""Return locals; use filter=true/false just vars/functions"", .retType=(uint)JSI_TT_OBJECT },
+",,,
+103,105658490792092#0000,C,https://github.com/kspalaiologos/bzip3,CVE-2023-29416,CWE-787,Out-of-bounds Write,BZIP3_API struct bz3_state * bz3_new(s32 block_size) {,"    bz3_state->sais_array = malloc((block_size + 128) * sizeof(s32));
+    memset(bz3_state->sais_array, 0, sizeof(s32) * (block_size + 128));
+","    bz3_state->sais_array = malloc(BWT_BOUND(block_size) * sizeof(s32));
+    memset(bz3_state->sais_array, 0, sizeof(s32) * BWT_BOUND(block_size));
+",,,
+104,191155422743351#0001,JavaScript,https://github.com/gocd/gocd,CVE-2023-28629,CWE-79,Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting'),Graph_Renderer = function (container) {,"                comment_markup = package_comment + ""<br/>"";
+                return comment_markup + ""Trackback: "" + ""<a href="" + trackback_url + "">"" + trackback_url + ""</a>"";
+","                comment_markup = _.escape(package_comment) + ""<br/>"";
+                return comment_markup + ""Trackback: "" + ""<a href="" + _.escape(trackback_url) + "">"" + _.escape(trackback_url) + ""</a>"";
+",,,
+105,174141142363890#0000,C,https://github.com/nginx/njs,CVE-2022-43286,CWE-416,Use After Free,static njs_benchmark_test_t  njs_test[] =,,"    { ""JSON.parse large"",
+      njs_str(""JSON.parse(JSON.stringify([Array(2**16)]))[0].length""),
+      njs_str(""65536""),
+      10 },
+
+    { ""JSON.parse reviver large"",
+      njs_str(""JSON.parse(JSON.stringify([Array(2**16)]), v=>v)""),
+      njs_str(""""),
+      10 },
+
+",,,
+106,111625607158398#0001,TypeScript,https://github.com/artf/grapesjs,CVE-2022-21802,CWE-79,Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting'),export default class ClassTagView extends View<State> {,"    return `
+      <span id=""${pfx}close"" class=""${pfx}tag-close"" data-tag-remove>
+        ${config.iconTagRemove}
+      </span>
+","    return html`
+      <span id=""${pfx}close"" class=""${pfx}tag-close"" data-tag-remove> $${config.iconTagRemove} </span>
+",,,
+107,71260016501793#0001,C,https://github.com/FreeRTOS/FreeRTOS-Kernel,CVE-2021-32020,CWE-119,Improper Restriction of Operations within the Bounds of a Memory Buffer,void * pvPortMalloc( size_t xWantedSize ),"            if( xWantedSize > 0 )
+                /* Ensure that blocks are always aligned to the required number
+                 * of bytes. */
+                    /* Byte alignment required. */
+                    xWantedSize += ( portBYTE_ALIGNMENT - ( xWantedSize & portBYTE_ALIGNMENT_MASK ) );
+","            if( ( xWantedSize > 0 ) && 
+                ( ( xWantedSize + xHeapStructSize ) >  xWantedSize ) ) /* Overflow check */
+                /* Ensure that blocks are always aligned */
+                    /* Byte alignment required. Check for overflow */
+                    if( ( xWantedSize + ( portBYTE_ALIGNMENT - ( xWantedSize & portBYTE_ALIGNMENT_MASK ) ) ) >
+                         xWantedSize )
+                    {
+                        xWantedSize += ( portBYTE_ALIGNMENT - ( xWantedSize & portBYTE_ALIGNMENT_MASK ) );
+                    } 
+                    else 
+                    {
+                        xWantedSize = 0;
+                    }
+",,,
+108,172170519813688#0000,JavaScript,https://github.com/ioBroker/ioBroker.admin,CVE-2019-10765,CWE-22,Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal'),let cookieParser;,,"// copied from here: https://github.com/component/escape-html/blob/master/index.js
+const matchHtmlRegExp = /[""'&<>]/;
+function escapeHtml (string) {
+    const str = '' + string;
+    const match = matchHtmlRegExp.exec(str);
+
+    if (!match) {
+        return str;
+    }
+
+    let escape;
+    let html = '';
+    let index = 0;
+    let lastIndex = 0;
+
+    for (index = match.index; index < str.length; index++) {
+        switch (str.charCodeAt(index)) {
+            case 34: // ""
+                escape = '&quot;';
+                break;
+            case 38: // &
+                escape = '&amp;';
+                break;
+            case 39: // '
+                escape = '&#39;';
+                break;
+            case 60: // <
+                escape = '&lt;';
+                break;
+            case 62: // >
+                escape = '&gt;';
+                break;
+            default:
+                continue;
+        }
+
+        if (lastIndex !== index) {
+            html += str.substring(lastIndex, index);
+        }
+
+        lastIndex = index + 1;
+        html += escape;
+    }
+
+    return lastIndex !== index
+        ? html + str.substring(lastIndex, index)
+        : html;
+}
+
+",,,
+109,17131669190397#0000,Go,https://github.com/lestrrat-go/jwx,CVE-2024-21664,CWE-476,NULL Pointer Dereference,func TestValidateKey(t *testing.T) {,,"
+func TestEmptyProtectedField(t *testing.T) {
+	// MEMO: this was the only test case from the original report
+	// This passes. It should produce an invalid JWS message, but
+	// that's not `jws.Parse`'s problem.
+	_, err := jws.Parse([]byte(`{""signature"": """"}`))
+	require.NoError(t, err, `jws.Parse should fail`)
+
+	// Also test that non-flattened serialization passes.
+	_, err = jws.Parse([]byte(`{""signatures"": [{}]}`))
+	require.NoError(t, err, `jws.Parse should fail`)
+
+	// MEMO: rest of the cases are present to be extra pedantic about it
+
+	privKey, err := jwxtest.GenerateRsaJwk()
+	require.NoError(t, err, `jwxtest.GenerateRsaJwk should succeed`)
+
+	// This fails. `jws.Parse` works, but the subsequent verification
+	// workflow fails to verify anything without the presense of a signature or
+	// a protected header.
+	_, err = jws.Verify([]byte(`{""signature"": """"}`), jws.WithKey(jwa.RS256, privKey))
+	require.Error(t, err, `jws.Parse should fail`)
+
+	// Create a valid signatre.
+	signed, err := jws.Sign([]byte(""Lorem Ipsum""), jws.WithKey(jwa.RS256, privKey))
+	require.NoError(t, err, `jws.Sign should succeed`)
+
+	_, payload, signature, err := jws.SplitCompact(signed)
+	require.NoError(t, err, `jws.SplitCompact should succeed`)
+
+	// This fails as well. we have a valid signature and a valid
+	// key to verify it, but no protected headers
+	_, err = jws.Verify(
+		[]byte(fmt.Sprintf(`{""signature"": ""%s""}`, signature)),
+		jws.WithKey(jwa.RS256, privKey),
+	)
+	require.Error(t, err, `jws.Verify should fail`)
+
+	// Test for cases when we have an incomplete compact form JWS
+	var buf bytes.Buffer
+	buf.WriteRune('.')
+	buf.Write(payload)
+	buf.WriteRune('.')
+	buf.Write(signature)
+	invalidMessage := buf.Bytes()
+
+	// This is an error because the format is simply wrong.
+	// Whereas in the other JSON-based JWS's case the lack of protected field
+	// is not a SYNTAX error, this one is, and therefore we barf.
+	_, err = jws.Parse(invalidMessage)
+	require.Error(t, err, `jws.Parse should fail`)
+}
+",,,
+110,65855586762426#0000,Java,https://github.com/OpenNMS/opennms,CVE-2021-25932;CVE-2021-25933,CWE-79,Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting'),public class GroupController extends AbstractController implements InitializingB,"        
+","
+        if (newName != null && newName.matches("".*[&<>\""`']+.*"")) {
+            throw new ServletException(""Group ID must not contain any HTML markup."");
+        }
+
+",,,
+111,48696100318410#0000,PHP,https://github.com/mback2k/mh_httpbl,CVE-2015-10106,CWE-89,Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'),class tx_mhhttpbl_module1 extends t3lib_SCbase {,"					$where = ""block_ip = '"". t3lib_div::_GP('block_ip') .""'"";
+					$order = t3lib_div::_GP('sort').' '.strtoupper(t3lib_div::_GP('order'));
+","					$where = 'block_ip = '. $GLOBALS['TYPO3_DB']->fullQuoteStr(t3lib_div::_GP('block_ip'), 'tx_mhhttpbl_blocklog');
+					$sort_param = in_array(t3lib_div::_GP('sort'), array('tstamp', 'block_ip', 'block_type', 'block_score')) ? t3lib_div::_GP('sort') : 'tstamp';
+					$order_param = strtoupper(t3lib_div::_GP('order')) == 'ASC' ? 'ASC' : 'DESC';
+					$order = $sort_param.' '.$order_param;
+",,,
+112,101907107918999#0006,C,https://github.com/vadz/libtiff,CVE-2016-9535,CWE-119,Improper Restriction of Operations within the Bounds of a Memory Buffer,"fpAcc(TIFF* tif, uint8* cp0, tmsize_t cc)",,"    return 1;
+",,,
+113,16386712992139#0004,PHP,https://github.com/yetiforcecompany/yetiforcecrm,CVE-2021-4116,CWE-79,Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting'),class File,"			Log::error(""Error: {$e->getMessage()} | {$this->getName()} | {$this->getSize()}"", __CLASS__);
+","			Log::error(""Error during file validation: {$this->getName()} | Size: {$this->getSize()}\n {$e->__toString()}"", __CLASS__);
+",,,
+114,17094475286118#0003,Ruby,https://github.com/mhenrixon/sidekiq-unique-jobs,CVE-2024-25122,CWE-79,Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting'),module SidekiqUniqueJobs,"        @digest = params[:digest]
+        digests.delete_by_digest(params[:digest])
+        expiring_digests.delete_by_digest(params[:digest])
+        @digest = params[:digest]
+","        @digest = h(params[:digest])
+        digests.delete_by_digest(h(params[:digest]))
+        expiring_digests.delete_by_digest(h(params[:digest]))
+        @digest = h(params[:digest])
+",,,
+115,22674346350805#0002,Python,https://github.com/ractf/core,CVE-2021-21329,CWE-287,Improper Authentication,class Member(AbstractUser):,"    def is_2fa_enabled(self):
+        return self.totp_status == TOTPStatus.ENABLED
+        return self.totp_status != TOTPStatus.ENABLED and config.get(
+","    def has_2fa(self):
+        return self.totp_device is not None and self.totp_device.verified
+        return not self.has_2fa() and config.get(
+",,,
+116,247743134069143#0001,TypeScript,https://github.com/snyk/snyk-gradle-plugin,CVE-2022-22984,CWE-78,Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection'),"describe('Gradle Plugin', () => {","      '-I /tmp/init.gradle',
+","      '-I',
+      '/tmp/init.gradle',
+",,,
+117,251703735336422#0000,PHP,https://github.com/phpmyadmin/phpmyadmin,CVE-2014-8959,CWE-22,Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal'),public static function factory($type),"        if (! file_exists('./libraries/gis/GIS_' . ucfirst($type_lower) . '.class.php')) {
+","        if (! PMA_isValid($type_lower, PMA_Util::getGISDatatypes())
+            || ! file_exists('./libraries/gis/GIS_' . ucfirst($type_lower) . '.class.php')
+        ) {
+",,,
+118,234968140321903#0000,JavaScript,https://github.com/what3words/wordpress-autosuggest-plugin,CVE-2021-4428,CWE-200,Exposure of Sensitive Information to an Unauthorized Actor,,"        console.log('inside')
+",,,,
+119,79393388633848#0002,Python,https://github.com/microsoft/onefuzz,CVE-2021-37705,CWE-863,Incorrect Authorization,def main() -> None:,"    update_admins(table_service, args.resource_group, args.admins)
+","    if args.admins:
+        update_admins(table_service, args.resource_group, args.admins)
+    if args.allowed_aad_tenants:
+        update_allowed_aad_tenants(
+            table_service, args.resource_group, args.allowed_aad_tenants
+        )
+",,,
+120,239052904800738#0000,C,https://github.com/relic-toolkit/relic,CVE-2023-36327,CWE-190,Integer Overflow or Wraparound,"int bn_smb_leg(const bn_t a, const bn_t b);","/**
+ * Returns a small precomputed prime from a given position in the list of prime
+ * numbers.
+ *
+ * @param[in] pos			- the position in the prime sequence.
+ * @return a prime if the position is lower than 512, 0 otherwise.
+ */
+dig_t bn_get_prime(int pos);
+
+",,,,
+121,53898007297758#0001,C,https://github.com/file/file,CVE-2014-3710,CWE-20,Improper Input Validation,"donote(struct magic_set *ms, void *vbuf, size_t offset, size_t size,",,"	if (xnh_sizeof + offset > size) {
+		/*
+		 * We're out of note headers.
+		 */
+		return xnh_sizeof + offset;
+	}
+
+",,,
+122,130643653832813#0000,Ruby,https://github.com/vim/vim,CVE-2022-0413,CWE-416,Use After Free,static char *(features[]) =,,"/**/
+    4253,
+",,,
+123,48376280294679#0001,Python,https://github.com/getsentry/sentry,CVE-2023-36826,CWE-863,Incorrect Authorization,AVAILABLE_FOR_RENEWAL_DAYS = 30,"    def download_file(self, file_id, project: Project):
+            key=f""rl:ArtifactLookupEndpoint:download:{file_id}:{project.id}"",
+                extra={""project_id"": project.id, ""file_id"": file_id},
+        file = File.objects.filter(id=file_id).first()
+","    def download_file(self, download_id, project: Project):
+        ty, ty_id = download_id.split(""/"")
+
+            key=f""rl:ArtifactLookupEndpoint:download:{download_id}:{project.id}"",
+                extra={""project_id"": project.id, ""file_id"": download_id},
+        file = None
+        if ty == ""artifact_bundle"":
+            file = (
+                ArtifactBundle.objects.filter(
+                    id=ty_id,
+                    projectartifactbundle__project_id=project.id,
+                )
+                .select_related(""file"")
+                .first()
+            )
+        elif ty == ""release_file"":
+            # NOTE: `ReleaseFile` does have a `project_id`, but that seems to
+            # be always empty, so using the `organization_id` instead.
+            file = (
+                ReleaseFile.objects.filter(id=ty_id, organization_id=project.organization.id)
+                .select_related(""file"")
+                .first()
+            )
+        file = file.file
+",,,
+124,161411738439841#0000,TypeScript,https://github.com/nextauthjs/next-auth,CVE-2022-35924,CWE-863,Incorrect Authorization,,"import type { NextApiRequest } from ""next""
+",,,,
+125,52031694836249#0000,Go,https://github.com/opencontainers/runc,CVE-2021-43784,CWE-190,Integer Overflow or Wraparound,const (,,"	MountSourcesAttr uint16 = 27290
+",,,
+126,208423717544086#0000,Ruby,https://github.com/tensorflow/tensorflow,CVE-2022-29203,CWE-190,Integer Overflow or Wraparound,load(,,"    ""mkl_deps"",
+",,,
+127,31968391764859#0002,PHP,https://github.com/xwiki/xwiki-platform,CVE-2023-50721,CWE-94,Improper Control of Generation of Code ('Code Injection'),,"        &lt;a href=""#${searchEngine}Config"" aria-controls=""${searchEngine}Config"" role=""tab"" data-toggle=""tab""&gt;
+          $searchExtension.parameters.label
+      (% role=""tabpanel"" class=""tab-pane active"" id=""${searchEngine}Config"" %)(((
+        {{include reference=""$searchAdminPage"" context='new'}}
+","        &lt;a href=""#${escapetool.xml($searchEngine)}Config"" aria-controls=""${escapetool.xml($searchEngine)}Config""
+          role=""tab""
+          data-toggle=""tab""&gt;
+          $escapetool.xml($searchExtension.parameters.label)
+      (% role=""tabpanel"" class=""tab-pane active"" id=""${services.rendering.escape($searchEngine, 'xwiki/2.1')}Config""
+      %)(((
+        {{include reference=""$services.rendering.escape($searchAdminPage, 'xwiki/2.1')"" context='new'}}
+",,,
+128,80362477205770#0001,TypeScript,https://github.com/beancount/fava,CVE-2022-2589,CWE-79,Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting'),export interface BarChart {,"  tooltipText: (c: FormatterContext, d: BarChartDatum, e: string) => string;
+","  tooltipText: (
+    c: FormatterContext,
+    d: BarChartDatum,
+    e: string
+  ) => TooltipContent;
+",,,
+129,216504239334094#0000,Python,https://github.com/gradio-app/gradio,CVE-2024-1727,CWE-352,Cross-Site Request Forgery (CSRF),class TestRoutes:,,"    def test_cors_restrictions(self):
+        io = gr.Interface(lambda s: s.name, gr.File(), gr.File())
+        app, _, _ = io.launch(prevent_thread_lock=True)
+        client = TestClient(app)
+        custom_headers = {
+            ""host"": ""localhost:7860"",
+            ""origin"": ""https://example.com"",
+        }
+        file_response = client.get(""/config"", headers=custom_headers)
+        assert ""access-control-allow-origin"" not in file_response.headers
+        custom_headers = {
+            ""host"": ""localhost:7860"",
+            ""origin"": ""127.0.0.1"",
+        }
+        file_response = client.get(""/config"", headers=custom_headers)
+        assert file_response.headers[""access-control-allow-origin""] == ""127.0.0.1""
+        io.close()
+
+",,,
+130,86370057492957#0003,JavaScript,https://github.com/fastify/fastify-http-proxy,CVE-2021-21322,CWE-20,Improper Input Validation,"async function httpProxy (fastify, opts) {","    setupWebSocketProxy(fastify, opts)
+","    setupWebSocketProxy(fastify, opts, rewritePrefix)
+",,,
+131,167541983863621#0000,Java,https://github.com/folio-org/spring-module-core,CVE-2022-4963,CWE-89,Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'),,,"import java.util.regex.Pattern;
+",,,
+132,120289949813437#0000,Ruby,https://github.com/discourse/discourse,CVE-2021-37703,CWE-200,Exposure of Sensitive Information to an Unauthorized Actor,describe TopicTrackingState do,,"      expect(message.user_ids).to contain_exactly(post.user.id)
+      expect(message.group_ids).to eq(nil)
+    it ""does not publish whisper post to non-staff users"" do
+      post.update!(post_type: Post.types[:whisper])
+
+      messages = MessageBus.track_publish(described_class.unread_channel_key(post.user_id)) do
+        TopicTrackingState.publish_unread(post)
+      end
+
+      expect(messages).to eq([])
+
+      post.user.grant_admin!
+
+      message = MessageBus.track_publish(described_class.unread_channel_key(post.user_id)) do
+        TopicTrackingState.publish_unread(post)
+      end.first
+
+      expect(message.user_ids).to contain_exactly(post.user_id)
+      expect(message.group_ids).to eq(nil)
+    end
+
+    it ""correctly publishes unread for a post in a restricted category"" do
+      group = Fabricate(:group)
+      category = Fabricate(:private_category, group: group)
+
+      post.topic.update!(category: category)
+
+      messages = MessageBus.track_publish(described_class.unread_channel_key(post.user_id)) do
+        TopicTrackingState.publish_unread(post)
+      end
+
+      expect(messages).to eq([])
+
+      group.add(post.user)
+
+      message = MessageBus.track_publish(described_class.unread_channel_key(post.user_id)) do
+        TopicTrackingState.publish_unread(post)
+      end.first
+
+      expect(message.user_ids).to contain_exactly(post.user_id)
+      expect(message.group_ids).to eq(nil)
+    end
+
+",,,
+133,11423206355406#0000,JavaScript,https://github.com/adaltas/node-csv-parse,CVE-2019-17592,CWE-400,Uncontrolled Resource Consumption,function (_Transform) {,"      if (this.__isInt(field) === true) {
+        return [undefined, parseInt(field)];
+      } else if (this.__isFloat(field)) {
+    }
+  }, {
+    key: ""__isInt"",
+    value: function __isInt(value) {
+      return /^(\-|\+)?([1-9]+[0-9]*)$/.test(value);
+    }
+","      if (this.__isFloat(field)) {
+    } // Keep it in case we implement the `cast_int` option
+    // __isInt(value){
+    //   // return Number.isInteger(parseInt(value))
+    //   // return !isNaN( parseInt( obj ) );
+    //   return /^(\-|\+)?[1-9][0-9]*$/.test(value)
+    // }
+
+",,,
+134,83964459698774#0000,PHP,https://github.com/GoogleForCreators/web-stories-wp,CVE-2023-1979,CWE-863,Incorrect Authorization,class Stories_Controller extends DependencyInjectedRestTestCase {,,"	/**
+	 * @covers ::get_item
+	 * @covers ::prepare_item_for_response
+	 * @covers \Google\Web_Stories\REST_API\Stories_Base_Controller::prepare_item_for_response
+	 */
+	public function test_get_item_no_story_data_for_password_protected_post(): void {
+		$this->controller->register_routes();
+
+		$story = self::factory()->post->create(
+			[
+				'post_type'     => Story_Post_Type::POST_TYPE_SLUG,
+				'post_status'   => 'publish',
+				'post_password' => 'Top Secret',
+				'post_author'   => self::$user_id,
+			]
+		);
+
+		wp_set_current_user( self::$author_id );
+
+		$request  = new WP_REST_Request( \WP_REST_Server::READABLE, '/web-stories/v1/web-story/' . $story );
+		$response = rest_get_server()->dispatch( $request );
+
+		$data = $response->get_data();
+
+		$this->assertIsArray( $data );
+		$this->assertArrayHasKey( 'story_data', $data );
+		$this->assertIsObject( $data['story_data'] );
+		$this->assertEmpty( (array) $data['story_data'] );
+	}
+
+",,,
+135,172492680610025#0001,Go,https://github.com/brocaar/chirpstack-network-server,CVE-2020-28349,CWE-20,Improper Input Validation,const (,"	key := fmt.Sprintf(CollectKeyTempl, phyKey)
+	lockKey := fmt.Sprintf(CollectLockKeyTempl, phyKey)
+","	txInfoB, err := proto.Marshal(rxPacket.TxInfo)
+	if err != nil {
+		return errors.Wrap(err, ""marshal protobuf error"")
+	}
+	txInfoHEX := hex.EncodeToString(txInfoB)
+
+	key := fmt.Sprintf(CollectKeyTempl, txInfoHEX, phyKey)
+	lockKey := fmt.Sprintf(CollectLockKeyTempl, txInfoHEX, phyKey)
+",,,
+136,61264362123350#0000,C++,https://github.com/espruino/Espruino,CVE-2022-25044,CWE-787,Out-of-bounds Write,"void jsvAddName(JsVar *parent, JsVar *namedChild) {",,"      assert(jsvIsName(insertAfter));
+",,,
+137,109455013288543#0000,C++,https://github.com/TigerVNC/tigervnc,CVE-2017-5581,CWE-119,Improper Restriction of Operations within the Bounds of a Memory Buffer,"void ModifiablePixelBuffer::fillRect(const Rect& r, const void* pix)","  w = r.width();
+  h = r.height();
+  buf = getBufferRW(r, &stride);
+","  Rect drect;
+  drect = r;
+  if (!drect.enclosed_by(getRect())) {
+    vlog.error(""Destination rect %dx%d at %d,%d exceeds framebuffer %dx%d"",
+               drect.width(), drect.height(), drect.tl.x, drect.tl.y, width_, height_);
+    drect = drect.intersect(getRect());
+  }
+
+  if (drect.is_empty())
+    return;
+
+  w = drect.width();
+  h = drect.height();
+  buf = getBufferRW(drect, &stride);
+",,,
+138,93720396744597#0000,C,https://github.com/miniupnp/miniupnp,CVE-2019-12106,CWE-416,Use After Free,"updateDevice(const struct header * headers, time_t t)",,"					*pp = p->next;	/* remove ""p"" from the list */
+",,,
+139,34174626555925#0000,C,https://github.com/torvalds/linux,CVE-2018-6412,CWE-200,Exposure of Sensitive Information to an Unauthorized Actor,"int sbusfb_ioctl_helper(unsigned long cmd, unsigned long arg,","		int index, count, i;
+","		unsigned int index, count, i;
+",,,
+140,245396440263668#0002,C,https://github.com/skalenetwork/sgxwallet,CVE-2021-36218,CWE-787,Out-of-bounds Write,"void sealHexSEK(int *errStatus, char *errString,","    uint32_t encrypt_text_length = sgx_get_encrypt_txt_len((const sgx_sealed_data_t *)encrypted_sek);
+","    uint64_t encrypt_text_length = sgx_get_encrypt_txt_len((const sgx_sealed_data_t *)encrypted_sek);
+",,,
+141,208022211182781#0003,Java,https://github.com/xwiki/xwiki-platform,CVE-2021-32621,CWE-94,Improper Control of Generation of Code ('Code Injection'),"private List<Gadget> prepareGadgets(List<BaseObject> objects, Syntax sourceSynta",,"    private String evaluateVelocityTitle(VelocityContext velocityContext, VelocityEngine velocityEngine, String key,
+        String title, XWikiDocument ownerDocument) throws Exception
+    {
+        return this.authorExecutor.call(() -> {
+            // render title with velocity
+            StringWriter writer = new StringWriter();
+            // FIXME: the engine has an issue with $ and # as last character. To test and fix if it happens
+            velocityEngine.evaluate(velocityContext, writer, key, title);
+            return writer.toString();
+        }, ownerDocument.getAuthorReference(), ownerDocument.getDocumentReference());
+    }
+
+",,,
+142,255019940462654#0000,PHP,https://github.com/froxlor/froxlor,CVE-2023-0877,CWE-94,Improper Control of Generation of Code ('Code Injection'),class Form,"	public static function processForm(&$form, &$input, $url_params = [], $part = null, $settings_all = [], $settings_part = null, $only_enabledisable = false)
+","	public static function processForm(&$form, &$input, $url_params = [], $part = null, bool $settings_all = false, $settings_part = null, bool $only_enabledisable = false)
+",,,
+143,212469471249569#0006,JavaScript,https://github.com/peerigon/angular-expressions,CVE-2021-21277,CWE-94,Improper Control of Generation of Code ('Code Injection'),ASTCompiler.prototype = {,"						self.assign(self.member(intoId, left, property.computed), right);
+","						self.assign(
+							self.unsafeMember(intoId, left, property.computed),
+							right
+						);
+",,,
+144,227940090135237#0000,PHP,https://github.com/phpmyadmin/phpmyadmin,CVE-2016-2044,CWE-200,Exposure of Sensitive Information to an Unauthorized Actor,,,"    if (! file_exists('./libraries/sql-parser/ClassLoader.php')) {
+        die('Invalid invocation');
+    }
+",,,
+145,252903710868968#0000,PHP,https://github.com/Icinga/icingaweb2-module-jira,CVE-2023-30607,CWE-352,Cross-Site Request Forgery (CSRF),class FieldConfigForm extends CompatForm,"    /** @var bool Hack used for delete button */
+    protected $callOnSuccess;
+
+",,,,
+146,63553529376851#0000,JavaScript,https://github.com/simpleledger/slp-validate,CVE-2019-16761,CWE-20,Improper Input Validation,,"  ""version"": ""1.0.0"",
+","  ""version"": ""1.0.1"",
+",,,
+147,164487470968178#0000,C,https://github.com/torvalds/linux,CVE-2013-4312,CWE-119,Improper Restriction of Operations within the Bounds of a Memory Buffer,static void unix_destruct_scm(struct sk_buff *skb),,"/*
+ * The ""user->unix_inflight"" variable is protected by the garbage
+ * collection lock, and we just read it locklessly here. If you go
+ * over the limit, there might be a tiny race in actually noticing
+ * it across threads. Tough.
+ */
+static inline bool too_many_unix_fds(struct task_struct *p)
+{
+	struct user_struct *user = current_user();
+
+	if (unlikely(user->unix_inflight > task_rlimit(p, RLIMIT_NOFILE)))
+		return !capable(CAP_SYS_RESOURCE) && !capable(CAP_SYS_ADMIN);
+	return false;
+}
+
+",,,
+148,166042338734551#0001,C,https://github.com/torvalds/linux,CVE-2023-23006,CWE-476,NULL Pointer Dereference,static int dr_domain_init_resources(struct mlx5dr_domain *dmn),"	if (!dmn->uar) {
+		ret = -ENOMEM;
+","	if (IS_ERR(dmn->uar)) {
+		ret = PTR_ERR(dmn->uar);
+",,,
+149,171465431723532#0004,C,https://github.com/torvalds/linux,CVE-2016-6213,CWE-400,Uncontrolled Resource Consumption,"static int attach_recursive_mnt(struct mount *source_mnt,",,"	struct mnt_namespace *ns = dest_mnt->mnt_ns;
+	/* Is there space to add these mounts to the mount namespace? */
+	if (!parent_path) {
+		err = count_mounts(ns, source_mnt);
+		if (err)
+			goto out;
+	}
+
+",,,
+150,264954806378006#0000,TypeScript,https://github.com/fastify/fastify-passport,CVE-2023-29020,CWE-352,Cross-Site Request Forgery (CSRF),class WelcomeStrategy extends Strategy {,"      const { server, fastifyPassport } = getRegisteredTestServer()
+","      const { server, fastifyPassport } = getRegisteredTestServer(null, { clearSessionIgnoreFields: ['messages'] })
+",,,
+151,61027553717111#0001,Java,https://github.com/xwiki/xwiki-platform,CVE-2023-35152,CWE-94,Improper Control of Generation of Code ('Code Injection'),,,"     * @since 12.9RC1
+    @Unstable
+",,,
+152,69649546428286#0001,Python,https://github.com/NYUCCL/psiTurk,CVE-2021-4315,CWE-94,Improper Control of Generation of Code ('Code Injection'),def give_consent():,"    consent_string = insert_mode(consent_string, mode)
+","    consent_string = insert_mode(consent_string)
+        mode=mode,
+",,,
+153,108106667009143#0000,TypeScript,https://github.com/mintplex-labs/anything-llm,CVE-2024-3153,CWE-400,Uncontrolled Resource Consumption,const {,"const { setupLogoUploads, setupPfpUploads } = require(""../utils/files/multer"");
+const { handleLogoUploads } = setupLogoUploads();
+const { handlePfpUploads } = setupPfpUploads();
+","const { handleAssetUpload, handlePfpUpload } = require(""../utils/files/multer"");
+",,,
+154,155617783195969#0012,C++,https://github.com/radareorg/radare2,CVE-2022-0519;CVE-2022-0521,CWE-119,Improper Restriction of Operations within the Bounds of a Memory Buffer,R_API void r_bin_java_print_annotation_summary(RBinJavaAnnotation *annotation) {,"	ut64 sz = 0;
+	if (evp == NULL) {
+		return sz;
+	}
+	// evp->element_name_idx = r_bin_java_read_short(bin, bin->b->cur);
+	sz += 2;
+	// evp->value = r_bin_java_element_value_new (bin, offset+2);
+	if (evp->value) {
+","	ut64 sz = 2;
+	if (evp && evp->value) {
+		// evp->element_name_idx = r_bin_java_read_short(bin, bin->b->cur);
+		// evp->value = r_bin_java_element_value_new (bin, offset+2);
+",,,
+155,117786422443097#0001,C,https://github.com/gssapi/gss-ntlmssp,CVE-2023-25563,CWE-125,Out-of-bounds Read,"static int ntlm_decode_oem_str(struct wire_field_hdr *str_hdr,",,"        (UINT32_MAX - str_offs < str_len) ||
+",,,
+156,259767471213217#0002,Go,https://github.com/nektos/act,CVE-2023-22726,CWE-22,Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal'),func TestNewArtifactUploadPrepare(t *testing.T) {,"	uploads(router, MapFsImpl{memfs})
+","	uploads(router, ""artifact/server/path"", writeMapFS{memfs})
+",,,
+157,280054761510320#0002,PHP,https://github.com/wp-plugins/dynamic-widgets,CVE-2015-10100,CWE-89,Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'),,,"				$fields = array(
+					'widget_id'		=> $widget_id,
+					'maintype'		=> 'shortcode',
+					'name'			=> 'default',
+					'value'			=> '0'
+				);
+				$this->wpdb->insert($this->dbtable, $fields);
+
+				/*
+				*/
+			$fields = array(
+				'widget_id'		=> $widget_id,
+				'maintype'		=> 'shortcode',
+				'name'			=> 'shortcode',
+				'value'			=> $value
+			);
+			$this->wpdb->insert($this->dbtable, $fields);
+
+			/*
+			*/
+",,,
+158,36348593442939#0000,C++,https://github.com/peterbraden/node-opencv,CVE-2019-10061,CWE-78,Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection'),namespace cv {,,"#warning using opencv2 contrib
+",,,
+159,3511280431503#0002,C,https://github.com/the-tcpdump-group/tcpdump,CVE-2017-12985,CWE-125,Out-of-bounds Read,"ip6_print(netdissect_options *ndo, const u_char *bp, u_int length)",,"			if (advance < 0)
+				return;
+			if (advance < 0)
+				return;
+",,,
+160,154927526535907#0000,PHP,https://github.com/snipe/snipe-it,CVE-2022-3173,CWE-287,Improper Authentication,class LicenseFilesController extends Controller,,"            $this->authorize('licenses.files', $license);
+",,,
+161,77234423571280#0001,PHP,https://github.com/Enalean/tuleap,CVE-2021-41154,CWE-89,Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'),class Widget_MyLatestSvnCommits extends Widget,"                    list($latest_revisions, $nb_revisions) = svn_get_revisions($project, 0, $this->_nb_svn_commits, '', $user->getUserName(), '', '', 0, false);
+","                    list($latest_revisions, $nb_revisions) = svn_get_revisions($project, 0, $this->_nb_svn_commits, '', $user->getUserName(), '', [], 0, false);
+",,,
+162,206679170536708#0001,C,https://github.com/u-boot/u-boot,CVE-2022-34835,CWE-787,Out-of-bounds Write,"static int do_i2c_read(struct cmd_tbl *cmdtp, int flag, int argc,","	int alen;
+","	uint	alen;
+",,,
+163,220539685834533#0001,PHP,https://github.com/ummmmm/nflpick-em.com,CVE-2022-4871,CWE-89,Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'),class JSON_LoadUsers extends JSONAdmin,,"
+		switch ( $sort )
+		{
+			case 'name'				:
+			case 'current_place'	:
+			case 'last_on'			:
+			case 'paid'				:
+			case 'failed_logins'	:
+			case 'active_sessions'	:
+			case 'remaining'		:
+			{
+				break;
+			}
+			default					:
+			{
+				return $this->setError( array( '#Error#', 'Invalid sort' ) );
+			}
+		}
+
+",,,
+164,81224213567312#0001,PHP,https://github.com/craftcms/cms,CVE-2023-41892,CWE-94,Improper Control of Generation of Code ('Code Injection'),class ConditionsController extends Controller,"        $config = $this->request->getBodyParam($baseConfig['name']);
+","        $config = Component::cleanseConfig($this->request->getBodyParam($baseConfig['name']));
+",,,
+165,37550830929612#0001,PHP,https://github.com/pfsense/pfsense,CVE-2019-16915,CWE-22,Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal'),"if ($_GET['getpic']==""true"") {",,"	$wk = basename($_POST['widgetkey']);
+",,,
+166,65969548864427#0001,Python,https://github.com/yt-dlp/yt-dlp,CVE-2023-35934,CWE-200,Exposure of Sensitive Information to an Unauthorized Actor,"def redirect_request(self, req, fp, code, msg, headers, newurl):","        new_headers = {k: v for k, v in req.headers.items() if k.lower() not in remove_headers}
+","        new_headers = {k: v for k, v in req.headers.items() if k.title() not in remove_headers}
+",,,
+167,268289734105642#0001,C,https://github.com/torvalds/linux,CVE-2023-0266,CWE-416,Use After Free,"static int snd_ctl_elem_read_user(struct snd_card *card,","	if (result >= 0)
+","	if (result >= 0) {
+		down_read(&card->controls_rwsem);
+		up_read(&card->controls_rwsem);
+	}
+",,,
+168,52776694264023#0001,C,https://github.com/OpenVPN/openvpn,CVE-2013-2061,CWE-200,Exposure of Sensitive Information to an Unauthorized Actor,"openvpn_decrypt (struct buffer *buf, struct buffer work,","	  if (memcmp (local_hmac, BPTR (buf), hmac_len))
+","	  if (memcmp_constant_time (local_hmac, BPTR (buf), hmac_len))
+",,,
+169,202294527676075#0000,C++,https://github.com/lavv17/lftp,CVE-2018-10916,CWE-20,Improper Input Validation,int   MirrorJob::Do(),"	    ArgV args(""rm"");
+	    if(file->TypeIs(file->DIRECTORY))
+	    {
+	       if(recursion_mode==RECURSION_NEVER)
+		  args.setarg(0,""rmdir"");
+	       else
+		  args.Append(""-r"");
+	    }
+	    ArgV *args=new ArgV(""rm"");
+	    args->Append(file->name);
+","	 bool use_rmdir = (file->TypeIs(file->DIRECTORY)
+			   && recursion_mode==RECURSION_NEVER);
+	    ArgV args(use_rmdir?""rmdir"":""rm"");
+	    if(file->TypeIs(file->DIRECTORY) && !use_rmdir)
+	       args.Append(""-r"");
+	    ArgV *args=new ArgV(use_rmdir?""rmdir"":""rm"");
+	    args->Append(dir_file(""."",file->name));
+",,,
+170,106252994505191#0000,TypeScript,https://github.com/NodeBB/NodeBB,CVE-2021-43788,CWE-22,Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal'),"const files = fs.readdirSync(path.join(paths.nodeModules, '/timeago/locales'));","	const data = await fs.promises.readFile(path.join(languagesPath, language, `${namespace}.json`), 'utf8');
+","	const pathToLanguageFile = path.join(languagesPath, language, `${namespace}.json`);
+	if (!pathToLanguageFile.startsWith(languagesPath)) {
+		throw new Error('[[error:invalid-path]]');
+	}
+	const data = await fs.promises.readFile(pathToLanguageFile, 'utf8');
+",,,
+171,219668604273828#0000,C,https://github.com/torvalds/linux,CVE-2017-9150,CWE-200,Exposure of Sensitive Information to an Unauthorized Actor,static const char *const bpf_jmp_string[16] = {,"static void print_bpf_insn(struct bpf_insn *insn)
+","static void print_bpf_insn(const struct bpf_verifier_env *env,
+			   const struct bpf_insn *insn)
+",,,
+172,178255103143994#0003,PHP,https://github.com/silverstripe/silverstripe-graphql,CVE-2023-40180,CWE-400,Uncontrolled Resource Consumption,GRAPHQL;,"            if (preg_match('/^Cannot query field ""' . $fieldName . '""/', $error['message'] ?? '')) {
+                return;
+
+        $this->fail('Failed to assert that result was missing field ""' . $fieldName . '""');
+","        $this->assertErrorMatchingRegex(
+            $result,
+            '/^Cannot query field ""' . $fieldName . '""/',
+            'Failed to assert that result was missing field ""' . $fieldName . '""'
+        );
+    }
+
+    private function assertErrorMatchingRegex(
+        array $result,
+        string $errorRegex,
+        string $message = 'Failed to assert that expected error was present.'
+    ) {
+        if (isset($result['error'])) {
+            $errors[] = ['message' => $result['error']];
+        }
+        $errorMessages = [];
+        $foundError = false;
+            if (!isset($error['message'])) {
+                continue;
+            if (preg_match($errorRegex, $error['message'])) {
+                $foundError = true;
+                break;
+            }
+            $errorMessages[] = '""' . $error['message'] . '""';
+        $this->assertTrue(
+            $foundError,
+            $message . ' Regex was: ' . $errorRegex . ', Errors were: ' . implode(', ', $errorMessages)
+        );
+",,,
+173,184671682766074#0000,C,https://github.com/Perl/perl5,CVE-2018-18313,CWE-125,Out-of-bounds Read,"S_grok_bslash_N(pTHX_ RExC_state_t *pRExC_state,","    endbrace = strchr(RExC_parse, '}');
+","    endbrace = (char *) memchr(RExC_parse, '}', RExC_end - RExC_parse);
+",,,
+174,29712637527033#0003,JavaScript,https://github.com/node-red/node-red,CVE-2021-21298,CWE-22,Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal'),"function createProject(user, metadata) {",,"    if (/^\.\./.test(fspath.relative(projectsDir,metadata.path))) {
+        throw new Error(""Invalid project name"")
+    }
+
+",,,
+175,213793413368662#0003,JavaScript,https://github.com/dart-lang/sdk,CVE-2022-0451,CWE-863,Incorrect Authorization,Future<HttpServer> setupServer() {,,"// A second HTTP server used to validate that redirect requests accross domains
+// do *not* include security-related headers.
+Future<HttpServer> setupTargetServer() {
+  Completer completer = new Completer<HttpServer>();
+  HttpServer.bind(""127.0.0.1"", 0).then((server) {
+    var handlers = new Map<String, Function>();
+    addRequestHandler(
+        String path, void handler(HttpRequest request, HttpResponse response)) {
+      handlers[path] = handler;
+    }
+
+    server.listen((HttpRequest request) {
+      if (request.uri.path == ""/target"") {
+        Expect.equals(""value"", request.headers.value(""X-Request-Header""));
+        Expect.isNull(request.headers.value(""Authorization""),
+            ""expected 'Authorization' header to be removed on redirect"");
+        request.response.close();
+      } else {
+        request.listen((_) {}, onDone: () {
+          request.response.statusCode = 404;
+          request.response.close();
+        });
+      }
+    });
+
+    completer.complete(server);
+  });
+  return completer.future;
+}
+
+",,,
+176,28798990001011#0000,PHP,https://github.com/RackTables/racktables,CVE-2020-19611,CWE-79,Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting'),try {,"				throw new RackTablesError (""Invalid navigation data for '${pageno}-${tabno}-${op}'"", RackTablesError::INTERNAL);
+","			// This could be a malformed request rather than an internal error, but spelling
+			// that in proper detail would require finer checks.
+				throw new RackTablesError ('This request has no ophandler function.', RackTablesError::INTERNAL);
+",,,
+177,36455569086795#0004,Go,https://github.com/txthinking/brook,CVE-2023-33965,CWE-78,Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection'),func main() {,,"						b, err := ioutil.ReadFile(""/root/.brook.web.password"")
+						if err != nil {
+							http.Error(w, err.Error(), 500)
+							return
+						}
+						if string(b) != r.FormValue(""p"") {
+							http.Error(w, ""web ui password wrong"", 500)
+							return
+						}
+",,,
+178,226153728374514#0001,Python,https://github.com/MechanicalSoup/MechanicalSoup,CVE-2023-34457,CWE-20,Improper Input Validation,class Form:,,"            self._assert_valid_file_upload(i, value)
+",,,
+179,38159849790160#0004,Ruby,https://github.com/discourse/discourse,CVE-2022-39385,CWE-863,Incorrect Authorization,class InviteRedeemer,"  # extracted from User cause it is very specific to invites
+","  # The email must be present in some form since many of the methods
+  # for processing + redemption rely on it. If it's still nil after
+  # these checks then we have hit an edge case and should not proceed!
+  def ensure_email_is_present!(email)
+    if email.blank?
+      Rails.logger.warn(
+        ""email param was blank in InviteRedeemer for invite ID #{@invite.id}. The `redeeming_user` was #{@redeeming_user.present? ? ""(ID: #{@redeeming_user.id})"" : ""not""} present."",
+      )
+    end
+
+    if email.blank? && @invite.is_email_invite?
+      @email = @invite.email
+    elsif @redeeming_user.present?
+      @email = @redeeming_user.email
+    else
+      @email = email
+    end
+
+    raise Discourse::InvalidParameters if @email.blank?
+  end
+
+  # This will _never_ be called if there is a redeeming_user being passed
+  # in to InviteRedeemer -- see invited_user below.
+",,,
+180,138342581015245#0001,JavaScript,https://github.com/pi-hole/AdminLTE,CVE-2021-41175,CWE-79,Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting'),function editClient() {,"  var ip = tr.find(""#ip_"" + id).text();
+","  var ip = utils.escapeHtml(tr.find(""#ip_"" + id).text());
+",,,
+181,118300433964539#0000,C,https://github.com/php/php-src,CVE-2016-7412,CWE-119,Improper Restriction of Operations within the Bounds of a Memory Buffer,"php_mysqlnd_rowp_read_text_protocol_aux(MYSQLND_MEMORY_POOL_CHUNK * row_buffer,",,"	const zend_uchar * const packet_end = (zend_uchar*) row_buffer->ptr + data_size;
+",,,
+182,212384770796498#0033,PHP,https://github.com/phpmyadmin/phpmyadmin,CVE-2016-2039,CWE-200,Exposure of Sensitive Information to an Unauthorized Actor,"function setPassword($password, $method = 'pbkdf2')","                    $dkLen = $method == 'pbkdf1' ? 2 * $this->password_key_size : $this->password_key_size;
+","                    $dkLen = $method == 'pbkdf1' ? 2 * $this->key_length : $this->key_length;
+",,,
+183,223379766652294#0002,Go,https://github.com/usememos/memos,CVE-2022-25978,CWE-79,Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting'),func (s *Server) registerResourcePublicRoutes(g *echo.Group) {,"			return echo.NewHTTPError(http.StatusInternalServerError, fmt.Sprintf(""Failed to fetch resource ID: %v"", resourceID)).SetInternal(err)
+		resourceType := strings.ToLower(resource.Type)
+		if strings.HasPrefix(resourceType, ""text"") || (strings.HasPrefix(resourceType, ""application"") && resourceType != ""application/pdf"") {
+			resourceType = echo.MIMETextPlain
+		}
+		if strings.HasPrefix(resourceType, ""video"") || strings.HasPrefix(resourceType, ""audio"") {
+","			return echo.NewHTTPError(http.StatusInternalServerError, fmt.Sprintf(""Failed to find resource by ID: %v"", resourceID)).SetInternal(err)
+		resourceType := strings.ToLower(resource.Type)
+		if strings.HasPrefix(resourceType, ""text"") {
+			resourceType = echo.MIMETextPlainCharsetUTF8
+		} else if strings.HasPrefix(resourceType, ""video"") || strings.HasPrefix(resourceType, ""audio"") {
+",,,
+184,223776669134213#0001,TypeScript,https://github.com/steveukx/git-js,CVE-2022-25912,CWE-78,Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection'),function resolver() {,"module.exports = function (resolve = false) {
+","module.exports = function (resolveToDist = false) {
+",,,
+185,168867979332866#0000,Python,https://github.com/overdrive-diy/course-builder,CVE-2015-10049,CWE-79,Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting'),class ExitUrlTest(actions.TestBase):,"            'cb_global.exit_url = \'dashboard?action=analytics&tab=data_pump\'',
+","            'cb_global.exit_url = \'dashboard?action=analytics'
+            '\\u0026tab=data_pump\'',
+",,,
+186,134633366941454#0000,Ruby,https://github.com/vim/vim,CVE-2022-2345,CWE-416,Use After Free,static char *(features[]) =,,"/**/
+    47,
+",,,
+187,102679252013438#0000,C,https://github.com/VirusTotal/yara,CVE-2017-8929,CWE-416,Use After Free,int yr_object_copy(,"      ((YR_OBJECT_INTEGER*) copy)->value = UNDEFINED;
+      ((YR_OBJECT_STRING*) copy)->value = NULL;
+","      ((YR_OBJECT_INTEGER*) copy)->value = ((YR_OBJECT_INTEGER*) object)->value;
+      if (((YR_OBJECT_STRING*) object)->value != NULL)
+      {
+        ((YR_OBJECT_STRING*) copy)->value = sized_string_dup(
+            ((YR_OBJECT_STRING*) object)->value);
+      }
+      else
+      {
+        ((YR_OBJECT_STRING*) copy)->value = NULL;
+      }
+      break;
+
+    case OBJECT_TYPE_FLOAT:
+      ((YR_OBJECT_DOUBLE*) copy)->value = ((YR_OBJECT_DOUBLE*) object)->value;
+",,,
+188,166831683142440#0000,C,https://github.com/torvalds/linux,CVE-2015-8787,CWE-476,NULL Pointer Dereference,"nf_nat_redirect_ipv4(struct sk_buff *skb,","		if (indev != NULL) {
+","		if (indev && indev->ifa_list) {
+",,,
+189,159853543340722#0003,PHP,https://github.com/phoronix-test-suite/phoronix-test-suite,CVE-2022-0238,CWE-352,Cross-Site Request Forgery (CSRF),class phoromatic_systems implements pts_webui_interface,,"			phoromatic_quit_if_invalid_input_found(array('system_var_names', 'system_var_values'));
+",,,
+190,20136323396774#0001,PHP,https://github.com/snipe/snipe-it,CVE-2022-3173,CWE-287,Improper Authentication,,,"        @endcan
+",,,
+191,50066799766030#0003,JavaScript,https://github.com/pedroetb/tts-api,CVE-2019-25158,CWE-78,Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection'),function getGttsCmdWithArgs(fields) {,"		speedParam = speed ? ' -s' : '',
+
+		cmd = 'gtts-cli' + ' -l ' + language + speedParam + ' --nocheck \""' + text + '\""' + ' | play -t mp3 -';
+
+	return cmd;
+		language = fields.language,
+
+		cmd = 'echo ""' + text + '"" | festival' + ' --tts --heap 1000000 --language ' + language;
+
+	return cmd;
+","		slowSpeed = fields.slowSpeed ? '-s' : '';
+
+	return [{
+		cmd: 'gtts-cli',
+		args: [
+			'-l', language,
+			'--nocheck',
+			slowSpeed,
+			text
+		]
+	},{
+		cmd: 'play',
+		args: [
+			'-q',
+			'-t', 'mp3',
+			'-',
+			'gain', '4',
+			'speed', speed
+		]
+	}];
+		language = fields.language;
+
+	return [{
+		cmd: 'echo',
+		args: [
+			text
+		]
+	},{
+		cmd: 'festival',
+		args: [
+			'--tts',
+			'--language', language,
+			'--heap', '1000000'
+		]
+	}];
+",,,
+192,101866332118633#0000,Python,https://github.com/kiwitcms/Kiwi,CVE-2023-33977,CWE-79,Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting'),def deny_uploads_containing_script_tag(uploaded_file):,,"        if chunk.lower().find(b""onload="") > -1:
+            raise ValidationError(_(""File contains forbidden attribute:"") + ""onload"")
+
+",,,
+193,37012292195750#0000,Ruby,https://github.com/vim/vim,CVE-2022-2581,CWE-125,Out-of-bounds Read,static char *(features[]) =,,"/**/
+    105,
+",,,
+194,182577607457771#0000,C,https://github.com/jerryscript-project/jerryscript,CVE-2020-14163,CWE-125,Out-of-bounds Read,"ecma_op_internal_buffer_append (ecma_collection_t *container_p, /**< internal co","  ecma_collection_push_back (container_p, ecma_copy_value_if_not_object (key_arg));
+
+    ecma_collection_push_back (container_p, ecma_copy_value_if_not_object (value_arg));
+","    ecma_value_t values[] = { ecma_copy_value_if_not_object (key_arg), ecma_copy_value_if_not_object (value_arg) };
+    ecma_collection_append (container_p, values, 2);
+  }
+  else
+  {
+    ecma_collection_push_back (container_p, ecma_copy_value_if_not_object (key_arg));
+",,,
+195,22674346350805#0001,Python,https://github.com/ractf/core,CVE-2021-21329,CWE-287,Improper Authentication,class Member(AbstractUser):,"        error_messages={""unique"": _(""A user with that username already exists.""),},
+    totp_secret = models.CharField(null=True, max_length=16)
+    totp_status = models.IntegerField(
+        choices=[(status, status.value) for status in TOTPStatus],
+        default=TOTPStatus.DISABLED,
+    )
+","        error_messages={""unique"": _(""A user with that username already exists."")},
+    state_actor = models.BooleanField(default=False)
+",,,
+196,13543855129741#0002,C++,https://github.com/tensorflow/tensorflow,CVE-2021-41220,CWE-416,Use After Free,class CollectiveInitializeCommunicatorOpKernel : public AsyncOpKernel {,"      return errors::Internal(
+      return errors::Internal(""Unexpected dimensions on input group_key, got "",
+                              group_key_t.shape().DebugString());
+","      return errors::InvalidArgument(
+      return errors::InvalidArgument(
+          ""Unexpected dimensions on input group_key, got "",
+          group_key_t.shape().DebugString());
+",,,
+197,229092273441027#0002,C,https://github.com/LibreDWG/libredwg,CVE-2019-20913,CWE-125,Out-of-bounds Read,,"        /*obj->fixedtype = DWG_TYPE_##_name; */ \
+      /* return dwg_##action_##_name(dat, obj); */ \
+",,,,
+198,80913370622692#0002,JavaScript,https://github.com/markedjs/marked,CVE-2021-21306,CWE-400,Uncontrolled Resource Consumption,,"    text: /^([`~]+|[^`~])(?:(?= {2,}\n)|[\s\S]*?(?:(?=[\\<!\[`*~]|\b_|https?:\/\/|ftp:\/\/|www\.|$)|[^ ](?= {2,}\n)|[^a-zA-Z0-9.!#$%&'*+\/=?_`{\|}~-](?=[a-zA-Z0-9.!#$%&'*+\/=?_`{\|}~-]+@))|(?=[a-zA-Z0-9.!#$%&'*+\/=?_`{\|}~-]+@))/
+","    text: /^([`~]+|[^`~])(?:(?= {2,}\n)|[\s\S]*?(?:(?=[\\<!\[`*~_]|\b_|https?:\/\/|ftp:\/\/|www\.|$)|[^ ](?= {2,}\n)|[^a-zA-Z0-9.!#$%&'*+\/=?_`{\|}~-](?=[a-zA-Z0-9.!#$%&'*+\/=?_`{\|}~-]+@))|(?=[a-zA-Z0-9.!#$%&'*+\/=?_`{\|}~-]+@))/
+",,,
+199,178560403503169#0002,Java,https://github.com/xwiki/xwiki-platform,CVE-2023-37914,CWE-94,Improper Control of Generation of Code ('Code Injection'),void escapeInfoMessageInternalDocumentParameter() throws Exception,,"
+    @Test
+    void subjectLineTemplate() throws Exception
+    {
+        com.xpn.xwiki.api.Document invitationConfigDocument =
+            new com.xpn.xwiki.api.Document(loadPage(INVITATION_CONFIG_REFERENCE), this.context);
+        String value = String.valueOf(
+            invitationConfigDocument.getObject(""xwiki:Invitation.WebHome"").getProperty(""subjectLineTemplate"")
+                .getValue());
+        this.oldcore.getScriptContext().setAttribute(""subjectLine"", ""{{noscript/}}"", GLOBAL_SCOPE);
+        com.xpn.xwiki.api.Document testDocument = new com.xpn.xwiki.api.Document(
+            this.xwiki.getDocument(new DocumentReference(""xwiki"", ""Space"", ""Test""), this.context), this.context);
+        String renderedContent = testDocument.getRenderedContent(value, XWIKI_2_0.toIdString(), PLAIN_1_0.toIdString());
+        assertEquals(""xe.invitation.emailContent.subjectLine [XWikiGuest, null, {{noscript/}}]"", renderedContent);
+    }
+",,,
+200,187343253331261#0000,C,https://github.com/torvalds/linux,CVE-2019-9003,CWE-416,Use After Free,EXPORT_SYMBOL(ipmi_get_smi_info);,,"	cleanup_srcu_struct(&user->release_barrier);
+",,,

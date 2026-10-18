@@ -145,21 +145,34 @@ def main():
     summary["duplicates"] = duplicate_stats(hk, "label")
     print(f"[4] dedup: {json.dumps({k: v['duplicate_rate'] for k, v in summary['duplicates'].items() if isinstance(v, dict)})}")
 
-    # Split chỉ trên đại diện near-dup có nhãn cụ thể (top-K áp dụng ở bước huấn luyện sau EDA)
+    # Tập mô hình hóa: đại diện near-dup có nhãn thuộc top-K. Split cho MỌI seed (mỗi seed đổi phép chia).
     t = time.perf_counter()
     topk = cfg["dataset"].get("top_k_cwe")
     hk["in_topk"] = hk["label"].isin(topk) if isinstance(topk, list) else hk["label"].notna()
     rep = hk["is_rep_near"] if "is_rep_near" in hk else True
-    labeled = hk[hk["in_topk"] & rep]   # tập mô hình hóa: đại diện near-dup, nhãn thuộc top-K
-    summary["modeling_set"] = {"n": int(len(labeled)), "classes": labeled["label"].value_counts().to_dict()}
+    labeled = hk[hk["in_topk"] & rep]
+    all_topk = hk[hk["in_topk"]]          # E1: KHÔNG dedup
+    summary["modeling_set"] = {"n": int(len(labeled)), "n_without_dedup": int(len(all_topk)),
+                               "classes": labeled["label"].value_counts().to_dict()}
+    split_frames = []
     if len(labeled) >= 20 and labeled["label"].nunique() >= 2:
-        sp = make_splits(labeled, cfg["split"], seed)
-        cols = [c for c in sp.columns if c.startswith("split_")] + [c for c in ("leak_group", "time_group") if c in sp]
-        hk = hk.join(sp[cols])
-        summary["leakage"] = {c: leakage_report(sp, c) for c in cols if c.startswith("split_")}
-        summary["cross_split_duplicates_all_hunks"] = {
-            c: cross_split_duplicates(hk.assign(**{c: hk[c].fillna("excluded")}), c, "normalized")
-            for c in cols if c.startswith("split_")}
+        summary["leakage"], summary["cross_split_duplicates_all_hunks"] = {}, {}
+        for s in cfg["seeds"]:
+            sp = make_splits(labeled, cfg["split"], s)
+            cols = [c for c in sp.columns if c.startswith("split_")] + [c for c in ("leak_group", "time_group") if c in sp]
+            nd = make_splits(all_topk, {**cfg["split"], "strategies": ["random"]}, s)[["split_random"]]
+            frame = (sp[["hunk_id"] + cols]
+                     .merge(all_topk[["hunk_id"]].join(nd.rename(columns={"split_random": "split_random_nodedup"})),
+                            on="hunk_id", how="outer"))
+            frame.insert(1, "seed", s)
+            split_frames.append(frame)
+            summary["leakage"][str(s)] = {c: leakage_report(sp, c) for c in cols if c.startswith("split_")}
+            nd_full = all_topk.join(nd)
+            summary["leakage"][str(s)]["split_random_nodedup"] = leakage_report(nd_full, "split_random")
+            summary["cross_split_duplicates_all_hunks"][str(s)] = {
+                "split_random_nodedup": cross_split_duplicates(nd_full, "split_random", "normalized")}
+            print(f"    seed {s}: project chung repo/cve/near = "
+                  f"{[summary['leakage'][str(s)]['split_project'][k] for k in ('shared_repo', 'shared_cve', 'shared_dup_near')]}")
     else:
         summary["leakage"] = "bỏ qua – chưa có đủ nhãn CWE (DB mẫu không có bảng cwe_classification)"
     timings["split_s"] = round(time.perf_counter() - t, 2)
@@ -168,6 +181,9 @@ def main():
     hk = hk.drop(columns=["norm_tokens"]).sort_values("hunk_id", kind="stable").reset_index(drop=True)
     paths = {"hunks.parquet": hk,
              "file_status.parquet": files.drop(columns=["diff"]).sort_values("file_change_id", kind="stable")}
+    if split_frames:
+        paths["splits.parquet"] = (pd.concat(split_frames, ignore_index=True)
+                                   .sort_values(["seed", "hunk_id"], kind="stable").reset_index(drop=True))
     manifest = {}
     for name, frame in paths.items():
         p = os.path.join(out, name)

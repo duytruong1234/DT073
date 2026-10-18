@@ -1,7 +1,8 @@
-# Dữ liệu lớn – không commit lên git
+# Dữ liệu lớn – không commit lên git (nhưng vẫn giữ nguyên trên đĩa)
 data/raw/
 data/db/
 data/interim/
+data/processed/*.parquet
 *.db
 *.db.partial
 *.zip
@@ -13,15 +14,14 @@ data/interim/
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
+.pytest_cache/
 
 # Bí mật
 .env
 *.token
 
-# K?t qu? l?n (gi? l?i metrics/config nh?)
+# Mô hình & dự đoán nhị phân lớn (giữ lại toàn bộ metrics.json, summary, bảng đánh giá, biểu đồ)
+results/models/*.joblib
 results/**/predictions*.csv
 results/**/*.pkl
-.pytest_cache/
-
 data/logs/
-

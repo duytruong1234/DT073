@@ -1,0 +1,1017 @@
+{
+  "summary": {
+    "n": 100,
+    "seed": 42,
+    "seconds": 505.8,
+    "exists_rate": 0.94,
+    "files_checked": 93,
+    "file_match_rate_among_checked": 1.0,
+    "errors": {
+      "tree_timeout": 1,
+      "fatal: repository 'https://github.com/GoGentoOSS/SAMLBase/' not found": 1,
+      "timeout": 5
+    }
+  },
+  "results": [
+    {
+      "hash": "eff308af425b67093bab25f80f1ae950166bece1",
+      "repo_url": "https://github.com/madler/zlib",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "29522c90ca1cebfce6453a5af5a45281d99b0646",
+      "repo_url": "https://github.com/platzhersh/pacman-canvas",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "08bfdf470e234edb68e5307a2fef8c899d89256c",
+      "repo_url": "https://github.com/omeka/Omeka",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "6845667146a28c09b5dfc401c1ad112374087944",
+      "repo_url": "https://github.com/torvalds/linux",
+      "exists": false,
+      "error": "timeout",
+      "db_files": 1,
+      "git_files": 0,
+      "files_checked": false,
+      "db_files_subset_of_git": false
+    },
+    {
+      "hash": "5d00b719f4b93b1445e6fb4c766b9a9883c57949",
+      "repo_url": "https://github.com/uclouvain/openjpeg",
+      "exists": true,
+      "error": null,
+      "db_files": 2,
+      "git_files": 2,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "542d94a70c56aa386c8d4d793481ce181b0422e8",
+      "repo_url": "https://github.com/KDE/kdeconnect-kde",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "33ed106b1602f559a660a69f931a9d873685d1ba",
+      "repo_url": "https://github.com/osTicket/osTicket",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "25d34c67863fd960af34fc4f82a7ca3362ee74b9",
+      "repo_url": "https://github.com/capnproto/capnproto",
+      "exists": true,
+      "error": null,
+      "db_files": 2,
+      "git_files": 2,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "fdfce062642b0ac062da5cda033d25482f4600fa",
+      "repo_url": "https://github.com/xwiki/xwiki-platform",
+      "exists": true,
+      "error": null,
+      "db_files": 2,
+      "git_files": 2,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "cc331e4349e91706a673e2a09f1f2ea5bbb33815",
+      "repo_url": "https://github.com/facebook/hhvm",
+      "exists": true,
+      "error": null,
+      "db_files": 6,
+      "git_files": 7,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "204291467724867b79735c0ee3aeb0dbc2200f97",
+      "repo_url": "https://github.com/videolan/vlc",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "dce1aecd6ee050a29f953ffd8f02f21c7c13f1e6",
+      "repo_url": "https://github.com/kkokko/NeoXplora",
+      "exists": true,
+      "error": null,
+      "db_files": 19,
+      "git_files": 19,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "9f30756375cc4b1b6c66f274fc9c591fa901455a",
+      "repo_url": "https://github.com/ericcornelissen/git-tag-annotation-action",
+      "exists": true,
+      "error": null,
+      "db_files": 4,
+      "git_files": 4,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "0b29669c065f60501e7289e1950fa2a618962358",
+      "repo_url": "https://github.com/torvalds/linux",
+      "exists": false,
+      "error": "timeout",
+      "db_files": 1,
+      "git_files": 0,
+      "files_checked": false,
+      "db_files_subset_of_git": false
+    },
+    {
+      "hash": "0a60b31271d4cbf8babe4be993d2a3a1617f0897",
+      "repo_url": "https://github.com/NoxxieNl/Criminals",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "22b925449c84faa9b7496abe4f8f5661cb5eb3bf",
+      "repo_url": "https://github.com/lesterchan/wp-ban",
+      "exists": true,
+      "error": null,
+      "db_files": 4,
+      "git_files": 4,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "524d2e60cfe910406ec6109e4286d7edd545ab36",
+      "repo_url": "https://github.com/facebook/hhvm",
+      "exists": true,
+      "error": null,
+      "db_files": 3,
+      "git_files": 3,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "57e706e7effdc182fc9a2af5981bc88afb21851b",
+      "repo_url": "https://github.com/litestar-org/litestar",
+      "exists": true,
+      "error": null,
+      "db_files": 4,
+      "git_files": 4,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "be749d7efa7c9021da746e685bd6dec79f9dd99b",
+      "repo_url": "https://github.com/DaveGamble/cJSON",
+      "exists": true,
+      "error": null,
+      "db_files": 2,
+      "git_files": 2,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "e19fb8e29cb48cadfd3238371e060d4ffd3384f9",
+      "repo_url": "https://github.com/LaurentTreguier/vscode-rpm-spec",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "09336b0ff0e0a04aa0c97c5975651af4769d2459",
+      "repo_url": "https://github.com/thorsten/phpMyFAQ",
+      "exists": true,
+      "error": null,
+      "db_files": 2,
+      "git_files": 2,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "d1d577490c15a0c6862473d7576352a9f18ef811",
+      "repo_url": "https://github.com/madler/zlib",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "4a84c36009be10dbd83051ac1771662c056e4977",
+      "repo_url": "https://github.com/pterodactyl/panel",
+      "exists": true,
+      "error": null,
+      "db_files": 3,
+      "git_files": 3,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "f3d3342602f8bcbf37d7c46641cb9bca7618eb1c",
+      "repo_url": "https://github.com/torvalds/linux",
+      "exists": false,
+      "error": "timeout",
+      "db_files": 35,
+      "git_files": 0,
+      "files_checked": false,
+      "db_files_subset_of_git": false
+    },
+    {
+      "hash": "cbfe2ed36dd77c0843702935dea7f914bb599201",
+      "repo_url": "https://github.com/openSUSE/open-build-service",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "9e1b4f7d70f7a9c3fa6753ffa7d7e450a3d4abb0",
+      "repo_url": "https://github.com/nette/latte",
+      "exists": true,
+      "error": null,
+      "db_files": 2,
+      "git_files": 2,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "5319cfbe14951e007ccdb323257e5ada869b35d5",
+      "repo_url": "https://github.com/vyperlang/vyper",
+      "exists": true,
+      "error": null,
+      "db_files": 10,
+      "git_files": 10,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "a99667d11ac8d320006909387b100e9a8b5c12e1",
+      "repo_url": "https://github.com/wp-plugins/most-popular-posts-widget-lite",
+      "exists": true,
+      "error": null,
+      "db_files": 3,
+      "git_files": 3,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "dc7de8d3d604426c7a6e628d90cb9fb88e7b4c2c",
+      "repo_url": "https://github.com/gpac/gpac",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "6968962c920508eae19a4c1c200fa2c8980a4006",
+      "repo_url": "https://github.com/backstage/backstage",
+      "exists": true,
+      "error": null,
+      "db_files": 3,
+      "git_files": 3,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "022949bd09444d7e58703cc537dbbd5744c381b8",
+      "repo_url": "https://github.com/zencart-ja/zc-v1-series",
+      "exists": true,
+      "error": null,
+      "db_files": 3,
+      "git_files": 3,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "3b8f673f06c2d228e01cbc830e5cb57cef008978",
+      "repo_url": "https://github.com/argoproj/argo-cd",
+      "exists": true,
+      "error": null,
+      "db_files": 2,
+      "git_files": 2,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "9f8c304c8a390ade133bac29963dc8e56ab14cbc",
+      "repo_url": "https://github.com/vim/vim",
+      "exists": true,
+      "error": null,
+      "db_files": 3,
+      "git_files": 3,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "80a09407652ec04e8c9fb6cb48e1029e69a15765",
+      "repo_url": "https://github.com/inverse-inc/sogo",
+      "exists": true,
+      "error": null,
+      "db_files": 4,
+      "git_files": 4,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "6946f8a5a0a93b516c49f17a5b45044eebd73480",
+      "repo_url": "https://github.com/pimcore/pimcore",
+      "exists": true,
+      "error": null,
+      "db_files": 7,
+      "git_files": 7,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "3a12edd119e493156a5a05e45dd50f4e36b702e8",
+      "repo_url": "https://github.com/rjbs/Email-MIME",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "50ee8130fb4cd4ef1af7682a2c85dd99cb99424e",
+      "repo_url": "https://github.com/abrt/abrt",
+      "exists": true,
+      "error": null,
+      "db_files": 2,
+      "git_files": 2,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "7ef42bf1c16900d13e6376f8be5ecdbfdfb44aaf",
+      "repo_url": "https://github.com/KubeOperator/KubeOperator",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "25bb1303fff21cb5bae17236d53504e85c1866df",
+      "repo_url": "https://github.com/bmaltais/kohya_ss",
+      "exists": true,
+      "error": null,
+      "db_files": 2,
+      "git_files": 2,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "22531545514043e04633e1c015c7540b9de9dbe4",
+      "repo_url": "https://github.com/libarchive/libarchive",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "8f43daf50c943b98eaf0c542da901a4a16e85b02",
+      "repo_url": "https://github.com/trampgeek/jobe",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "23968a8bf65b009120c43b5ebcceaf52dbc9e943",
+      "repo_url": "https://github.com/tensorflow/tensorflow",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "87d29af25e82a249ea15858e2d4ecbf64091db44",
+      "repo_url": "https://github.com/FasterXML/jackson-databind",
+      "exists": true,
+      "error": null,
+      "db_files": 2,
+      "git_files": 2,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "81d1664f0b9fe521534acfae1d5b9c40127b36c1",
+      "repo_url": "https://github.com/rona-dinihari/dawnsparks-node-tesseract",
+      "exists": true,
+      "error": null,
+      "db_files": 4,
+      "git_files": 8,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "e248ed5649d267c0f61a17d99b7bd6be4074aadb",
+      "repo_url": "https://github.com/glpi-project/glpi",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "643a16a0eb1d6ac23744bb6e90a00fc21148a9dc",
+      "repo_url": "https://github.com/torvalds/linux",
+      "exists": false,
+      "error": "timeout",
+      "db_files": 3,
+      "git_files": 0,
+      "files_checked": false,
+      "db_files_subset_of_git": false
+    },
+    {
+      "hash": "0fa7650df8f940ed6b577d79836a78eb09726c4b",
+      "repo_url": "https://github.com/ether/etherpad-lite",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "ada821df68fb0bf673840ed525daf4ec709dbfd9",
+      "repo_url": "https://github.com/jjanku/podofo",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "c90e79b3b22fec309cab55af2ee606f71b027b12",
+      "repo_url": "https://github.com/ImageMagick/ImageMagick6",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "2e7a11d332db79cc52ccda00455a15f4dc6147ff",
+      "repo_url": "https://github.com/microweber-dev/whmcs_plugin",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "8ed546679524140d8282175411fd141fe7df070d",
+      "repo_url": "https://github.com/python/cpython",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "1d147bfa64293b2723c4fec50922168658e613ba",
+      "repo_url": "https://github.com/torvalds/linux",
+      "exists": true,
+      "error": "tree_timeout",
+      "db_files": 3,
+      "git_files": 0,
+      "files_checked": false,
+      "db_files_subset_of_git": false
+    },
+    {
+      "hash": "ce8d3921e2acd44ef8b5e6edfe595b6df067b166",
+      "repo_url": "https://github.com/heroiclabs/nakama",
+      "exists": true,
+      "error": null,
+      "db_files": 16,
+      "git_files": 17,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "6ec82562ffc6f297d0de36d65776cff8e5704867",
+      "repo_url": "https://github.com/torvalds/linux",
+      "exists": false,
+      "error": "timeout",
+      "db_files": 2,
+      "git_files": 0,
+      "files_checked": false,
+      "db_files_subset_of_git": false
+    },
+    {
+      "hash": "ec551bdf1566ede1e55f289888c446f877ad9a83",
+      "repo_url": "https://github.com/thorsten/phpmyfaq",
+      "exists": true,
+      "error": null,
+      "db_files": 2,
+      "git_files": 2,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "e7fe1aa6a087d4d21b2e8a0dadd2e08f42acbb57",
+      "repo_url": "https://github.com/livehelperchat/livehelperchat",
+      "exists": true,
+      "error": null,
+      "db_files": 4,
+      "git_files": 4,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "88c98c910acccab694b3afb6d36d70ca429118a6",
+      "repo_url": "https://github.com/openwrt/routing",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "d7b94fede71f018f129f7d21feb58c895d28dadc",
+      "repo_url": "https://github.com/gookit/goutil",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "482cdf8c090e0f1179073034ebcb609ac7c3f5b3",
+      "repo_url": "https://github.com/GoGentoOSS/SAMLBase",
+      "exists": false,
+      "error": "fatal: repository 'https://github.com/GoGentoOSS/SAMLBase/' not found",
+      "db_files": 1,
+      "git_files": 0,
+      "files_checked": false,
+      "db_files_subset_of_git": false
+    },
+    {
+      "hash": "1a0976417975a128b0a932ba1552c37e9414953b",
+      "repo_url": "https://github.com/redmine/redmine",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "106d61d3ae723b4257c2a13e67b95eb40a27e0b5",
+      "repo_url": "https://github.com/kellyselden/git-diff-apply",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "f828dc6f73cdfaea5639edbf8ac7b326eeefb117",
+      "repo_url": "https://github.com/Kenny2github/Report",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "55f8549c80124b85dfb0f3dcf83f2c63f42532e5",
+      "repo_url": "https://github.com/digitalbazaar/zcap",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "6d7168cbf12d1c183bacc5cd5678f6f5b0d518d2",
+      "repo_url": "https://github.com/wp-plugins/cp-polls",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "1d8e224ebabb8a4c75b97f026950ed710faab0ff",
+      "repo_url": "https://github.com/yourls/yourls",
+      "exists": true,
+      "error": null,
+      "db_files": 2,
+      "git_files": 2,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "57f1dd50a4821b8c8e676e8020006ae4bfd3c9cb",
+      "repo_url": "https://github.com/rofl0r/MacGeiger",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "25517b73153332d948114bacdff3b5908de91d85",
+      "repo_url": "https://github.com/nextauthjs/next-auth",
+      "exists": true,
+      "error": null,
+      "db_files": 5,
+      "git_files": 5,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "8f4acff3c2d45c1cb07779bb3fe79644408ee387",
+      "repo_url": "https://github.com/electron-userland/electron-builder",
+      "exists": true,
+      "error": null,
+      "db_files": 2,
+      "git_files": 2,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "694da5013dbecc8d30dd83e2a83e78faadf93771",
+      "repo_url": "https://github.com/trampgeek/jobe",
+      "exists": true,
+      "error": null,
+      "db_files": 2,
+      "git_files": 2,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "ab5ba92a6aaf0435cd0b2132cf7f9b7b41575a28",
+      "repo_url": "https://github.com/web2project/web2project",
+      "exists": true,
+      "error": null,
+      "db_files": 2,
+      "git_files": 2,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "eebd7caaab310b1fa803e55b8fc1acd9dcd2d00c",
+      "repo_url": "https://github.com/sylabs/scs-library-client",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "89e90ae7b2826110ea28c1c0eb8e7c56c3907bdc",
+      "repo_url": "https://github.com/karelzak/util-linux",
+      "exists": true,
+      "error": null,
+      "db_files": 4,
+      "git_files": 4,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "3ccde66dab4096ab5663e69f352992cc73e1160b",
+      "repo_url": "https://github.com/MISP/MISP-maltego",
+      "exists": true,
+      "error": null,
+      "db_files": 4,
+      "git_files": 4,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "8c35502217c1879cb8257c617007282eee3fe1cc",
+      "repo_url": "https://github.com/ImageMagick/ImageMagick",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "86543ac47e59c522976b5632b8bf9a2a4583c7d2",
+      "repo_url": "https://github.com/facebook/hermes",
+      "exists": true,
+      "error": null,
+      "db_files": 2,
+      "git_files": 2,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "4e857d675683095945dd524d6ba03e692c70ecd6",
+      "repo_url": "https://github.com/crate/crate",
+      "exists": true,
+      "error": null,
+      "db_files": 13,
+      "git_files": 13,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "fb4fdaf4c0a79c22cad000c42ac1394e3ccb6a97",
+      "repo_url": "https://github.com/syncthing/syncthing",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "65437cee25199dbd385fb35901bc0011e164276c",
+      "repo_url": "https://github.com/file/file",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "f30a0662f0a28734eb33c5868cccc1c319eb6e79",
+      "repo_url": "https://github.com/awslabs/sandbox-accounts-for-events",
+      "exists": true,
+      "error": null,
+      "db_files": 43,
+      "git_files": 43,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "1aa9597cdf2722a69651124f68cbb449be12cc39",
+      "repo_url": "https://github.com/sni/Thruk",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "e431e86aa4301ced4273dc7919b59362cbb353cb",
+      "repo_url": "https://github.com/cakephp/cakephp",
+      "exists": true,
+      "error": null,
+      "db_files": 2,
+      "git_files": 2,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "ee778252faebb721afba5a081dd6ad7eaf20eef3",
+      "repo_url": "https://github.com/michaelrsweet/htmldoc",
+      "exists": true,
+      "error": null,
+      "db_files": 4,
+      "git_files": 4,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "402f3d967c0a905ec5b9ca9c240783d3f2c15724",
+      "repo_url": "https://github.com/Microsoft/ChakraCore",
+      "exists": true,
+      "error": null,
+      "db_files": 2,
+      "git_files": 2,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "c86ee39ff4c1a79b93c967eb88522f5c09614a28",
+      "repo_url": "https://github.com/WordPress/WordPress",
+      "exists": true,
+      "error": null,
+      "db_files": 2,
+      "git_files": 2,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "5ce8afdd1671b08c774ce106b000605ba8fccf78",
+      "repo_url": "https://github.com/robinbuschmann/sequelize-typescript",
+      "exists": true,
+      "error": null,
+      "db_files": 2,
+      "git_files": 2,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "3d11f375a76ddb3741200296e15f81d82dfb80ce",
+      "repo_url": "https://github.com/lirantal/daloradius",
+      "exists": true,
+      "error": null,
+      "db_files": 21,
+      "git_files": 21,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "aeaf2cdc80dff60815e3706af448f086ddc3b98d",
+      "repo_url": "https://github.com/zopefoundation/Zope",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "8f32f89654d6c30d56e0dd167059d32146fb32ef",
+      "repo_url": "https://github.com/nitely/spirit",
+      "exists": true,
+      "error": null,
+      "db_files": 15,
+      "git_files": 15,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "6669de1b235843968e88844ca6d3c8dec4b01a9e",
+      "repo_url": "https://github.com/vim/vim",
+      "exists": true,
+      "error": null,
+      "db_files": 3,
+      "git_files": 3,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "f01846bd443aaf92fdd5ac20f461beac3f6ee3fd",
+      "repo_url": "https://github.com/dandavison/delta",
+      "exists": true,
+      "error": null,
+      "db_files": 5,
+      "git_files": 5,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "d0843a4070c7d7fa596a7eb2130be15383013487",
+      "repo_url": "https://github.com/bludit/bludit",
+      "exists": true,
+      "error": null,
+      "db_files": 14,
+      "git_files": 14,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "52b8c0bae36f129a5be05e377d7391afc3629df6",
+      "repo_url": "https://github.com/hamza417/inure",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "7a12046a67ae5d8cf04face3ee75e55f03a1a608",
+      "repo_url": "https://github.com/forkcms/forkcms",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "146c5aaafd826c1c8990333c393bff6f64c90786",
+      "repo_url": "https://github.com/tine20/Tine-2.0-Open-Source-Groupware-and-CRM",
+      "exists": true,
+      "error": null,
+      "db_files": 3,
+      "git_files": 3,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "568e8db44930fda4563c1e708a2440909fd8e5fe",
+      "repo_url": "https://github.com/dotse/zonemaster-gui",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "0b53dbbd4a3153c3ef9aaf797af3b5caad0f731a",
+      "repo_url": "https://github.com/snyk/snyk-visual-studio-plugin",
+      "exists": true,
+      "error": null,
+      "db_files": 19,
+      "git_files": 19,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "77510778516803b7f7402d7423c6d6bef50254c3",
+      "repo_url": "https://github.com/gpac/gpac",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "9728b925221a0d87798ccf250657a3c214b7e980",
+      "repo_url": "https://github.com/micronaut-projects/micronaut-security",
+      "exists": true,
+      "error": null,
+      "db_files": 2,
+      "git_files": 2,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "659864b393961bf224bba1efc03b7dcbed7de533",
+      "repo_url": "https://github.com/catfan/Medoo",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    },
+    {
+      "hash": "18bad1ff32435e523d7507e9b2ce0010124a8f2d",
+      "repo_url": "https://github.com/eclipse/mosquitto",
+      "exists": true,
+      "error": null,
+      "db_files": 1,
+      "git_files": 1,
+      "files_checked": true,
+      "db_files_subset_of_git": true
+    }
+  ]
+}
