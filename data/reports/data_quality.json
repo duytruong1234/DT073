@@ -1,0 +1,428 @@
+{
+  "row_counts": {
+    "fixes": 12923,
+    "commits": 12107,
+    "file_change": 51342,
+    "method_change": 277948,
+    "cve": 11873,
+    "cwe": 272,
+    "cwe_classification": 12198,
+    "repository": 4249
+  },
+  "n_cve_in_fixes": 11873,
+  "n_commits_in_fixes": 12103,
+  "n_repos_in_fixes": 4249,
+  "cwe": {
+    "n_distinct_cwe": 272,
+    "n_cve_with_cwe": 11873,
+    "top25": [
+      [
+        "CWE-79",
+        1794
+      ],
+      [
+        "NVD-CWE-noinfo",
+        1162
+      ],
+      [
+        "CWE-125",
+        553
+      ],
+      [
+        "CWE-787",
+        450
+      ],
+      [
+        "CWE-20",
+        408
+      ],
+      [
+        "CWE-89",
+        403
+      ],
+      [
+        "CWE-119",
+        384
+      ],
+      [
+        "CWE-22",
+        383
+      ],
+      [
+        "CWE-476",
+        379
+      ],
+      [
+        "NVD-CWE-Other",
+        301
+      ],
+      [
+        "CWE-200",
+        295
+      ],
+      [
+        "CWE-416",
+        275
+      ],
+      [
+        "CWE-352",
+        246
+      ],
+      [
+        "CWE-190",
+        225
+      ],
+      [
+        "CWE-287",
+        146
+      ],
+      [
+        "CWE-94",
+        146
+      ],
+      [
+        "CWE-78",
+        143
+      ],
+      [
+        "CWE-918",
+        143
+      ],
+      [
+        "CWE-264",
+        141
+      ],
+      [
+        "CWE-863",
+        126
+      ],
+      [
+        "CWE-362",
+        125
+      ],
+      [
+        "CWE-400",
+        123
+      ],
+      [
+        "CWE-74",
+        112
+      ],
+      [
+        "CWE-601",
+        107
+      ],
+      [
+        "CWE-120",
+        102
+      ]
+    ],
+    "nonspecific": {
+      "NVD-CWE-Other": 301,
+      "NVD-CWE-noinfo": 1162
+    },
+    "cve_only_nonspecific": 1458,
+    "cwe_per_cve_hist": {
+      "1": 11568,
+      "2": 287,
+      "3": 16,
+      "4": 2
+    },
+    "fixes_cve_without_cwe": 0
+  },
+  "cve_by_year": {
+    "1999": 1,
+    "2008": 2,
+    "2009": 4,
+    "2010": 9,
+    "2011": 25,
+    "2012": 187,
+    "2013": 251,
+    "2014": 322,
+    "2015": 207,
+    "2016": 416,
+    "2017": 1098,
+    "2018": 669,
+    "2019": 705,
+    "2020": 870,
+    "2021": 1340,
+    "2022": 2368,
+    "2023": 2336,
+    "2024": 1063
+  },
+  "commits": {
+    "fixes_rows_without_commit": 0,
+    "commits_without_file_change": 918,
+    "same_hash_multiple_repos": 4,
+    "by_year": {
+      "1999": 2,
+      "2001": 1,
+      "2005": 1,
+      "2006": 3,
+      "2007": 8,
+      "2008": 17,
+      "2009": 15,
+      "2010": 48,
+      "2011": 123,
+      "2012": 231,
+      "2013": 328,
+      "2014": 449,
+      "2015": 499,
+      "2016": 693,
+      "2017": 899,
+      "2018": 632,
+      "2019": 709,
+      "2020": 994,
+      "2021": 1658,
+      "2022": 2075,
+      "2023": 1837,
+      "2024": 885
+    },
+    "top_repos": [
+      [
+        "https://github.com/torvalds/linux",
+        1172
+      ],
+      [
+        "https://github.com/tensorflow/tensorflow",
+        431
+      ],
+      [
+        "https://github.com/vim/vim",
+        181
+      ],
+      [
+        "https://github.com/ImageMagick/ImageMagick",
+        180
+      ],
+      [
+        "https://github.com/xwiki/xwiki-platform",
+        151
+      ],
+      [
+        "https://github.com/gpac/gpac",
+        135
+      ],
+      [
+        "https://github.com/phpmyadmin/phpmyadmin",
+        126
+      ],
+      [
+        "https://github.com/the-tcpdump-group/tcpdump",
+        104
+      ],
+      [
+        "https://github.com/FFmpeg/FFmpeg",
+        103
+      ],
+      [
+        "https://github.com/MISP/MISP",
+        96
+      ],
+      [
+        "https://github.com/pimcore/pimcore",
+        84
+      ],
+      [
+        "https://github.com/microweber/microweber",
+        81
+      ],
+      [
+        "https://github.com/discourse/discourse",
+        72
+      ],
+      [
+        "https://github.com/thorsten/phpmyfaq",
+        68
+      ],
+      [
+        "https://github.com/radareorg/radare2",
+        64
+      ]
+    ],
+    "merge_commits": 908,
+    "files_per_commit": {
+      "p50": 2,
+      "p90": 6,
+      "p99": 38,
+      "max": 2142
+    },
+    "commits_gt_10_files": 595
+  },
+  "file_change": {
+    "by_language": [
+      [
+        "PHP",
+        12464
+      ],
+      [
+        "C",
+        6220
+      ],
+      [
+        "unknown",
+        4126
+      ],
+      [
+        "JavaScript",
+        3656
+      ],
+      [
+        "Markdown",
+        2942
+      ],
+      [
+        "Python",
+        2753
+      ],
+      [
+        "Java",
+        2571
+      ],
+      [
+        "TypeScript",
+        2563
+      ],
+      [
+        "C++",
+        2252
+      ],
+      [
+        "Go",
+        1919
+      ],
+      [
+        "Ruby",
+        1917
+      ],
+      [
+        "HTML",
+        1499
+      ],
+      [
+        "Shell",
+        1081
+      ],
+      [
+        "CoffeeScript",
+        735
+      ],
+      [
+        "SQL",
+        685
+      ],
+      [
+        "C#",
+        484
+      ],
+      [
+        "Batchfile",
+        457
+      ],
+      [
+        "Scala",
+        395
+      ],
+      [
+        "Lua",
+        393
+      ],
+      [
+        "Perl",
+        341
+      ],
+      [
+        "Rust",
+        331
+      ],
+      [
+        "Objective-C",
+        328
+      ],
+      [
+        "CSS",
+        319
+      ],
+      [
+        "Haskell",
+        157
+      ],
+      [
+        "Matlab",
+        148
+      ],
+      [
+        "TeX",
+        142
+      ],
+      [
+        "PowerShell",
+        139
+      ],
+      [
+        "Swift",
+        133
+      ],
+      [
+        "Jupyter Notebook",
+        104
+      ],
+      [
+        "R",
+        68
+      ],
+      [
+        "Erlang",
+        11
+      ],
+      [
+        "None",
+        9
+      ]
+    ],
+    "by_change_type": [
+      [
+        "ModificationType.MODIFY",
+        37639
+      ],
+      [
+        "ModificationType.ADD",
+        9269
+      ],
+      [
+        "ModificationType.DELETE",
+        4124
+      ],
+      [
+        "ModificationType.RENAME",
+        310
+      ]
+    ],
+    "code_before_missing": 9272,
+    "code_after_missing": 4126,
+    "diff_empty": 0,
+    "lines_changed_per_file": {
+      "p50": 9,
+      "p90": 99,
+      "p99": 698,
+      "max": 208630
+    },
+    "diff_exact_duplicates": {
+      "rows": 51342,
+      "duplicates": 3254,
+      "duplicate_rate": 0.0634
+    }
+  },
+  "method_change": {
+    "by_before_change": [
+      [
+        "False",
+        151349
+      ],
+      [
+        "True",
+        126599
+      ]
+    ]
+  }
+}

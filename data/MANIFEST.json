@@ -1,0 +1,36 @@
+{
+  "dataset": "CVEfixes",
+  "version": "v1.0.8",
+  "coverage": "CVE công bố đến 23/07/2024",
+  "doi": "10.5281/zenodo.4476563",
+  "zenodo_record": "13118970",
+  "url": "https://zenodo.org/api/records/13118970/files/CVEfixes_v1.0.8.zip/content",
+  "license": "CC BY 4.0 (dữ liệu), MIT (mã nguồn thu thập)",
+  "citation": "Bhandari, Naseer, Moonen. CVEfixes. PROMISE '21. doi:10.1145/3475960.3475985",
+  "downloaded_at": "2026-10-19T03:07:15",
+  "files": {
+    "CVEfixes_v1.0.8.zip": {
+      "size": 12708711268,
+      "md5": "4586a358977acfa4c60b1a2cdd096221",
+      "sha256": "6acd55aaeb7ffcfc20fdcebf7df88d206f9892ef64b0f2a2e06864d5b44b3a83"
+    }
+  },
+  "derived": {
+    "CVEfixes.db": {
+      "size": 13539254272,
+      "sha256": "c51f67d8433efbfb3ad40b542d8ffb98a9c3d4fe72d7c916cff3b0f79751245d",
+      "built_by": "scripts/build_sqlite.py",
+      "compressed_columns": {
+        "file_change": [
+          "code_after",
+          "code_before",
+          "diff_parsed"
+        ],
+        "method_change": [
+          "code"
+        ]
+      },
+      "skipped_rows": {}
+    }
+  }
+}
