@@ -39,6 +39,26 @@ powershell -ExecutionPolicy Bypass -File scripts\run_step2.ps1
 | `scripts/build_sqlite.py` | `data/db/CVEfixes.db` (cột mã nén zlib, lossless; đọc bằng `src/cvefixes_db.py`) + `data/db_stats.json` |
 | `scripts/data_report.py` | `data/reports/data_quality.json`, `data/reports/data_quality.md` |
 
+## 3b. Tạo bộ dữ liệu hunk tái lập (Bước 5)
+
+```powershell
+.venv\Scripts\python scripts/build_dataset.py                    # metadata → validate → hunks → chuẩn hóa → dedup → nhãn → split
+.venv\Scripts\python scripts/verify_commits_online.py --n 100    # kiểm tra mẫu commit trên repo gốc (chỉ fetch lịch sử)
+```
+
+| Module | Vai trò |
+|---|---|
+| `src/metadata.py` | Đọc ứng viên cấp file; gộp quan hệ CVE↔commit↔CWE và hash↔nhiều repo (fork) |
+| `src/validate.py` | Lý do loại theo thứ tự (phễu coverage); kiểm tra online an toàn |
+| `src/hunks.py` | Parser diff chịu lỗi → hunk before/after/removed/added |
+| `src/normalize.py` | Chuẩn hóa tree-sitter (bỏ comment, định danh → IDn, giữ API nhạy cảm) |
+| `src/dedup.py` | Trùng lặp 3 mức exact ⊆ normalized ⊆ near (MinHash), xung đột nhãn |
+| `src/split.py` | Random / project / time split; nhóm rò rỉ = repo + fork + CVE + cụm gần trùng |
+
+Đầu ra trong `data/processed/`: `hunks.parquet`, `file_status.parquet`, `summary.json`, `MANIFEST_dataset.json` (SHA-256 – chạy lại phải trùng khớp).
+
+Thử nhanh không cần dữ liệu đầy đủ: `scripts/make_sample_db.py` tạo DB mẫu từ phần đầu file zip.
+
 ## 4. Cấu trúc thư mục
 
 ```
@@ -68,7 +88,7 @@ Chỉ đọc dữ liệu công khai dạng văn bản; **không biên dịch/ch�
 - [x] Bước 2 – Script tải/chuyển đổi dữ liệu (đang chạy nạp dữ liệu đầy đủ)
 - [x] Bước 3 – Môi trường tái lập
 - [ ] Bước 4 – EDA & threat model
-- [ ] Bước 5 – Pipeline: validate commits → extract hunks → dedup → split; baseline & biến thể
+- [~] Bước 5 – Pipeline: validate commits → extract hunks → dedup → split (xong, 63 test); baseline & biến thể (chờ EDA)
 - [ ] Bước 6 – Ma trận thí nghiệm
 - [ ] Bước 7 – Đánh giá
 - [ ] Bước 8 – Đóng gói

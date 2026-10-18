@@ -17,6 +17,7 @@ dataset:
   # Nhãn không cụ thể của NVD – gắn cờ, không dùng làm lớp huấn luyện
   nonspecific_cwe: [NVD-CWE-Other, NVD-CWE-noinfo]
   top_k_cwe: 10                 # số lớp CWE giữ lại; còn lại -> loại hoặc gộp "Other"
+  multi_cwe_policy: drop        # CVE có >1 CWE cụ thể: drop | first  – chốt sau EDA
 
 validate:
   drop_merge_commits: true
@@ -28,6 +29,7 @@ hunks:
   min_changed_lines: 1
   max_hunk_lines: 200
   drop_whitespace_only: true
+  drop_add_only: false          # giữ hunk chỉ thêm dòng (bản vá hay chỉ chèn kiểm tra)
 
 dedup:
   levels: [exact, normalized, near]
