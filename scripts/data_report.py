@@ -2,7 +2,7 @@
 
 Đầu ra:
     data/reports/data_quality.json   – số liệu thô (để so sánh/tái lập)
-    docs/02_thong_ke_du_lieu.md      – bảng thống kê đưa thẳng vào chương 3 báo cáo
+    data/reports/data_quality.md     – bảng thống kê, chép vào chương Dữ liệu của báo cáo
 
 Cách chạy:
     python scripts/data_report.py [--db data/db/CVEfixes.db]
@@ -24,7 +24,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."
 from cvefixes_db import connect, DEFAULT_DB  # noqa: E402
 
 OUT_JSON = os.path.join("data", "reports", "data_quality.json")
-OUT_MD = os.path.join("docs", "02_thong_ke_du_lieu.md")
+OUT_MD = os.path.join("data", "reports", "data_quality.md")
 NONSPECIFIC_CWE = ("NVD-CWE-Other", "NVD-CWE-noinfo")
 
 

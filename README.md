@@ -37,20 +37,19 @@ powershell -ExecutionPolicy Bypass -File scripts\run_step2.ps1
 |---|---|
 | `scripts/download_cvefixes.py` | `data/raw/CVEfixes_v1.0.8.zip` (resume, kiểm tra MD5) + `data/MANIFEST.json` |
 | `scripts/build_sqlite.py` | `data/db/CVEfixes.db` (cột mã nén zlib, lossless; đọc bằng `src/cvefixes_db.py`) + `data/db_stats.json` |
-| `scripts/data_report.py` | `data/reports/data_quality.json`, `docs/02_thong_ke_du_lieu.md` |
+| `scripts/data_report.py` | `data/reports/data_quality.json`, `data/reports/data_quality.md` |
 
 ## 4. Cấu trúc thư mục
 
 ```
-configs/      cấu hình (seed, ngưỡng lọc, chiến lược split) – base.yaml
-data/         raw/ db/ interim/ processed/ reports/   (raw & db KHÔNG đưa lên git)
-docs/         phiếu tái lập, các chương báo cáo nháp
-scripts/      script chạy từng bước
-src/          thư viện của đề tài (đọc DB, tiện ích tái lập, pipeline)
-tests/        unit / integration / negative tests
-notebooks/    EDA
-results/      kết quả thô, log, cấu hình mỗi lần chạy
-report/       báo cáo, slide
+configs/          cấu hình (seed, ngưỡng lọc, chiến lược split) – base.yaml
+data/             raw/ db/ interim/ processed/ reports/   (raw & db KHÔNG đưa lên git)
+scripts/          script chạy từng bước
+src/              thư viện của đề tài (đọc DB, tiện ích tái lập, pipeline)
+tests/            unit / integration / negative tests
+notebooks/        EDA
+results/          kết quả thô, log, cấu hình mỗi lần chạy
+mapping_paper.md  bảng ánh xạ kết quả với bài báo
 ```
 
 ## 5. Tái lập
@@ -58,6 +57,7 @@ report/       báo cáo, slide
 - Seed cố định: `configs/base.yaml → seeds: [42, 123, 2024]`.
 - Mỗi lần chạy ghi `run_meta.json` (config, seed, git commit, môi trường) – xem `src/utils.py`.
 - Checksum dữ liệu gốc và dữ liệu dẫn xuất: `data/MANIFEST.json`.
+- Đối chiếu với bài báo: `mapping_paper.md`.
 
 ## 6. An toàn & đạo đức
 
@@ -65,7 +65,6 @@ Chỉ đọc dữ liệu công khai dạng văn bản; **không biên dịch/ch�
 
 ## 7. Trạng thái
 
-- [x] Bước 1 – Phiếu tái lập: `docs/01_phieu_tai_lap.md`
 - [x] Bước 2 – Script tải/chuyển đổi dữ liệu (đang chạy nạp dữ liệu đầy đủ)
 - [x] Bước 3 – Môi trường tái lập
 - [ ] Bước 4 – EDA & threat model
