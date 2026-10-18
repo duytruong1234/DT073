@@ -67,3 +67,11 @@ def test_filters():
     assert hunk_filter_reason(add_only, drop_add_only=True) == "add_only"
     long = parse_diff("@@ -1,300 +1,300 @@\n" + " c\n" * 299 + "-x\n+y\n")[0]
     assert hunk_filter_reason(long, max_lines=200) == "hunk_too_long"
+
+
+def test_mask_emails():
+    from hunks import mask_emails
+    s, n = mask_emails("/* Copyright John <john.doe@example.com>, a.b@uni.edu.vn */\n@app.route('/x')\nx = a@b;\n")
+    assert n == 2 and "<EMAIL>" in s and "example.com" not in s
+    assert "@app.route" in s and "a@b;" in s          # decorator / mã không ph?i email gi? nguyên
+    assert mask_emails("") == ("", 0) and mask_emails(None) == (None, 0)

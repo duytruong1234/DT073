@@ -27,7 +27,10 @@ def _table_exists(con, name):
     return con.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name=?", (name,)).fetchone() is not None
 
 
-def load_candidates(con: sqlite3.Connection, languages: list[str] | None = None) -> pd.DataFrame:
+def load_candidates(con: sqlite3.Connection, languages: list[str] | None = None,
+                    code_languages: list[str] | None = None) -> pd.DataFrame:
+    """languages: lọc file theo ngôn ngữ ngay khi đọc (None = đọc hết, để validate ghi lý do loại).
+    code_languages: ngôn ngữ được tính là "mã nguồn" khi đếm n_code_files_in_commit."""
     sql = BASE_SQL
     params: list = []
     if languages:
@@ -39,6 +42,12 @@ def load_candidates(con: sqlite3.Connection, languages: list[str] | None = None)
         "SELECT hash, repo_url, committer_date, merge, parents FROM commits", con)
     n_files = pd.read_sql_query(
         "SELECT hash, COUNT(*) AS n_files_in_commit FROM file_change GROUP BY hash", con)
+    if code_languages:
+        q = (f"SELECT hash, COUNT(*) AS n_code_files_in_commit FROM file_change "
+             f"WHERE programming_language IN ({','.join('?' * len(code_languages))}) GROUP BY hash")
+        n_code = pd.read_sql_query(q, con, params=list(code_languages))
+    else:
+        n_code = n_files.rename(columns={"n_files_in_commit": "n_code_files_in_commit"})
     fixes = pd.read_sql_query("SELECT DISTINCT cve_id, hash, repo_url FROM fixes", con)
 
     # --- repo theo hash (fork) ---
@@ -64,7 +73,9 @@ def load_candidates(con: sqlite3.Connection, languages: list[str] | None = None)
 
     df = (files.merge(repos, on="hash", how="left")
                .merge(labels, on="hash", how="left")
-               .merge(n_files, on="hash", how="left"))
+               .merge(n_files, on="hash", how="left")
+               .merge(n_code, on="hash", how="left"))
+    df["n_code_files_in_commit"] = df["n_code_files_in_commit"].fillna(0).astype(int)
     df["n_repos"] = df["repo_urls"].map(lambda x: len(x) if isinstance(x, list) else 0)
     df["n_cves"] = df["cve_ids"].map(lambda x: len(x) if isinstance(x, list) else 0)
     df["year"] = df["committer_date"].astype(str).str[:4]

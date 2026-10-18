@@ -97,7 +97,8 @@ def test_time_split_order_and_drop():
     y = pd.to_numeric(sp["year"])
     assert (y[sp.split_time == "test"] >= 2021).all()
     assert (y[sp.split_time.isin(["train", "val"])] < 2021).all()
-    assert leakage_report(sp, "split_time")["shared_leak_group"] == 0
+    rep = leakage_report(sp, "split_time")
+    assert rep["shared_cve"] == 0 and rep["shared_dup_near"] == 0 and rep["shared_time_group"] == 0
 
 
 def test_split_deterministic_with_seed():

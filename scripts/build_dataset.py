@@ -27,7 +27,7 @@ import pandas as pd  # noqa: E402
 
 from cvefixes_db import connect  # noqa: E402
 from dedup import cross_split_duplicates, deduplicate, duplicate_stats  # noqa: E402
-from hunks import hunk_filter_reason, parse_diff  # noqa: E402
+from hunks import hunk_filter_reason, mask_emails, parse_diff  # noqa: E402
 from metadata import load_candidates  # noqa: E402
 from normalize import tokenize  # noqa: E402
 from split import leakage_report, make_splits  # noqa: E402
@@ -45,7 +45,7 @@ def sha256(path):
     return h.hexdigest()
 
 
-def extract_hunks(files: pd.DataFrame, cfg_h: dict) -> pd.DataFrame:
+def extract_hunks(files: pd.DataFrame, cfg_h: dict, mask_pii: bool = True) -> pd.DataFrame:
     keep_cols = ["file_change_id", "hash", "repo_url", "repo_urls", "cve_ids", "cwe_ids", "lang",
                  "filename", "year", "committer_date"]
     rows = []
@@ -56,8 +56,13 @@ def extract_hunks(files: pd.DataFrame, cfg_h: dict) -> pd.DataFrame:
                                         cfg_h.get("drop_whitespace_only", True), cfg_h.get("drop_add_only", False))
             d = h.to_dict()
             d["hunk_idx"] = d.pop("idx")
+            n_masked = 0
+            if mask_pii:
+                for col in ("before", "after", "removed", "added", "section"):
+                    d[col], n = mask_emails(d[col])
+                    n_masked += n
             rows.append({**base, **d, "hunk_id": f"{r.file_change_id}#{h.idx:04d}",
-                         "hunk_status": reason or "ok"})
+                         "hunk_status": reason or "ok", "n_emails_masked": n_masked})
     return pd.DataFrame(rows)
 
 
@@ -98,7 +103,7 @@ def main():
 
     t = time.perf_counter()
     con = connect(db)
-    files = load_candidates(con)
+    files = load_candidates(con, code_languages=cfg["dataset"]["languages"])
     timings["metadata_s"] = round(time.perf_counter() - t, 2)
     print(f"[1] metadata: {len(files):,} file_change ứng viên")
 
@@ -110,12 +115,14 @@ def main():
     print(f"[2] validate: còn {len(ok_files):,} file hợp lệ")
 
     t = time.perf_counter()
-    hunks = extract_hunks(ok_files, cfg["hunks"])
+    hunks = extract_hunks(ok_files, cfg["hunks"], cfg.get("privacy", {}).get("mask_emails", True))
     timings["hunks_s"] = round(time.perf_counter() - t, 2)
     summary["hunk_status"] = hunks["hunk_status"].value_counts().to_dict() if len(hunks) else {}
     summary["hunk_warnings"] = (hunks["warnings"].replace("", pd.NA).dropna().value_counts().to_dict()
                                 if len(hunks) else {})
     hk = hunks[hunks["hunk_status"] == "ok"].copy()
+    summary["privacy"] = {"hunks_with_masked_email": int((hk["n_emails_masked"] > 0).sum()),
+                          "emails_masked": int(hk["n_emails_masked"].sum())}
     print(f"[3] hunks: {len(hunks):,} hunk, giữ {len(hk):,}")
 
     t = time.perf_counter()
@@ -140,10 +147,14 @@ def main():
 
     # Split chỉ trên đại diện near-dup có nhãn cụ thể (top-K áp dụng ở bước huấn luyện sau EDA)
     t = time.perf_counter()
-    labeled = hk[hk["label"].notna() & hk["is_rep_near"]] if "is_rep_near" in hk else hk[hk["label"].notna()]
+    topk = cfg["dataset"].get("top_k_cwe")
+    hk["in_topk"] = hk["label"].isin(topk) if isinstance(topk, list) else hk["label"].notna()
+    rep = hk["is_rep_near"] if "is_rep_near" in hk else True
+    labeled = hk[hk["in_topk"] & rep]   # tập mô hình hóa: đại diện near-dup, nhãn thuộc top-K
+    summary["modeling_set"] = {"n": int(len(labeled)), "classes": labeled["label"].value_counts().to_dict()}
     if len(labeled) >= 20 and labeled["label"].nunique() >= 2:
         sp = make_splits(labeled, cfg["split"], seed)
-        cols = [c for c in sp.columns if c.startswith("split_")] + ["leak_group"]
+        cols = [c for c in sp.columns if c.startswith("split_")] + [c for c in ("leak_group", "time_group") if c in sp]
         hk = hk.join(sp[cols])
         summary["leakage"] = {c: leakage_report(sp, c) for c in cols if c.startswith("split_")}
         summary["cross_split_duplicates_all_hunks"] = {

@@ -1,4 +1,6 @@
 # Cấu hình chung – mọi script đọc từ đây, KHÔNG hard-code trong code
+# Mọi giá trị đánh dấu [EDA] được chốt theo quy tắc viết sẵn trong scripts/eda.py (RULES),
+# số liệu căn cứ trong results/eda/EDA_A.md, EDA_B.md; lý do trong PREREGISTRATION.md.
 project: DT073
 seeds: [42, 123, 2024]          # ≥ 3 lần chạy theo yêu cầu đề
 
@@ -12,16 +14,21 @@ paths:
 
 dataset:
   version: v1.0.8
-  # Ngôn ngữ giữ lại (tên theo cột file_change.programming_language) – chốt lại sau EDA (Bước 4)
-  languages: [C, C++, PHP, Python, Java, JavaScript, Go, Ruby]
+  # [EDA-A1] ngôn ngữ lập trình, có grammar tree-sitter, ≥ 1 500 file_change
+  languages: [PHP, C, JavaScript, Python, Java, TypeScript, C++, Go, Ruby]
   # Nhãn không cụ thể của NVD – gắn cờ, không dùng làm lớp huấn luyện
   nonspecific_cwe: [NVD-CWE-Other, NVD-CWE-noinfo]
-  top_k_cwe: 10                 # số lớp CWE giữ lại; còn lại -> loại hoặc gộp "Other"
-  multi_cwe_policy: drop        # CVE có >1 CWE cụ thể: drop | first  – chốt sau EDA
+  # [EDA-B1] 17 CWE có ≥ 500 hunk đại diện (phủ 58,8% hunk có nhãn) – danh sách CỐ ĐỊNH
+  top_k_cwe: [CWE-79, CWE-125, CWE-22, CWE-89, CWE-119, CWE-20, CWE-787, CWE-476, CWE-352,
+              CWE-200, CWE-416, CWE-190, CWE-94, CWE-863, CWE-78, CWE-400, CWE-287]
+  min_hunks_per_class: 500
+  other_classes: drop           # lớp ngoài top-K: loại (không gộp "Other" vì không đồng nhất)
+  multi_cwe_policy: drop        # CVE có >1 CWE cụ thể: loại (tránh nhãn mơ hồ; ~5% hunk)
 
 validate:
   drop_merge_commits: true
-  max_files_per_commit: 10      # nghi "tangled commit" nếu vượt – chốt lại sau EDA
+  tangled_count: code_files     # [EDA-A2] chỉ đếm file thuộc ngôn ngữ đã chọn
+  max_files_per_commit: 9       # [EDA-A2] = p95 số file mã nguồn/commit
   max_lines_changed_per_file: 500
   require_before_and_after: true   # bỏ file ADD/DELETE (thiếu code_before/code_after)
 
@@ -31,6 +38,9 @@ hunks:
   drop_whitespace_only: true
   drop_add_only: false          # giữ hunk chỉ thêm dòng (bản vá hay chỉ chèn kiểm tra)
 
+privacy:
+  mask_emails: true             # [EDA-A3] thay email trong mã bằng <EMAIL>; không xuất author/committer/msg
+
 dedup:
   levels: [exact, normalized, near]
   near_jaccard: 0.9
@@ -39,8 +49,9 @@ dedup:
 
 split:
   strategies: [random, project, time]
-  main: project                 # split chính, chống rò rỉ theo repo
+  main: project                 # split chính: không chung repo/fork/CVE/cụm gần trùng giữa train và test
+  project_leak_keys: [repo, cve, dup]
+  time_leak_keys: [cve, dup]    # time split đo "dự đoán lỗ hổng tương lai" (cho phép cùng project)
   test_size: 0.2
   val_size: 0.1
-  n_folds: 5
-  time_cutoff_year: 2022        # time split: train < cutoff <= test
+  time_cutoff_year: 2023        # [EDA-B2] năm ≥ 2023 làm test (16,1% hunk top-K)

@@ -1,0 +1,134 @@
+{
+  "rules": {
+    "languages": "Ngôn ngữ LẬP TRÌNH, có grammar tree-sitter, ≥ 1 500 file_change trong CVEfixes",
+    "min_files_per_language": 1500,
+    "tangled": "Ngưỡng = phân vị 95 của số file MÃ NGUỒN mỗi commit (loại 5% commit lớn nhất)",
+    "tangled_quantile": 0.95,
+    "top_k": "Giữ CWE có ≥ 500 hunk đại diện (≈ ≥ 100 mẫu/lớp trong test 20%)",
+    "min_hunks_per_class": 500,
+    "time_cutoff": "Năm nhỏ nhất sao cho phần hunk có nhãn từ năm đó trở đi ≤ 25% và gần 20% nhất",
+    "time_test_target": 0.2
+  },
+  "run": "data/interim/eda_run2",
+  "topk": {
+    "chosen_k": 17,
+    "classes": {
+      "CWE-79": 4404,
+      "CWE-125": 1353,
+      "CWE-22": 1211,
+      "CWE-89": 1169,
+      "CWE-119": 1030,
+      "CWE-20": 1002,
+      "CWE-787": 992,
+      "CWE-476": 868,
+      "CWE-352": 853,
+      "CWE-200": 778,
+      "CWE-416": 749,
+      "CWE-190": 594,
+      "CWE-94": 558,
+      "CWE-863": 547,
+      "CWE-78": 517,
+      "CWE-400": 517,
+      "CWE-287": 500
+    },
+    "coverage_of_labeled": 0.5877,
+    "n_labeled_reps": 30021,
+    "n_distinct_cwe": 213,
+    "coverage_k10": 0.455,
+    "coverage_k20": 0.631
+  },
+  "imbalance": {
+    "ratio_max_min": 8.81,
+    "normalized_entropy": 0.9188,
+    "majority_class_share": 0.2496
+  },
+  "time": {
+    "by_year": {
+      "2005": 2,
+      "2006": 7,
+      "2007": 32,
+      "2008": 33,
+      "2009": 49,
+      "2010": 64,
+      "2011": 173,
+      "2012": 377,
+      "2013": 528,
+      "2014": 729,
+      "2015": 809,
+      "2016": 1311,
+      "2017": 1656,
+      "2018": 1164,
+      "2019": 982,
+      "2020": 1376,
+      "2021": 2329,
+      "2022": 3177,
+      "2023": 2522,
+      "2024": 322
+    },
+    "chosen_cutoff": 2023,
+    "test_share": 0.1612
+  },
+  "hunk_size": {
+    "p50": 10.0,
+    "p90": 27.0,
+    "p99": 93.0
+  },
+  "hunk_kind": {
+    "add_only": 13359,
+    "delete_only": 1991,
+    "both": 24904
+  },
+  "duplicates": {
+    "n_hunks": 40254,
+    "exact": {
+      "n_clusters": 39280,
+      "duplicate_rate": 0.0242,
+      "max_cluster_size": 16,
+      "rows_in_dup_clusters": 1670,
+      "label_conflict_clusters": 5,
+      "label_conflict_rows": 10
+    },
+    "normalized": {
+      "n_clusters": 37103,
+      "duplicate_rate": 0.0783,
+      "max_cluster_size": 98,
+      "rows_in_dup_clusters": 4746,
+      "label_conflict_clusters": 141,
+      "label_conflict_rows": 752
+    },
+    "near": {
+      "n_clusters": 36595,
+      "duplicate_rate": 0.0909,
+      "max_cluster_size": 140,
+      "rows_in_dup_clusters": 5397,
+      "label_conflict_clusters": 168,
+      "label_conflict_rows": 1037
+    }
+  },
+  "leakage": {
+    "split_random": {
+      "n_train": 21014,
+      "n_test": 6005,
+      "shared_repo": 1456,
+      "shared_cve": 2876,
+      "shared_dup_exact": 0,
+      "shared_dup_normalized": 0,
+      "shared_dup_near": 0,
+      "shared_leak_group": 1438
+    },
+    "split_project": {
+      "n_train": 20687,
+      "n_test": 6406,
+      "shared_repo": 0,
+      "shared_cve": 0,
+      "shared_dup_exact": 0,
+      "shared_dup_normalized": 0,
+      "shared_dup_near": 0,
+      "shared_leak_group": 0
+    }
+  },
+  "privacy_hunks": {
+    "hunks_with_masked_email": 400,
+    "emails_masked": 1858
+  }
+}

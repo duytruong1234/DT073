@@ -15,14 +15,19 @@ import pandas as pd
 from dedup import UnionFind
 
 
-def leak_groups(df: pd.DataFrame, dup_col: str = "dup_near") -> pd.Series:
-    keys = []
-    for r in df.itertuples(index=False):
-        k = [f"repo:{u}" for u in (r.repo_urls if isinstance(r.repo_urls, (list, np.ndarray)) else [r.repo_url])]
-        k += [f"cve:{c}" for c in (r.cve_ids if isinstance(r.cve_ids, (list, np.ndarray)) else [])]
-        if dup_col in df.columns:
+def leak_groups(df: pd.DataFrame, dup_col: str = "dup_near", keys=("repo", "cve", "dup")) -> pd.Series:
+    """Thành phần liên thông theo các loại khóa chọn trong `keys` (repo, cve, dup)."""
+    keys_per_row = []
+    for i, r in enumerate(df.itertuples(index=False)):
+        k = [f"row:{i}"]   # mỗi dòng luôn có ít nhất 1 khóa riêng
+        if "repo" in keys:
+            k += [f"repo:{u}" for u in (r.repo_urls if isinstance(r.repo_urls, (list, np.ndarray)) else [r.repo_url])]
+        if "cve" in keys:
+            k += [f"cve:{c}" for c in (r.cve_ids if isinstance(r.cve_ids, (list, np.ndarray)) else [])]
+        if "dup" in keys and dup_col in df.columns:
             k.append(f"dup:{getattr(r, dup_col)}")
-        keys.append(k)
+        keys_per_row.append(k)
+    keys = keys_per_row
     uf = UnionFind(sorted({x for k in keys for x in k}))
     for k in keys:
         for x in k[1:]:
@@ -91,15 +96,16 @@ def split_time(df, groups, cutoff_year, val_size, seed):
 
 def make_splits(df: pd.DataFrame, cfg_split: dict, seed: int, label_col: str = "label") -> pd.DataFrame:
     out = df.copy()
-    out["leak_group"] = leak_groups(out)
+    out["leak_group"] = leak_groups(out, keys=tuple(cfg_split.get("project_leak_keys", ["repo", "cve", "dup"])))
     ts, vs = cfg_split.get("test_size", 0.2), cfg_split.get("val_size", 0.1)
     for s in cfg_split.get("strategies", ["random", "project", "time"]):
         if s == "random":
             out["split_random"] = split_random(out, label_col, ts, vs, seed)
         elif s == "project":
             out["split_project"] = split_project(out, label_col, out["leak_group"], ts, vs, seed)
-        elif s == "time":
-            out["split_time"] = split_time(out, out["leak_group"], cfg_split.get("time_cutoff_year", 2022), vs, seed)
+        elif s == "time" and cfg_split.get("time_cutoff_year") is not None:
+            out["time_group"] = leak_groups(out, keys=tuple(cfg_split.get("time_leak_keys", ["cve", "dup"])))
+            out["split_time"] = split_time(out, out["time_group"], cfg_split["time_cutoff_year"], vs, seed)
     return out
 
 
@@ -117,7 +123,7 @@ def leakage_report(df: pd.DataFrame, split_col: str) -> dict:
     for name, col in (("repo", "repo_urls"), ("cve", "cve_ids")):
         if col in df:
             rep[f"shared_{name}"] = len(flat(tr, col) & flat(te, col))
-    for col in ("dup_exact", "dup_normalized", "dup_near", "leak_group"):
+    for col in ("dup_exact", "dup_normalized", "dup_near", "leak_group", "time_group"):
         if col in df:
             rep[f"shared_{col}"] = len(set(tr[col]) & set(te[col]))
     return rep

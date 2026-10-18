@@ -126,6 +126,27 @@ def table_of(stmt):
     return None
 
 
+# Trust boundary: dump tải từ Internet là KHÔNG tin cậy -> chỉ cho phép các câu lệnh mà lệnh `.dump`
+# của SQLite sinh ra. Chặn ATTACH/DETACH (ghi file tùy ý), VACUUM INTO, PRAGMA khác, DROP, UPDATE...
+ALLOWED_STMT = re.compile(
+    r"^\s*(PRAGMA\s+foreign_keys\s*=\s*(OFF|ON)\s*;|BEGIN(\s+TRANSACTION)?\s*;|COMMIT\s*;|END\s+TRANSACTION\s*;|"
+    r"CREATE\s+TABLE\s|CREATE\s+(UNIQUE\s+)?INDEX\s|INSERT\s+INTO\s|ANALYZE\s|DELETE\s+FROM\s+sqlite_sequence\s*;)",
+    re.I)
+SYSTEM_TABLES = {"sqlite_sequence", "sqlite_stat1", "sqlite_stat4"}
+
+
+class UnsafeStatement(ValueError):
+    pass
+
+
+def check_allowed(stmt: str, created: set) -> None:
+    if not ALLOWED_STMT.match(stmt):
+        raise UnsafeStatement(f"Câu lệnh không được phép trong dump: {stmt[:80]!r}")
+    t = table_of(stmt.lstrip())
+    if t is not None and t not in created and t not in SYSTEM_TABLES:
+        raise UnsafeStatement(f"INSERT vào bảng không được tạo trong dump: {t!r}")
+
+
 class DumpLoader:
     """Thực thi dump vào `con`; với bảng cần nén thì INSERT vào bảng tạm rồi nén theo lô."""
 
@@ -135,6 +156,7 @@ class DumpLoader:
         self.staged = {}     # bảng -> câu lệnh chuyển dữ liệu (đã nén) sang bảng chính
         self.pending = {}    # bảng -> số dòng đang chờ trong bảng tạm
         self.rows, self.skipped = {}, {}
+        self.created = set()  # bảng được CREATE trong dump – chỉ cho INSERT vào các bảng này
         register_functions(con)
 
     def _setup_stage(self, table):
@@ -154,6 +176,7 @@ class DumpLoader:
                 self.pending[t] = 0
 
     def execute(self, stmt):
+        check_allowed(stmt, self.created)
         t = table_of(stmt)
         if t is not None:
             if t in self.skip:
@@ -170,8 +193,10 @@ class DumpLoader:
             self.flush()  # trước COMMIT/CREATE/... đẩy hết dữ liệu đang chờ
         self.con.execute(stmt)
         m = RE_CREATE.match(stmt)
-        if m and m.group(1) in self.compress:
-            self._setup_stage(m.group(1))
+        if m:
+            self.created.add(m.group(1))
+            if m.group(1) in self.compress:
+                self._setup_stage(m.group(1))
         return t
 
     def finish(self):

@@ -50,7 +50,9 @@ def reason_for(row, cfg_validate: dict, languages: set | None) -> str:
         ct = str(row.change_type)
         if ct.endswith(("ADD", "DELETE")):
             return "added_or_deleted_file"
-    if (row.n_files_in_commit or 0) > cfg_validate.get("max_files_per_commit", 10 ** 9):
+    count_col = ("n_code_files_in_commit" if cfg_validate.get("tangled_count", "code_files") == "code_files"
+                 and hasattr(row, "n_code_files_in_commit") else "n_files_in_commit")
+    if (getattr(row, count_col) or 0) > cfg_validate.get("max_files_per_commit", 10 ** 9):
         return "tangled_commit"
     churn = (row.num_lines_added or 0) + (row.num_lines_deleted or 0)
     if churn > cfg_validate.get("max_lines_changed_per_file", 10 ** 9):

@@ -1,0 +1,318 @@
+{
+  "rules": {
+    "languages": "Ngôn ngữ LẬP TRÌNH, có grammar tree-sitter, ≥ 1 500 file_change trong CVEfixes",
+    "min_files_per_language": 1500,
+    "tangled": "Ngưỡng = phân vị 95 của số file MÃ NGUỒN mỗi commit (loại 5% commit lớn nhất)",
+    "tangled_quantile": 0.95,
+    "top_k": "Giữ CWE có ≥ 500 hunk đại diện (≈ ≥ 100 mẫu/lớp trong test 20%)",
+    "min_hunks_per_class": 500,
+    "time_cutoff": "Năm nhỏ nhất sao cho phần hunk có nhãn từ năm đó trở đi ≤ 25% và gần 20% nhất",
+    "time_test_target": 0.2
+  },
+  "languages_table": [
+    {
+      "lang": "PHP",
+      "files": 12464,
+      "commits": 2468,
+      "programming": true,
+      "tree_sitter": true,
+      "selected": true
+    },
+    {
+      "lang": "C",
+      "files": 6220,
+      "commits": 3418,
+      "programming": true,
+      "tree_sitter": true,
+      "selected": true
+    },
+    {
+      "lang": "unknown",
+      "files": 4126,
+      "commits": 183,
+      "programming": false,
+      "tree_sitter": false,
+      "selected": false
+    },
+    {
+      "lang": "JavaScript",
+      "files": 3656,
+      "commits": 1302,
+      "programming": true,
+      "tree_sitter": true,
+      "selected": true
+    },
+    {
+      "lang": "Markdown",
+      "files": 2942,
+      "commits": 1489,
+      "programming": false,
+      "tree_sitter": false,
+      "selected": false
+    },
+    {
+      "lang": "Python",
+      "files": 2753,
+      "commits": 1059,
+      "programming": true,
+      "tree_sitter": true,
+      "selected": true
+    },
+    {
+      "lang": "Java",
+      "files": 2571,
+      "commits": 583,
+      "programming": true,
+      "tree_sitter": true,
+      "selected": true
+    },
+    {
+      "lang": "TypeScript",
+      "files": 2563,
+      "commits": 767,
+      "programming": true,
+      "tree_sitter": true,
+      "selected": true
+    },
+    {
+      "lang": "C++",
+      "files": 2252,
+      "commits": 1094,
+      "programming": true,
+      "tree_sitter": true,
+      "selected": true
+    },
+    {
+      "lang": "Go",
+      "files": 1919,
+      "commits": 499,
+      "programming": true,
+      "tree_sitter": true,
+      "selected": true
+    },
+    {
+      "lang": "Ruby",
+      "files": 1917,
+      "commits": 713,
+      "programming": true,
+      "tree_sitter": true,
+      "selected": true
+    },
+    {
+      "lang": "HTML",
+      "files": 1499,
+      "commits": 523,
+      "programming": false,
+      "tree_sitter": false,
+      "selected": false
+    },
+    {
+      "lang": "Shell",
+      "files": 1081,
+      "commits": 659,
+      "programming": true,
+      "tree_sitter": true,
+      "selected": false
+    },
+    {
+      "lang": "CoffeeScript",
+      "files": 735,
+      "commits": 328,
+      "programming": true,
+      "tree_sitter": false,
+      "selected": false
+    },
+    {
+      "lang": "SQL",
+      "files": 685,
+      "commits": 311,
+      "programming": false,
+      "tree_sitter": false,
+      "selected": false
+    },
+    {
+      "lang": "C#",
+      "files": 484,
+      "commits": 107,
+      "programming": true,
+      "tree_sitter": true,
+      "selected": false
+    },
+    {
+      "lang": "Batchfile",
+      "files": 457,
+      "commits": 247,
+      "programming": false,
+      "tree_sitter": false,
+      "selected": false
+    },
+    {
+      "lang": "Scala",
+      "files": 395,
+      "commits": 177,
+      "programming": true,
+      "tree_sitter": true,
+      "selected": false
+    },
+    {
+      "lang": "Lua",
+      "files": 393,
+      "commits": 269,
+      "programming": true,
+      "tree_sitter": true,
+      "selected": false
+    },
+    {
+      "lang": "Perl",
+      "files": 341,
+      "commits": 208,
+      "programming": true,
+      "tree_sitter": true,
+      "selected": false
+    },
+    {
+      "lang": "Rust",
+      "files": 331,
+      "commits": 142,
+      "programming": true,
+      "tree_sitter": true,
+      "selected": false
+    },
+    {
+      "lang": "Objective-C",
+      "files": 328,
+      "commits": 215,
+      "programming": true,
+      "tree_sitter": true,
+      "selected": false
+    },
+    {
+      "lang": "CSS",
+      "files": 319,
+      "commits": 93,
+      "programming": false,
+      "tree_sitter": false,
+      "selected": false
+    },
+    {
+      "lang": "Haskell",
+      "files": 157,
+      "commits": 69,
+      "programming": true,
+      "tree_sitter": false,
+      "selected": false
+    },
+    {
+      "lang": "Matlab",
+      "files": 148,
+      "commits": 23,
+      "programming": true,
+      "tree_sitter": false,
+      "selected": false
+    }
+  ],
+  "languages_selected": [
+    "PHP",
+    "C",
+    "JavaScript",
+    "Python",
+    "Java",
+    "TypeScript",
+    "C++",
+    "Go",
+    "Ruby"
+  ],
+  "tangled": {
+    "quantiles_code_files_per_commit": {
+      "p50": 1.0,
+      "p75": 3.0,
+      "p90": 5.0,
+      "p95": 9.0,
+      "p99": 29.0
+    },
+    "chosen_threshold": 9,
+    "curve": [
+      {
+        "max_code_files": 1,
+        "files_kept": 5398,
+        "pct_files_kept": 0.1799,
+        "pct_commits_kept": 0.5286
+      },
+      {
+        "max_code_files": 2,
+        "files_kept": 9591,
+        "pct_files_kept": 0.3196,
+        "pct_commits_kept": 0.7415
+      },
+      {
+        "max_code_files": 3,
+        "files_kept": 12207,
+        "pct_files_kept": 0.4068,
+        "pct_commits_kept": 0.8305
+      },
+      {
+        "max_code_files": 5,
+        "files_kept": 15404,
+        "pct_files_kept": 0.5134,
+        "pct_commits_kept": 0.9069
+      },
+      {
+        "max_code_files": 8,
+        "files_kept": 17993,
+        "pct_files_kept": 0.5997,
+        "pct_commits_kept": 0.9472
+      },
+      {
+        "max_code_files": 10,
+        "files_kept": 19243,
+        "pct_files_kept": 0.6413,
+        "pct_commits_kept": 0.9612
+      },
+      {
+        "max_code_files": 15,
+        "files_kept": 21087,
+        "pct_files_kept": 0.7028,
+        "pct_commits_kept": 0.9766
+      },
+      {
+        "max_code_files": 20,
+        "files_kept": 22457,
+        "pct_files_kept": 0.7484,
+        "pct_commits_kept": 0.9847
+      },
+      {
+        "max_code_files": 30,
+        "files_kept": 23853,
+        "pct_files_kept": 0.795,
+        "pct_commits_kept": 0.9909
+      },
+      {
+        "max_code_files": 50,
+        "files_kept": 25081,
+        "pct_files_kept": 0.8359,
+        "pct_commits_kept": 0.9945
+      },
+      {
+        "max_code_files": 100,
+        "files_kept": 27156,
+        "pct_files_kept": 0.905,
+        "pct_commits_kept": 0.998
+      },
+      {
+        "max_code_files": "∞",
+        "files_kept": 30005,
+        "pct_files_kept": 1.0,
+        "pct_commits_kept": 1.0
+      }
+    ],
+    "old_rule_all_files_gt10_removed_files": 11817,
+    "new_rule_removed_files": 11360,
+    "candidate_files": 30005
+  },
+  "privacy_metadata": {
+    "commits_with_author": 12104,
+    "commits_with_committer": 12104,
+    "commit_msgs_with_email": 2525,
+    "n_commits": 12107
+  }
+}

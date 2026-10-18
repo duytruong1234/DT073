@@ -100,6 +100,16 @@ def is_whitespace_only(h: Hunk) -> bool:
     return re.sub(r"\s+", "", h.removed) == re.sub(r"\s+", "", h.added)
 
 
+EMAIL_RE = re.compile(r"(?<![\w.+-])[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}\b")
+
+
+def mask_emails(text: str) -> tuple[str, int]:
+    """Privacy: thay email bằng <EMAIL>. Trả về (văn bản mới, số email đã che)."""
+    if not text:
+        return text, 0
+    return EMAIL_RE.subn("<EMAIL>", text)
+
+
 def hunk_filter_reason(h: Hunk, min_changed: int = 1, max_lines: int = 200,
                        drop_whitespace_only: bool = True, drop_add_only: bool = False) -> str | None:
     """Trả về lý do loại hunk (None nếu giữ). Ngưỡng lấy từ configs/base.yaml -> hunks.

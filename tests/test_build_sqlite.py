@@ -89,6 +89,33 @@ def test_uncompressed_and_skip():
     assert loader.skipped == {"cve": 1}
 
 
+def test_unsafe_statements_rejected(tmp_path):
+    """Negative (trust boundary): dump độc hại không được ghi file/đổi cấu hình/sửa dữ liệu."""
+    from build_sqlite import DumpLoader, UnsafeStatement
+    con = sqlite3.connect(":memory:", isolation_level=None)
+    loader = DumpLoader(con, compress=False)
+    loader.execute('CREATE TABLE IF NOT EXISTS "t" (\n"a" TEXT\n);')
+    evil = [
+        f"ATTACH DATABASE '{tmp_path / 'pwn.db'}' AS x;",
+        f"VACUUM INTO '{tmp_path / 'copy.db'}';",
+        "PRAGMA writable_schema=ON;",
+        "DROP TABLE t;",
+        "UPDATE t SET a='x';",
+        "INSERT INTO sqlite_master VALUES('table','x','x',0,'');",
+        "INSERT INTO other VALUES('not created');",
+        "SELECT load_extension('evil.dll');",
+    ]
+    for stmt in evil:
+        try:
+            loader.execute(stmt)
+        except UnsafeStatement:
+            continue
+        raise AssertionError(f"Không chặn: {stmt}")
+    assert not (tmp_path / "pwn.db").exists() and not (tmp_path / "copy.db").exists()
+    loader.execute("INSERT INTO t VALUES('ok');")          # câu hợp lệ vẫn chạy
+    assert con.execute("SELECT a FROM t").fetchone()[0] == "ok"
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("test_"):
