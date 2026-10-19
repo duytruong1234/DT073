@@ -1,0 +1,3 @@
+[2026-10-19T04:55:13] Experiment=E3 Seed=2024 Git=9cb86a624f1cc728905969d37fd27237e54c9768-dirty
+Train time=38.269s | Infer time=3.306s | Peak RSS=1615.84 MB
+Test Macro-F1=0.2177 | Weighted-F1=0.3247 | MCC=0.2606 | Top-3 Acc=0.5857

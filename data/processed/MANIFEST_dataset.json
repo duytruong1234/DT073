@@ -10,5 +10,23 @@
   "splits.parquet": {
     "rows": 58659,
     "sha256": "2204a85c00bad1dd65c9500d38b09df8817795ea4cd7259da19d32bba5c858f1"
+  },
+  "cvefixes_hunks_v1.parquet": {
+    "rows": 40254,
+    "sha256": "6142e63ce4bca56c260bcd7158c14db69c457b984a672c977c565feaa90f3770"
+  },
+  "splits_csv_sha256": {
+    "split_random_seed42.csv": "c1d96b1783ed526a4a74be68cc85a5e2d1ec26af983d57d81a0d47646216e1ef",
+    "split_project_seed42.csv": "338ebd4fda5ef8d2cc74428daf79437c4cbe038e36eedbe8bba95a3624bf5fd0",
+    "split_time_seed42.csv": "91c29af0275b74cfe5523c1a2bac6dcf42ccb6edd07608b04cc51114484a7f16",
+    "split_random_nodedup_seed42.csv": "7ecfb2f374acf7db3457a0f62b548a3e2ca573b0bb069ed820d02e130403de32",
+    "split_random_seed123.csv": "0455ea3918df0b56e2be180a1d469f22888ff49343e11823b81ab35d46c67bee",
+    "split_project_seed123.csv": "b58bbf5fe50f51c7fa92c8cd5592b89a03036b952665aa024422e0117d5990b7",
+    "split_time_seed123.csv": "b3dcf95a7e746948acda5bde33f590cac45fdaea3a2db08bc387f6011e69cfd3",
+    "split_random_nodedup_seed123.csv": "1e1da43f76bd01c029d3a88b9fd21902c21b966e8e2ba95d922487500fdb4592",
+    "split_random_seed2024.csv": "ae727a6e9478b21b3ca26002e60a64011f28d18693a32ce3e412e52eea4f8675",
+    "split_project_seed2024.csv": "227d9711f2470ad787715672042a049a791ed567c169c17aee966e6f8bdaf328",
+    "split_time_seed2024.csv": "49b9241824d53dac715992d7f3975548f6a127ff3b9081e66eea08bde5daabd7",
+    "split_random_nodedup_seed2024.csv": "794209a95df3ded8146a072c16de289ebae5700939f1a66ed41729859b721bd7"
   }
 }

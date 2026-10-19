@@ -31,6 +31,14 @@
         ]
       },
       "skipped_rows": {}
+    },
+    "cvefixes_hunks_v1.parquet": {
+      "rows": 40254,
+      "sha256": "6142e63ce4bca56c260bcd7158c14db69c457b984a672c977c565feaa90f3770"
+    },
+    "hunks.parquet": {
+      "rows": 40254,
+      "sha256": "8db011193ba56076e6488003f1a84e43c2dfb4cbc3b171cadd177dad0e998e4a"
     }
   }
 }

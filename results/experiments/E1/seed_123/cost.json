@@ -1,0 +1,7 @@
+{
+  "seconds": 46.93,
+  "train_seconds": 44.908,
+  "infer_seconds": 1.763,
+  "peak_mem_mb": 1524.94,
+  "git": "9cb86a624f1cc728905969d37fd27237e54c9768-dirty"
+}
