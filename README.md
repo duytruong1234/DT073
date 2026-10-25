@@ -14,7 +14,7 @@ Gói tái lập hoàn chỉnh cho đề tài **DT073**: Xây dựng pipeline x�
 | **Hệ điều hành** | Windows 10/11 (PowerShell 5.1+ / PowerShell 7) |
 | **Python** | Python `3.12.10` |
 | **Git** | Git $\ge 2.40$ (dùng để kiểm tra trực tuyến lịch sử commit ở chế độ `--bare`) |
-| **Ổ đĩa trống** | $\ge 30$ GB (`CVEfixes_v1.0.8.zip`: 12,71 GB + `CVEfixes.db` nén cột mã lossless: 12,56 GB + dữ liệu xử lý: ~35 MB) |
+| **Ổ đĩa trống** | $\ge 30$ GB (`CVEfixes_v1.0.8.zip`: 12,71 GB + `CVEfixes.db` nén cột mã lossless: 13,54 GB + dữ liệu xử lý: ~35 MB) |
 | **RAM** | $\ge 8$ GB (máy kiểm thử: Intel 12 luồng CPU, 16,89 GB RAM, **không cần GPU**) |
 
 ---
