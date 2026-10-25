@@ -21,8 +21,7 @@ __pycache__/
 .env
 *.token
 
-# Mô hình & dự đoán nhị phân lớn (giữ lại toàn bộ metrics.json, summary, bảng đánh giá, biểu đồ)
+# Mô hình nhị phân lớn (predictions.csv – dự đoán thô của 24 lần chạy – ĐƯỢC commit để người chấm tính lại metric)
 results/models/*.joblib
-results/**/predictions*.csv
 results/**/*.pkl
 data/logs/

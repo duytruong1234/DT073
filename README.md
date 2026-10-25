@@ -63,6 +63,16 @@ Hoặc chạy từng bước độc lập:
 .\.venv\Scripts\python.exe scripts/demo_predict.py
 ```
 
+### Kiểm tra nhanh kết quả KHÔNG cần tải 12,7 GB dữ liệu
+
+Dự đoán thô của cả 24 lần chạy được commit tại `results/experiments/<Exp>/seed_<s>/predictions.csv`
+(cột `hunk_id, y_true, y_pred, top3_preds`; không chứa mã nguồn hay thông tin cá nhân). Lệnh sau tính lại
+Macro-F1 / Top-3 của từng lần chạy, so với `metrics.json` và chạy kiểm định McNemar chính xác E5 vs E3:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/verify_metrics_from_predictions.py
+```
+
 ---
 
 ## 4. Tóm tắt Kết quả Thực nghiệm Chính
