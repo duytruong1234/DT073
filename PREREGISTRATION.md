@@ -86,3 +86,4 @@ Tập mô hình hóa: hunk đại diện near-dup có nhãn ∈ top-17 (trừ E1
 | Ngày | Thay đổi | Lý do |
 |---|---|---|
 | 2026-10-19 | Bản đầu tiên (trước khi huấn luyện) | – |
+| 2026-10-25 | **Sai lệch D5**: kế hoạch là 2 người chấm thủ công; thực tế thực hiện bằng **2 bộ luật chấm tự động độc lập** (`Coder_A`: cấu trúc/luồng điều khiển; `Coder_B`: từ vựng đặc thù CWE) trên 200 mẫu phân tầng (`scripts/label_audit.py heuristic`). Kết quả: κ<sub>liên quan</sub> = 0,6181; κ<sub>CWE</sub> = 0,5513 (`results/label_audit/audit_result.json`). Phiếu trống `audit_sheet_blank.csv` được giữ lại để chấm thủ công bổ sung. | Giới hạn nhân lực/thời gian; ghi nhận minh bạch thay vì sửa kế hoạch gốc |

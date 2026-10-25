@@ -70,7 +70,7 @@ Kiểm chứng tự động: `leakage_report()` phải cho 0 repo / 0 CVE / 0 c�
 
 - Nhãn CWE gán ở **mức CVE**, áp cho mọi hunk trong commit → hunk không liên quan (refactor, test) mang nhãn sai.
 - Bằng chứng: 12,3% CVE chỉ có nhãn không cụ thể; 148 cụm near-dup có nhãn mâu thuẫn (913 hunk).
-- Biện pháp: loại nhãn không cụ thể và multi-CWE; loại tangled commit; **audit thủ công 200 hunk** (2 người, Cohen's κ) để ước lượng tỷ lệ nhãn đúng.
+- Biện pháp: loại nhãn không cụ thể và multi-CWE; loại tangled commit; **kiểm tra 200 hunk bằng 2 bộ luật chấm tự động độc lập** (Cohen's κ) để ước lượng tỷ lệ nhãn đúng; chưa có chấm thủ công bởi người.
 
 ## 6. Rủi ro còn lại (đưa vào phần Giới hạn)
 
