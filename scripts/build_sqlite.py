@@ -61,6 +61,8 @@ INDEXES = {
 }
 
 # Số liệu công bố trên Zenodo cho v1.0.8 (để đối chiếu sau khi nạp)
+# Lưu ý: README CVEfixes ghi "138974 functions" = số HÀM; bảng method_change lưu mỗi phiên bản hàm thành 1 dòng
+# (before_change = True/False) nên số dòng thực tế là 277.948 – KHÔNG phải nạp trùng (mọi method_change_id đều khác nhau).
 EXPECTED = {"commits": 12107, "cve": 11873, "file_change": 51342, "method_change": 138974}
 
 RE_CREATE = re.compile(r'^CREATE TABLE (?:IF NOT EXISTS )?"?([^"\s(]+)"?')
